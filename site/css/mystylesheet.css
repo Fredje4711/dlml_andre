@@ -1,0 +1,313 @@
+    
+   
+  /* -------------------------------------------------------- */
+  /*  --------------     small scherm     ----------------    */
+  /* -------------------------------------------------------- */
+ 
+   * { box-sizing: border-box; }
+   	  
+  ::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track { 
+    width: 0.6vw;  background: rgba(255,255,255,0) ; }
+  ::-webkit-scrollbar-button { display:none; }
+  ::-webkit-scrollbar-track-piece {  display:none; }
+  ::-webkit-scrollbar-corner { display:none; }
+  ::-webkit-resizer { display: none;  }
+  ::-webkit-scrollbar-thumb { 
+    border-radius: 0.3vw;
+	  background-color:  #00b1eb; min-height: 50px;}
+  ::-webkit-scrollbar-track {      }  
+
+  a { outline-color: transparent; text-decoration:underline; }
+  a:link { color: var(--linkColor);  text-decoration:underline; background-color:transparent; }
+  a:visited { color: var(--linkColor);  text-decoration:underline; background-color:transparent; }
+  a:hover { color: var(--linkColor);  text-decoration:underline; background-color:transparent; }
+  a:active { color: var(--linkColor);  text-decoration:underline; background-color:transparent; }
+   
+  html { width:100vw;
+    font-family:  sans-serif;
+    font-size: 3.0vw; line-height: 1.2;
+ 	  font-weight: 500;  color:#ffffff; 
+    --pgBackColor: #ffffff;
+	  --pgColor: #001a23; 
+    --colorRed: #ff0000;
+	  --Mnu1BackColor: #ffffff; 
+    --Mnu1Color: #31493c;
+	  --Mnu1IcoColor: #31493c; 
+	  --Mnu2BackColor: #e8f1f2;
+	  --Mnu2Color: #31493c;
+	  --Mnu1IcoColor: #31493c;  }
+   
+  body { width:100%  }  
+  
+
+  #wrapper { 
+    display:block; position:fixed; 
+    background-color: var(--pgBackColor); color: var(--pgColor) ;
+    font-size: 3.0vw; line-height: 1.15; font-weight: 500; 
+    left: 0; top:0; 
+    width:100vw; height: 100vh ; 
+    border: 1vw var(--pgBackColor) solid;
+    overflow-x: hidden; overflow-y: hidden; } 
+   
+  #titelWebsite { display:block; position:relative; width:100%; height:19vw; }
+  
+  #imgLogoV1 { display: block; width:98vw; height:18.5vw;   }
+  #imgLogoV2 { display:none; }
+  #imgLogoV3 { display:none; }
+    
+  #allPages { 
+    display:block; position:relative;  
+	  width:98vw;  height: calc(100vh - 18.5vw - 3vw) ;
+	  border-width: 1vw 1vw 1vw 1vw;
+    border-color:transparent; border-style:solid; 
+    overflow-x:hidden; overflow-y:hidden; }
+    
+  .pgContent {
+    width:100%; height:100%;
+	  overflow-x:hidden; overflow-y:auto; }
+  
+  #btnMnu { 
+    background-color: var(--pgBackColor); color: var(--pgColor) ;
+	  display:block; position:absolute; 
+	  right:0px; top:1vw;
+    width: 11vw; height:13.5vw;     
+	  background-color: transparent; }
+ 
+  #actieveMnu {
+    display:block; position:absolute; z-index: 90; 
+	  right:5vw; bottom: -2.1vw; 
+	  width: auto;  height:auto; white-space:nowrap;
+    padding: 0.2vw 2vw 0.2vw 2vw;
+	  text-align:center;
+	  background-color: var(--colorRed) ;
+	  color: var(--pgBackColor);
+	  border-radius: 1.7vw;
+    font-weight:bold; }
+ 
+  #Mnu1 { display:none; }
+  
+  #Mnu2 {   
+    display:none; position:absolute; z-index:95;
+    right: 3vw; top:8vw;  
+    margin:0px 0px; padding: 0px  0px;
+    background-color: var(--Mnu2BackColor) ;  color: var(--Mnu2Color) ;
+    width:auto; height: 0px;  max-height: calc(100% - 11vw) ; z-index:99;
+    border-width: 1vw 1vw 1vw 1vw;
+    border-color:transparent; border-style:solid;
+	  outline:1px #a0a0c4 solid; outline-offset: -1vw ; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    overflow-x:hidden; overflow-y: scroll; }
+  
+  #Mnu2::-webkit-scrollbar { display: none; } 
+  #Mnu2 label:hover { cursor: pointer; }
+  
+  #MnuLst2 { 
+    display: block;  
+    margin:0px 0px 0px 0px; padding: 0px  0px 0px 0px; 
+     background-color: transparent; color: var(--Mnu2Color) ;;
+	  width:100%; height:auto; }   
+  
+  #MnuLst2 div { 
+    display: block; width:100%;
+    margin: 0px 0px; padding: 0px 2vw 0px 0px;
+    white-space:nowrap; }
+    
+  #MnuLst2 div i { 
+    display:inline-block; width:4vw; 
+    margin: 0px 0px; padding: 5px 0px 5px 0px;
+    text-align:center; 
+    font-size: 1em; line-height:1; }
+                                   
+  #MnuLst2 div label { 
+    display:inline-block; width: auto; 
+    white-space:nowrap;
+    margin: 0px 0.5vw 0px 0px; padding: 5px 0px 5px 0px;;
+    text-align:left;
+    font-size: 1em; line-height:1; font-weight:normal; }
+  
+  #MnuLst2 .Mnu2Line { 
+    width:100%; height:9px;
+    background-color: #a0a0c4; 
+    border-bottom: 4px var(--Mnu2BackColor) solid; border-top: 4px var(--Mnu2BackColor) solid}
+   
+  #diabetes-clock-wrapper {
+    display:flex;     
+    flex-direction: row; flex-wrap:wrap; 
+    justify-content: space-between;
+    align-items: center;
+    background-color:#00b1eb ;
+    width: 80%; height:auto;
+    margin: 3vw 10% 0.2vw 10%;   }    
+    
+  #diabetes-clock-wrapper div {
+    background-color: transparent;
+    font-size: 0.95em; line-height:1.15; font-weight:400;
+    text-align:center; color:#ffffff;  }    
+  
+  #diabetes-clock-wrapper div:nth-child(1) { width:100%; height:0.25em; }
+  #diabetes-clock-wrapper div:nth-child(2) { width:100%; font-weight:600; }    
+  #diabetes-clock-wrapper div:nth-child(3) {  width:100%; }
+  #diabetes-clock-wrapper div:nth-child(4) {
+    width:100%;
+    font-size: 2.5em; line-height:1.2; font-weight: bold;
+     color: #d9534f;
+	  text-shadow:
+      -0.5px -0.5px 0 rgba(255,255,255,0.9),
+      0.5px -0.5px 0 rgba(255,255,255,0.9),
+      -0.5px  0.5px 0 rgba(255,255,255,0.9),
+      0.5px  0.5px 0 rgba(255,255,255,0.9);  }    
+  #diabetes-clock-wrapper div:nth-child(5) { margin-left: 2vw; font-size: 0.8em;  }
+  #diabetes-clock-wrapper div:nth-child(6) {           
+    margin-right:2vw;
+    font-size:0.8em; line-height:1;
+    color: #23a9e4; background-color: #c5e9f8;
+    padding: 0.4vw 0.6vw;
+    border-radius: 0.4vw; }
+  
+  #diabetes-clock-wrapper div:nth-child(7) { width:100%; height:0.5em; }
+ 
+  #tableSocials {
+    display:grid;
+    grid-template-columns:  50px auto; 
+    grid-template-rows: auto auto auto auto auto;
+    justify-content: start; align-content: start; 
+    justify-items: start; align-items: center ;
+    row-gap: 10px; column-gap: 12px;
+    width: 86%; height:auto;
+  	margin: 5vw 11% 15vw 3%;   }
+   
+  #socIcons {  
+    background-color: var(--pgBackColor);
+    display: block;  overflow:visible;  
+    text-align:right;
+    width:80%; height:3vw; margin: 1vw 10% 3vw 10%; }
+
+  .socItm {
+      display: inline-block;;
+      width:3vw; height:3vw;
+      overflow-x:visible;  overflow-y:visible;  
+      margin: 0px 1vw 0vw 1vw;
+      position: relative;   }
+
+  .icon { width: 3vw;    height: 3vw;    }
+
+  .tooltipTxt  {
+    display:none; position: absolute;
+    bottom: 110%;  left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background-color: #fffff0;    color: #333;
+    border:1px #333 solid; border-radius: 3px;
+    padding: 2px 12px; 
+    row-gap:0; column-gap:0.7vw;
+    font-size: 0.5em; }
+
+ .socItm:hover  .tooltipTxt {  display: flex;    } 
+     
+  img.LogoSize1 {
+    display:inline-block; background-color:transparent; 
+	  height: 1.3em; width: auto; } 
+  
+  img.LogoSize2 {
+    display:inline-block; background-color:transparent; 
+	  height: 2.6em; width: auto; }  
+    
+    
+  /* -------------------------------------------------------- */
+  /*  --------------     medium scherm     --------------    */
+  /* -------------------------------------------------------- */
+   @media only screen and (min-width: 768px) and ( orientation: landscape)   {  
+   
+  html { font-size: 2.6vw;  }
+	  
+  #wrapper { 
+    font-size: 2.6vw; 
+    border: 1.5vw var(--pgBackColor) solid; }
+    
+  #titelWebsite { height:10.6vw; }
+ 
+  #imgLogoV1 { display:none; }
+  #imgLogoV2 { display:block; width:97vw; height:10.6vw; }
+  #imgLogoV3 { display:none; }
+  
+  #allPages { 
+    width:97vw;  height: calc(100vh - 10.6vw - 3vw) ;
+	  border-width: 1.5vw 1.5vw 1.5vw 1vw;}
+  
+  #btnMnu { 
+    right:0px; top:1.5vw;
+    width: 8vw; height:7.6vw;}
+   
+  #Mnu1 { display:none; }
+  
+  #Mnu2 {
+    right: 2vw; top:6vw;  
+    max-height: calc(100% - 8vw) ;}
+  
+  }
+
+  /* -------------------------------------------------------- */
+  /*  --------------     large scherm     ----------------    */
+  /* -------------------------------------------------------- */
+  @media only screen and (min-width: 1280px) {  
+   
+  html { font-size: 1.5vw; }
+
+  #wrapper {  font-size: 1.5vw;  } 
+ 
+  #imgLogoV1 { display:none; }
+  #imgLogoV2 { display:none; }
+  #imgLogoV3 { display:block; width:97vw; height:10.6vw; }
+  
+  #allPages { float:right; width:73vw;  }
+    
+  #btnMnu { display:none; }
+  
+  #actieveMnu { right:5vw; bottom: -1.7vw; z-index:55; border-radius: 1.5vw;}
+  
+  #Mnu1 {  
+    display:block; float:left;  z-index:95;
+    width:auto; max-width:23vw;  height: calc(100% - 10.6vw) ;
+  	overflow-x:hidden;overflow-y:auto;
+    background-color: var(--Mnu1BackColor); color:var(--Mnu1Color) ;  }
+  
+  #MnuLst1 { 
+    display: block; 
+    background-color: transparent; color: var(--Mnu1Color) ;;
+	  width:100%; height:auto;  }   
+  
+  #MnuLst1 div { 
+    display: block; width:100%;
+    margin: 0px 0px; padding: 0px 0px;
+    white-space:nowrap; }
+    
+  #MnuLst1 div i     { 
+    display:inline-block; width:4vw; 
+    margin: 0px 0px; padding: 5px 0px 5px 0px;
+    text-align:center; 
+    font-size: 1em; line-height:1; }
+   
+  #MnuLst1 div label { 
+    display:inline-block; width: auto; 
+    white-space:nowrap;
+    margin: 0px 0.5vw 0px 0px; padding: 5px 0px 5px 0px;;
+    text-align:left;
+    font-size: 1em; line-height:1; font-weight:normal; }
+  
+  #MnuLst1 .Mnu1Line { 
+    width:100%; height:9px;  
+    background-color: #a0a0c4; 
+    border-bottom: 4px var(--Mnu1BackColor) solid; border-top: 4px var(--Mnu1BackColor) solid ;
+    border-right: 0.5vw var(--Mnu1BackColor) solid;}
+  
+  #Mnu1 label:hover { cursor: pointer; }
+  
+  #diabetes-clock-wrapper div { font-size: 1.3em; line1-height:1.5; font-weight:400; }    
+  
+  #diabetes-clock-wrapper div:nth-child(4) {  font-size: 2.5em; line-height:1.2; font-weight: bold;
+  #diabetes-clock-wrapper div:nth-child(5) { font-size: 2em;  }
+  #diabetes-clock-wrapper div:nth-child(6) { font-size:2em; line-height:1;  }
+  
+ 
+   }  

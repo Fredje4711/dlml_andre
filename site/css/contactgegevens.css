@@ -1,0 +1,77 @@
+/* ----------------------------------------------------- */
+/* ----------------     small scherm     ------------    */
+/* ----------------------------------------------------- */
+ 
+  .contactItm {    
+    display:grid; 
+    width: auto; height:auto; 
+	  margin: 5vw auto 15vw auto;
+	  grid-template-columns: 12% 28% 5% 12% 28% ;
+	  grid-template-rows: repeat( 9, auto) ;
+	  justify-content: center; align-content:start;
+    justify-items: start; align-items: start;;
+    grid-row-gap: 2vw;  grid-column-gap: 1vw; } 
+	 
+  .contactImg { 
+    display: flex;
+	  border: 2px #ff0000 solid;
+    margin-bottom:2vw;
+	  width:100%; }
+  
+  .contactImg img { width:100%; height:auto; }
+  
+  .contactTxt { 
+    display: flex;
+	  flex-direction: column;
+	  width:100%; height:100%; 
+	  font-size:0.8em; } 
+    
+  #contactSocials { grid-column: 1 / span 5 ; } 
+  #contactSocials img { width: 1em; height:1em; margin-right: 1em; }
+  #contactSocials div { display:inline-block; font-size: 1em; line-height:1.35; font-weight:500; } 
+		
+  /* ---------------------------------------------------------- */
+  /*  -----------------     medium scherm     --------------    */
+  /* ---------------------------------------------------------- */
+  @media only screen and (min-width: 768px) and ( orientation: landscape)   {  
+  
+   .contactItm {   } 
+	 
+  .contactImg {  }
+  
+  .contactImg img { }
+  
+  .contactTxt {  } 
+    
+  #contactSocials { } 
+  #contactSocials img {  }
+  #contactSocials div {  } 
+
+  }
+  
+  /* -------------------------------------------------------- */
+  /*  --------------     large scherm     ----------------    */
+  /* -------------------------------------------------------- */
+  @media only screen and (min-width: 1280px) {  
+   
+   .contactItm {    
+    grid-template-columns: 13% 27% 5% 13% 27% ;
+	  grid-row-gap: 1vw;  grid-column-gap: 1vw; } 
+	 
+  .contactImg { margin-bottom:1vw; }
+  
+  .contactImg img { }
+  
+  .contactTxt { font-size:1em; } 
+    
+  #contactSocials { grid-column: 1 / span 5 ; } 
+  #contactSocials img { width: 1em; height:1em; margin-right: 1em; }
+  #contactSocials div { display:inline-block; font-size: 1em; line-height:1.35; font-weight:500; } 
+		
+
+    
+    }
+
+
+	  
+	

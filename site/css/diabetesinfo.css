@@ -1,0 +1,264 @@
+        
+		
+
+
+/* ----------------------------------------------------- */
+/* ----------------     small scherm     ------------    */
+/* ----------------------------------------------------- */	
+  
+  #mnuSearchQA { 
+    display:grid; 
+    width: calc( 100% - 6vw ); height:12vw; 
+    margin:2vw 2vw 1vw 3vw;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-rows: 4vw 1.5vw;
+    align-items: center;
+    font-size:3vw; line-height:1.15; font-weight:normal;
+    row-gap: 1vw ; column-gap: 1vw;}
+    
+  #mnuSearchQA input[type=text] {
+    width: 35vw; height:auto;
+    border: 1px #a0a0c0 solid;
+    outline:0px #ffffff solid;  }       
+  
+  #mnuSearchQA #txtKenwoorden { 
+    grid-column: 3 / span 4 ;
+    font-size: 0.7em; line-height:1 ; color:#007fbb;
+    text-align: left;  }
+    
+  #btnOverzicht, #btnSearch  {
+    display:block; 
+    width:auto; height:auto;
+    padding: 0 2vw 0 2vw;
+    background-color:#007fff; color:#ffffff; }
+    
+  #btnOverzicht { grid-column: 1 ; }
+  #mnuSearchQA input[type=text]  { grid-column: 3 ; }
+  #btnSearch { grid-column: 4 ; }    
+  
+  #contentQA {
+    position:relative;
+    width:100%; height:calc(100% - 16vw);
+    overflow-x:hidden; overflow-y:auto; } 
+  
+  #lstQA {
+    display:grid; position:absolute;
+    grid-template-columns: 1vw auto 1fr;
+    grid-auto-rows: auto; 
+    justify-content: start; align-content:start;
+    justify-items: start; align-items: center;
+    row-gap:0.2vw;
+    width:100%; height: auto;;}
+     
+  #lstQA label {
+    display:block; grid-column: 1 / span 2 ; 
+    color: #007bff;  
+    border: 1px #007bff solid;
+    border-radius: 0.3vw;  
+    font-size:0.9em; line-height:1.15; font-weight:normal;
+    padding:0.25vw 1.2vw;   
+    height: auto ; width:auto; } 
+  
+   #lstQA label:hover { cursor: pointer; }
+ 
+  #lstQA div { 
+    grid-column: 1 / span 3 ; 
+    height: auto ; width:100%;
+    font-size:0.8em; line-height:1.15; font-weight:normal;
+    padding:0.25vw 1.2vw; }  
+    
+  #lstQA div { display: block ; }
+  #lstQA div p { display:block; padding: 0 0 0.5vw 0; } 
+  
+  #MnuMythenFeiten {    
+    display:block; 
+    width:100%; height:5vw;
+    text-align:center; margin-top:2.5vw; 
+    font-size: 1.15em; line-height:1.4; font-weight:600; }
+  
+  #allCards {  
+    display:block; 
+    width:100%; height:calc(100% - 9vw) ; 
+    margin-top: 1vw; text-align:center;
+    overflow-x:hidden; overflow-y:auto;}
+  
+  .container-Card { 
+    display:inline-block;
+    width:40vw; height:40vw;
+    margin: 0px 2vw 2vw 2vw;
+    perspective: 800px; }  
+       
+  .card, .cardRotate {
+    width: 100%;
+    height: 100%;
+    border: 2px #d0d0d0 solid;  border-radius: 1vw;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d; } 
+    
+  .cardRotate { 
+     -moz-transform : rotateY(180deg)  ;
+     -webkit-transform : rotateY(180deg) ;
+     -o-transform : rotateY(180deg) ; 
+     -ms-transform : rotateY(180deg) ;
+     transform : rotateY(180deg) ; }  
+     
+  .card_front { 
+    display:grid; position: absolute;
+    left:0px; right:0px;  top: 0px; bottom: 0px; 
+    background: #c2f9fc; color: #517eb5;
+    backface-visibility: hidden;
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows:  3vw auto auto 1fr 10vw 4vw;
+    justify-content: center; align-content: center;
+    justify-items: center; align-items: center;
+    row-gap:1vw; column-gap:0px; }   
+    
+  .card_back { 
+    display:grid; position: absolute;
+    left:0px; right:0px;  top: 0px; bottom: 0px; 
+    background: #ffffff; color: #517eb5;
+    backface-visibility: hidden;
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows: 3vw auto auto 1fr 2vw ;
+    justify-content: center; align-content: center;
+    justify-items: center; align-items: center;
+    row-gap:1vw; column-gap:0px;    
+    transform: rotateY(180deg) ;   }
+  
+  .card_front span.size1, .card_back span.size1 {  
+    width:100%; height:100%;
+    grid-column:2; grid-row: 2; 
+    text-align:center;
+    font-size: 1.25em; line-height:1.15; font-weight:bold; }
+      
+  .card_front span.size2, .card_back span.size2 { 
+    width:100%; height:100%;
+    grid-column:2; grid-row: 3;
+    text-align:center; 
+    font-size: 1em; line-height:1.15; font-weight:normal; }  
+  
+  .card_front span.size3, .card_back span.size3 {
+    width:100%; height:100%;
+    grid-column:2; grid-row: 3;
+    text-align:center; 
+    font-size: 0.9em; line-height:1.15; font-weight:normal; }  
+  
+  .card_front i, .card_front svg {
+    width:100%; height:100%;
+    grid-column:2; grid-row: 5; 
+    text-align:center; 
+    font-size: 10vw; line-height:1; }  
+    
+  /*  rijvewijs  */
+  
+ 
+  #containerRijbewijs { 
+   display:block; 
+   width:100%; height: calc(100% - 1vw);
+   margin-top:1vw;
+   overflow-x:hidden; overflow-y:hidden;
+   }
+   
+  #containerRijbewijs iframe { 
+    width:100%; height: 100% ; 
+    border:2px transparent solid;
+    } 
+ 
+/* -------------------------------------------------------- */
+/*  --------------     medium scherm     --------------    */
+/* -------------------------------------------------------- */
+ @media only screen and (min-width: 768px) and ( orientation: landscape)  {  
+ 
+  #mnuSearchQA { 
+    height:9vw;  margin:2vw 2vw 1vw 2vw;
+    row-gap: 0.85vw }
+    
+  #contentQA { height:calc(100% - 12vw); } 
+ 
+  #MnuMythenFeiten { height:4vw;margin-top:2.5vw; }
+  
+  #allCards { height:calc(100% - 8vw) ; }
+  
+  .container-Card { 
+    width:26vw; height:32vw;
+    margin:0px 1vw 1vw 1vw ; }  
+       
+  .card_front { 
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows:  1vw auto auto 1fr 7vw 1vw;
+    row-gap:1vw; column-gap:0px; }   
+    
+  .card_front u {font-size:7vw; line-height:1; }
+    
+  .card_back { 
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows: 2vw auto auto 1fr 2vw ;
+    row-gap:1vw; column-gap:0px;    
+    transform: rotateY(180deg) ;   }
+  
+  .card_front span.size1, .card_back span.size1 {  
+    grid-column:2; grid-row: 2; 
+    text-align:center;
+    font-size: 1.15em; line-height:1.1; font-weight:bold; }
+      
+  .card_front span.size2, .card_back span.size2 { font-size: 0.9em; line-height:1; font-weight:normal; }  
+  .card_front span.size3, .card_back span.size3 { font-size: 0.9em; line-height:1; font-weight:normal; }  
+  .card_front i { font-size: 7vw; line-height:1; }     
+    
+  }  
+   
+/* -------------------------------------------------------- */
+/*  --------------     large scherm     ----------------    */
+/* -------------------------------------------------------- */
+@media only screen and (min-width: 1280px) { 
+   
+  #mnuSearchQA { 
+    width: 68vw;  height:7vw; 
+    margin:2vw 2vw 1vw 2vw;
+    grid-template-rows: 3vw 1vw;
+    font-size:1em; line-height:1.15; font-weight:normal;
+    row-gap: 0.15vw ; column-gap: 1vw;}
+  
+  #mnuSearchQA input[type=text] {
+    position:relative;
+    width: 35vw; height:auto;
+    border: 1px #a0a0c0 solid;
+    outline:0px #ffffff solid;  }       
+  
+  #mnuSearchQA #txtKenwoorden { 
+    font-size: 0.85em; line-height:1 ; color:#007fbb; }
+  
+  #mnuSearchQA input[type=text] { width: 26vw;  }       
+  
+  #btnOverzicht, #btnSearch  { padding: 0.2vw 1.5vw 0.2vw 1.5vw; }
+    
+  #contentQA { width:100%; height:calc(100% - 10vw); } 
+  
+  
+  #MnuMythenFeiten { height:3vw;margin-top:1.5vw; }
+  
+  #allCards { width:100%; height:calc(100% - 5.5vw) ; }
+  
+  .container-Card { 
+    width:19vw; height:21vw;
+    margin:0px 0.3vw 0.3vw 0.3vw ;}  
+       
+  .card_front { 
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows:  1vw auto auto 1fr 7vw 1vw;
+    row-gap:1vw; column-gap:0px; }   
+    
+  .card_back { 
+    grid-template-columns: 1vw 1fr 1vw;
+    grid-template-rows: 2vw auto auto 1fr 2vw ;
+    row-gap:1vw; column-gap:0px;    
+    transform: rotateY(180deg) ;   }
+  
+  .card_front span.size1, .card_back span.size1 { font-size: 1.25em; line-height:1.15; font-weight:bold; }
+  .card_front span.size2, .card_back span.size2 { font-size: 1.15em; line-height:1.15; font-weight:normal; }  
+  .card_front span.size3, .card_back span.size3 {font-size: 1em; line-height:1.15; font-weight:normal; }  
+  .card_front i { font-size: 7vw; line-height:1; }     
+        
+    
+  }

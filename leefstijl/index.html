@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+ <head>
+ 
+  <title>seksuele en psychologische aspecten van diabetes</title>           <!--             titel website                 -->
+
+  <!-- Favicon / Icoontjes (Zorg dat deze bestanden in de hoofdmap staan) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest.html">
+  <link rel="icon" type="image/png" href="icon-192x192.png">     
+    
+  <meta name="theme-color" content="#23a9e4">
+
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  
+  <META NAME="Keywords" CONTENT="diabetesligamiddenlimburg, diabetesligamiddenlimburg.be , Diabetes,  Diabetes Liga, Middden-Limburg, locale afdeling,">
+  <META NAME="Description" CONTENT="Diabetes Liga afdeling Midden-Limburg obesitaschirurgie">
+  <META NAME="Robots" CONTENT="index, follow, all"> 
+  <META NAME="Author" CONTENT="diabetes liga locale afdeling Midden-limburg">
+  <META NAME="Reply-to" CONTENT="info@dlml.be">
+  <META NAME="Identifier-URL" CONTENT="www.dlml.be/leefstyle/">             <!--             titel website                 -->
+   
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700&family=Lato:ital,wght@0,400;0,700&family=Roboto:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+  
+  <style>
+   
+   * { box-sizing: border-box; padding:2px 2px 2px 2px;  margin: 2px 2px 2px 2px;  }  
+ 
+    ::-webkit-scrollbar              { width:6px; }
+    ::-webkit-scrollbar-button       { display: none; }
+    ::-webkit-scrollbar-track        { background-color: #ffffff; box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3); }
+    ::-webkit-scrollbar-track-piece  {  }
+    ::-webkit-scrollbar-thumb        { background: #00b1eb; border-width: 8px 3px 8px 1px;; border-color: #ffffff; border-style: solid ; min-height: 20px;  }
+    ::-webkit-scrollbar-corner       { display: none; }
+    ::-webkit-resizer                { display: none; } 
+ 
+  html, body { width:100vw; 
+    background-color:#ffffff; color:#333 ; 
+    margin:0px 0px; padding:0px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Lato', sans-serif;   
+    font-size: clamp( 14px ,  calc( 1.85vw + 5.12px ) , 22px ) ;
+    line-height:1.2 ; font-weight:500; } 
+  
+  #wrapper { display:block;  position:fixed;
+   left: 0px ; top:0px; bottom:0px ;
+    margin:10px 10px ; padding:0px 0px;
+    width: calc( 100% - 20px) ; max-width:920px;
+    background-color:#afeeee; color:#333; } 
+  
+  /*                                          */
+	#top { 
+	  display: flex;
+    flex-wrap: wrap; flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    justify-items:center;
+    width: 100%; height:auto; 
+    margin:0px 0px; padding:0px 0px;
+    background-color: #663ab7; color:#ffffff; }
+    
+  #top div {
+    font-size: 100%; text-align:center;
+    width:auto; height:auto;
+    margin:0px 15px 0px 15px;  padding: 0px 0px 0px 0px; }
+    
+    #top div:nth-child(1) { width: 100%; font-size:125%; padding: 3px 0px 2px 0px; }  
+    #top div:nth-child(2) { width: 100%; font-size:125%; padding: 2px 0px 3px 0px; }  
+    #top div:nth-child(5) { width: 100%; height:1px;  }  
+    #top div:nth-child(8) { width: 100%; height:30px;  }    
+    
+  /*                                          */
+	#myForm  {
+    display:block; position:relative; 
+    left:5%; top:-22px;
+    overflow-x:hidden;overflow-y:auto;
+    font-size:100%; line-height:1.2 ; font-weight:500;
+    width:90%; height: auto ; max-height: calc( 100vh - 3.25em - 110px);
+    background-color:#ffffff; 
+    padding: 30px 20px 20px 25px; ;
+    border-top: 10px #b388ff solid;
+    border-right:1px #B388FF solid;
+    border-left:1px #B388FF solid;
+    border-bottom:1px #b388ff solid; 
+    text-align:left;}  
+    
+    label {  
+      display:inline-block; position:relative;
+      font-size:100%; font-weight:500; line-height: 1.2 ;
+      margin: 0px 0px 1px 0px; 
+      padding: 20px 25px 0px 0px; }
+    
+    input[type=text], input[type=radio], select { 
+      display: inline-block; 
+      font-size:100%; line-height:1.2 ; font-weight:500;
+      outline: 0px #ffffff solid; outline-offset: 1px;  } 
+ 
+    input[type=text], select { border:1px #a0a0c4 solid; }
+    input[radio] { border: 0px #ffffff solid; }
+  
+    .isforbitten {
+      font-size:125%; font-weight:500; line-height: 1;
+      width:auto; height:auto; 
+      padding: 8px 20px 8px 20px; margin:2px 2px 6px 2px;
+      background-color:#f2f2f2; color:#00e000; 
+      border: 1px #00e000 solid;
+      border-radius: 5px;
+      cursor: not-allowed; }     
+      
+    .issubmit {
+      font-size:125%; font-weight:500; line-height: 1;
+      width:auto; height:auto; 
+      padding: 8px 20px 8px 20px; margin:2px 2px 6px 2px;
+      background-color:#f2f2f2; color:#333; 
+      border: 1px #333 solid;
+      border-radius: 5px;
+      cursor:pointer; } 
+         
+      input::placeholder { color: #a0a0c4; font-size:90%; font-weight:600; font-style:italic;  } 
+
+     .errmsg {  
+      display: inline-block; position:absolute; 
+      visibility:hidden; color :#ff0000; 
+      margin: 0 10px 0 0 ; padding:0px 0px 0px;
+      font-style: normal; font-size:175%; 
+      font-weight:700;  line-height:1;}
+    
+   	#deelname { 
+      display:block; 
+      font-size:100%; font-weight:500; line-height: 1.2 ;
+      margin: 0px 0px 0px 0px;
+      padding: 16px 0px 4px 0px; }
+    #deelname div:nth-child(1) ,
+    #deelname div:nth-child(2) {
+       display:inline-block; margin:0 0; padding:0 0;
+       } 
+    #deelname label { display:inline-block; margin: 0px 15px 0px 0px; padding: 0px 0px} 
+    #deelname input[type=radio] { display:inline-block; margin: 0px 0px 0px 15px; padding:0px 0px;} 
+    #deelname input[type='radio']:checked ~ * { font-weight:700; }
+	  
+    #txtDeelname {
+      display:inline-grid;
+      width:auto ; margin:4px 0px 0px 15px; 
+      font-size:90%;
+      grid-template-columns: 5px 5px auto;
+      grid-template-rows: repeat(3 , 1.2em) 0.8em repeat(6 , 1.2em) ;
+      justify-content:start; align-content:start;
+      justify-items:start; align-items:center;
+      row-gap:0px; column-gap: 5px;}  
+    
+    #opmerkingen { 
+      font-size:100%; line-height:1.15; 
+      width: 90%; max-width:90%; 
+      padding:5px 10px;  }    
+    
+    #logo {
+      display:inline-block; position:absolute; 
+      right: 0px; top: 0px; } 
+ 
+    #bevestiging {
+      display:inline-block; position:absolute;   
+      visibility:hidden;
+      left:50px; right:50px;
+      z-index:98;  text-align:right;   
+      height:auto; min-height: 120px; 
+	    font-size:100%; line-height:1.2;
+      padding:0 0;
+      background-color: #ffffff ;
+      border:3px #333 solid; border-radius: 7px; }
+    
+    #bevestigingTitel { 
+      display:block;: width:100%;  
+      background-color:#333; color:#ffffff; 
+      margin:0 0; padding:8px 16px; 
+      text-align:center; }
+      
+    #bevestigingMsg {
+      display: block; 
+      width:100%; height:auto;
+      padding: 8px 20px; 
+      text-align:left; 
+      font-size:100%; line-height:1; }  
+    
+    #btnOk { 
+      display: inline-block;   
+      width:auto; height:auto;
+      margin:10px 20px 10px 10px; 
+      padding:4px 28px;  
+      border:2px #333 solid;
+      border-radius:6px; font-size:100%; }
+    
+    #bevestiging:hover, #btnOK:hover { cursor: pointer; }	   
+            
+  </style>
+
+  </head>
+  <body>  
+  
+  <div id="wrapper">
+  
+   <div id="top">
+	    <div id="top-titel"></div>
+	    <div id="top-subtitel"></div>
+      <div id="top-datum"></div>
+      <div id="top-plaats"></div>
+	    <div></div>
+      <div id="top-uur"></div>
+      <div id="top-adres"></div>
+      <div></div>
+   </div>     
+  
+   <form id="myForm" action="https://www.dlml.be/leefstijl/php4socialeaspecten.php" accept-charset="utf-8" >                <!--         -->
+	  
+          <input id="titel"     type="hidden" name="strTitel"    value="SEKSUELE EN PSYCHOLOGISCHE">           <!--             -->
+    	    <input id="subtitel"  type="hidden" name="strSubtitel" value="ASPECTEN VAN DIABETES">                <!--             -->
+    	    <input id="datum"     type="hidden" name="strDatum"    value="Donderdag 18 juni 2026">               <!--             --> 
+    	    <input id="plaats"    type="hidden" name="strPlaats"   value="Aula JZ Campus Salvator">              <!--             -->
+    	    <input id="uur"       type="hidden" name="strUur"      value="20.00 u - 22.00 u">                    <!--             -->
+    	    <input id="adres"     type="hidden" name="strAdres"    value="Salvatorstraat 20,3500 Hasselt">       <!--             -->
+          <input id="filenaam"  type="hidden" name="strFileNaam" value="lijst4socialeaspecten">                <!--             -->
+    
+         <label id="lbl_naam" for="naam">Naam (*)<br>
+            <input type="text" id="naam" class="verplicht" name="strNaam" size="24" placeholder="uw naam">
+            &nbsp;<i class="errmsg" id="errnaam">!</i>
+          </label>
+     
+          <label id="lbl_voornaam" for="voornaam">Voornaam<br>
+    	      <input type="text" id="voornaam" name="strVoornaam"  size="24" >
+          </label><br>
+              
+          <label id="lbl_mail" for="mail">e-mail (*) <br>
+            <input id="mail"  class="verplicht" type="text" name="strMailAdres" size="34"  placeholder="@emaildomein.be">
+            &nbsp;<i class="errmsg" id="errmail">!</i><br>
+          </label><br>         
+          
+          <label id="lbl_tel" for="tel">Tel/GSM<br>
+    	      <input type="text" id="tel" name="strTel" size="25" pattern="[0-9]{3} [0-9]{2} [0-9]{3}" >
+          </label><br>
+    
+          <!--   aantal          -->
+          <label id="lbl_aantal" >Aantal deelnemers (*)<br>
+            <input type="text" id="aantal" class="verplicht" name="strAantal" size="8"  value="" placeholder="aantal">      
+            &nbsp;<i class="errmsg" id="erraantal">!</i><br>
+          </label><br>
+          	    
+          <!--                                                    -->
+          <div id="deelname">
+            Deelname  
+            <div style="display:inline-block; margin:0 0;">
+              <input id="fysiek" type="radio" value="fysiek" name="strKeuzeDeelname" checked="checked">
+              <label for="fysiek">fysiek</label>
+            </div>
+            <div style="display:inline-block; margin:0 0;">
+              <input id="digitaal" type="radio" value="digitaal" name="strKeuzeDeelname">
+              <label for="digitaal">digitaal</label>
+            </div><br>
+            <div id="txtDeelname">
+              <div style="grid-column: 1 / span 3;">fysiek</div>
+              <div style="grid-column: 2">•</div>
+              <div>gratis deelname</div>
+              <div style="grid-column: 2">•</div>
+              <div>aanwezigheidsattest</div>
+              <div style="grid-column: 1 / span 3; ">&nbsp;</div>
+              <div style="grid-column: 1 / span 3;">digitaal</div>
+              <div style="grid-column: 2">•</div>
+              <div>online via Microsoft Teams;</div>
+              <div style="grid-column: 2">•</div>
+              <div>vanaf elke apparaat, ook zonder Teams-account;</div>
+              <div style="grid-column: 2">•</div>
+              <div>attest online deelname webbinar;</div>
+              <div style="grid-column: 2">•</div>
+              <div>in de week voorafgaand aan de infosessie</div>
+              <div style="grid-column: 2">&nbsp;</div>
+              <div>ontvangt u verdere praktische informatie.</div>
+            </div>
+          </div>
+        
+          <!--                                                    -->
+          <label for="attest">                                                        
+            <input type="checkbox" id="attest" name="strAttest"  value=" - ">&nbsp;wenst een deelname-attest
+          </label><br>
+          
+          <!--                                                    -->
+          <label for="opmerkingen" >opmerkingen<br>
+            <textarea id="opmerkingen" cols="50" rows="2" name="strOpmerkingen" style="resize: none; "></textarea>
+          </label>
+          
+          <!--                                                    -->
+          <label>
+            <button id="btnsubmit" class="isforbitten" type="button" data-submit="notsubmit">Inschrijven</button>
+          </label>
+
+          <!--    bevestiging    -->
+          <div id="bevestiging">   
+            <div id="bevestigingTitel"> Bevestiging inschrijving </div>
+            <div id="bevestigingMsg" >            </div>
+            <div id="btnOk">OK</div> 
+          </div>
+     
+          <!--                                                    -->
+          <div id="txtVerplicht">
+    	      &nbsp;(*) velden zijn verplicht<br>
+            <br>&nbsp;<br>
+          </div>  
+          
+          <!--                                     -->
+          <div id="logo">
+            <img alt="DLML" style="width:7.5em; height: 2.5em;" src="../site/image/DLML.png">
+          </div>
+        
+     </form>          <!--       einde formulier           -->       
+     
+    
+ 
+
+   </div> 
+   
+  <!-- *************** script files  ********************************* -->
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+  
+  <script> 
+  
+  $(document).ready(function(e){ 
+  
+    var distMsg = $('#btnsubmit').offset().top; 
+    distMsg-= $('#myForm').offset().top;
+    distMsg+= 80 ;
+  
+    $('#top-titel').html( 'INSCHRIJVING ' + $('#titel').val().toUpperCase() ); 
+    $('#top-subtitel').html( $('#subtitel').val().toUpperCase() ); 
+    $('#top-datum').html( $('#datum').val() ); 
+    $('#top-uur').html( $('#uur').val() ); 
+    $('#top-plaats').html( $('#plaats').val() ); 
+    $('#top-adres').html( $('#adres').val() );  
+     
+    // naam check asc code                   
+    $('#naam').inputmask('Regex', { regex: "^[a-zA-Z0-9+-_ àäáâÂÀÄÁßçÇèéêëÈÉÊËïîÎÏôóòõöÖÔÒÓûùüÙÛÜ€Ãÿ\']+$" });
+    
+    // voornaam check asc code               
+    $('#voornaam').inputmask('Regex', { regex: "^[a-zA-Z0-9+-_ àäáâÂÀÄÁßçÇèéêëÈÉÊËïîÎÏôóòõöÖÔÒÓûùüÙÛÜ€Ãÿ\']+$" });
+     
+    // naam voornaam  hoofdletters          
+    $('#naam, #voornaam').on( 'keyup change', function(e) {
+      var str = $(this).val();  
+      if ( str.length == 1 ) { 
+        this.value = this.value.toUpperCase();   
+        }
+      });  
+         
+    //       email                          
+    $('#mail').inputmask('Regex', { regex: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"  });
+    
+    //      tel                            
+    $('#tel').inputmask('Regex', { regex: "^[0-9()+][0-9()\.\: ]+$"  });   
+    
+    //      tel    set formaat                          
+    $('#tel').blur(function () {
+      $.fn.setNewTelNr () ;
+      });
+       
+    //      aantal                           
+    $('#aantal').inputmask('Regex', { regex: "^[0-9]+$"  });
+                               
+    //     checkbox attest                 
+    $('#attest').on('click' , function () {  
+      if ( $(this).is(':checked'))  {
+        $(this).val('ja'); 
+        } else {
+        $(this).val('nee'); 
+        }
+      });
+   
+    //             naam                     
+    $('#naam, #mail, #aantal').on('keyup' , function() {
+      $(this).css('outline','0px #ffffff solid');
+      var itm = $(this).attr("id");
+      $('#err'+ itm).css('visibility','hidden');
+      $.fn.setCheckSubmit () ;
+      });
+     
+    //  select fysiek digitaal             
+    $('input[name=strKeuzeDeelname]').change(function() {
+    
+      }); 
+    
+    // on enter input next input  use inpu ipv keydown                
+    $('#myForm input[type="text"]').on('keydown' , function( event ) { 
+      if (event.key === 'Enter' || event.keyCode === 13)  {
+        event.preventDefault() ;   // voorkom per ongelijk subit button  
+        if ( $(this).attr("id") )  { 
+          switch ( $(this).attr("id") ) {
+            case "naam":
+              $('#voornaam').focus() ;  
+              break ;
+            case 'voornaam':
+              $('#mail').focus() ;  
+              break ;   ;
+            case 'mail':
+              $('#tel').focus() ;  
+              break ;
+            case 'tel':
+              $('#aantal').focus() ;  
+              break ; 
+            default:
+            }
+          }
+       }
+      });  
+            
+    //   set  btn submit                    
+    $.fn.setCheckSubmit = function ( ) { 
+      okSubmit  = true ; 
+      if ( $('#naam').val().length == 0 ) { okSubmit = false; } 
+      if ( $('#aantal').val().length == 0 ) { okSubmit = false; } 
+      if ( $('#mail').val().length == 0 ) { okSubmit = false; } 
+      if ( okSubmit ) { 
+        $('#btnsubmit').attr('class', 'issubmit'); ; 
+        } else {
+        $('#btnsubmit').attr('class', 'isforbitten'); ; 
+        }
+      } 
+    
+    //                                       
+    $.fn.setNewTelNr = function () {
+      var str = $('#tel').val(); var newTel = '';
+      str = str.replace(/[^0-9]+/g, '');  
+      if ( str.substring(0,2) == '32' ) {      // landcode
+          newTel = '+ 32 ' ;
+          str = str.substring(2) ; 
+          str = str.substring(0,1) ==  '0' ? str = str.substring(1) : str ;   
+        } else if ( str.substring(0,1) == '0' ) {
+          newTel = '0' ;
+          str = str.substring(1);
+        } else {
+          newTel = str; str = '';
+        } 
+        
+        if ( str.length == 9 ) {     // GSM           
+          newTel+= str.substring(0,3) + ' ' +  str.substring(3,5) + ' ' +  str.substring(5,7) + ' ' +  str.substring(7)
+          }
+        if ( str.length == 8 ) {     // vaste lijn    
+          switch( str.substring(0,1) ) {
+            case '2': case '3':  case '4':  case '9':
+              newTel+= str.substring(0,1) + ' ' +  str.substring(1,4) + ' ' +  str.substring(4,6) + ' ' +  str.substring(6) ;
+              break ;
+            default:
+              newTel+= str.substring(0,2) + ' ' +  str.substring(2,4) + ' ' +  str.substring(4,6) + ' ' +  str.substring(6) ;  
+            };
+          }
+        $('#tel').val(newTel) ;
+      };
+ 
+        
+    //     btnsubmit -                        
+    $('#btnsubmit').on('click', function (event) { 
+      event.preventDeault ;
+      if ( $(this).hasClass('isforbitten') ) {
+        $('.verplicht').css('outline','0px #ffffff solid');
+        $('.errmsg').css('visibility','hidden') ; 
+        var posId = '' ;
+        $('.verplicht').each( function () {
+          if ( $(this).val().length == 0 ) {  
+            if ( posId == '' ) { posId = $(this).attr("id") }
+            $(this).css('outline','2px #ff0000 solid');
+            var itm = 'err' +  $(this).attr("id") ;
+            $('#'+ itm).css('visibility','visible');
+            }  
+          });  
+        if ( posId.length > 0  ) { 
+          window.location.href = '#lbl_' + posId ;
+          $('#' + posId).focus() ;
+          }      
+        }
+      //                 
+      if ( $(this).hasClass('issubmit') ) {
+        $.ajax({     
+          type: 'POST',
+          url: $('#myForm').attr('action'),
+          data: $('#myForm').serialize(),
+          success: function(response) {
+    	      $('#bevestigingTitel').html ( 'Bevestiging inschrijving');
+            $('#bevestigingMsg').html ( response ) ;
+            $('#bevestiging').css('visibility','visible') ;
+            var pos = distMsg - $('#bevestiging').height() ; 
+            $('#bevestiging').css('top', pos  +  'px' ) ;
+            $('#btnsubmit').attr('class', 'isforbitten'); ;
+            },
+      	  error:function(){
+            $('#bevestigingTitel').html( 'Inschrijving mislukt!') ;   
+            var errMsg = '&nbsp;<br>error 505: Sever not accessible<br>probeer later opnieuw' ;
+            $('#bevestigingMsg').html( errMsg ) ;
+       		  $('#bevestiging').css('visibility','visible') ;
+            var pos = distMsg - $('#bevestiging').height() ; 
+            $('#bevestiging').css('top', pos  +  'px' ) ;
+            $('#btnsubmit').attr('class', 'isforbitten'); ;
+            },
+         	complete: function () {
+            
+            }  
+          });   
+        } 
+    
+      });
+
+     
+    // btn close bevestiging                   
+    $('#btnOk').on('click', function () {
+      $('#bevestigingTitel').html ( 'Bevestiging inschrijving');
+      $('#bevestigingMsg').html ( '   ') ;
+      $('#bevestiging').css('visibility','hidden') ;
+      $('#endBlock').css('display','block') ;
+      });  
+         
+     
+  });   
+  
+</script> 
+
+  
+</body>
+</html>

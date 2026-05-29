@@ -1,0 +1,111 @@
+/* ----------------------------------------------------- */
+/* ----------------     small scherm     ------------    */
+/* ----------------------------------------------------- */
+
+ 
+  .containerDownload { 
+    display:grid; 
+	  width: 90%; height:auto;
+	  margin: 5vw 5% 10vw 5%;
+	  grid-template-columns: 1fr;
+	  grid-template-rows: auto auto auto ;
+	  justify-content:center; align-content: start; 
+    justify-items:center; align-items: center; 
+    grid-row-gap: 1vw; grid-column-gap:0px; }
+ 
+  .containerDownload label { 
+    display:flex; margin: 0 auto;
+	  position:relative;text-align:center; 
+	  font-size: 1.3em; font-weight:bold; color: var(--colorRed);
+	  width:auto; height: auto;
+	  justify-content: center;  
+	  align-items: center; }
+	  
+  .containerDownloadImg {  
+    display:block; position:relative; 
+    width:100%; height:auto; }	
+   
+  .containerDownloadImg img {
+    border:0.8vw transparent solid;
+	  outline:1px var(--pgColor) solid; outline-offset:-2px;
+	  width: 100% ; height: auto; }     
+  
+  .containerDownloadImg div {
+    display:block; position:absolute;
+    left: 50%; bottom: 1.5vw;
+    transform: translateX(-50%);
+    background-color: #007bff; color: #ffffff; ;
+    font-size:0.66em;font-weight:bold;
+    border: 1px #ffffff solid; border-radius: 0.25vw;
+    width:auto; height:auto;
+    padding: 0.2vw 1.5vw; }
+  
+  .containerDownloadTxt {
+    display:inline-block; position:relative;
+    background-color:#80e0e6;
+    width:100%; height:auto; 
+    text-align:center;
+	  vertical-align::center; } 
+	
+  .containerDownloadTxt div:nth-child(1) { margin: 1vw 1vw 1vw 1vw;  font-weight:bold; }
+	.containerDownloadTxt div:nth-child(2) { margin: 1vw 1vw 3vw 1vw; font-weight:normal; }
+	.containerDownloadTxt div:nth-child(3) { position:absolute; bottom:0.5vw; right:0.5vw; font-size: 0.8em; font-weight:normal; }  
+ 
+  /* -------------------------------------------------------- */
+  /*  --------------     medium scherm     --------------    */
+  /* -------------------------------------------------------- */
+  @media only screen and (min-width: 768px) and ( orientation: landscape)   {  
+ 
+  .containerDownload { 
+    width: 94%; 
+	  margin: 5vw 3% 7vw 3%;
+	  grid-template-columns: 40% 1fr;
+	  grid-template-rows: auto auto  ;
+	  grid-row-gap: 2vw; grid-column-gap: 1vw;  }  
+ 
+  .containerDownload label { 
+    grid-column: 1 / span 2;   
+    display:flex; margin: 0 auto; }
+ 
+  .containerDownloadImg {  }	
+   
+  .containerDownloadImg img {  }     
+  
+  .containerDownloadImg div {
+    left: 50%; bottom:1.25vw;
+    padding: 0.2vw 1.5vw; }
+
+  .containerDownloadTxt {
+    display:flex; align-self:stretch; 
+	  flex-direction: column;
+	  justify-content:space-around;
+	  align-content: center;} 
+	
+	.containerDownloadTxt div:nth-child(1) {  }
+	.containerDownloadTxt div:nth-child(2) {  }
+	.containerDownloadTxt div:nth-child(3) {  }  
+ 
+  }   
+   
+  /* -------------------------------------------------------- */
+  /*  --------------     large scherm     ----------------    */
+  /* -------------------------------------------------------- */
+  @media only screen and (min-width: 1280px) {  
+  
+  .containerDownload {  }
+ 
+  .containerDownload label {  }
+	
+  .containerDownloadImg {  }	
+   
+  .containerDownloadImg img {  }     
+
+  .containerDownloadImg div {  }
+  
+  .containerDownloadTxt {   } 
+  
+	.containerDownloadTxt div:nth-child(1) {  }
+	.containerDownloadTxt div:nth-child(2) {  }
+	.containerDownloadTxt div:nth-child(3) {  }  
+ 	
+   }

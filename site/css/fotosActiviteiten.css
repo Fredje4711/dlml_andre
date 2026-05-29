@@ -1,0 +1,92 @@
+/* --- 1. DE VOLLEDIG ORIGINELE CSS VAN DE WEBMASTER (HERSTELD) --- */
+
+.titelFotoGrp { 
+    display:grid; margin: 5vw 4% 3vw 4%; grid-template-columns: 1fr;
+    grid-template-rows: auto; justify-content: center; align-content: start; 
+    justify-items: center; align-items: center; 
+}
+.titelFotoGrp label {
+    display:flex; margin: 0 auto; text-align: center; width:100%; height: auto;
+    justify-content: center; align-items: center;
+    font-size:1.3em; font-weight:bold; color: var(--colorRed); 
+}
+.fotoGroup { 
+    display:flex; width: 92%; height:auto; margin: 0 4% 0 4%;   
+    flex-wrap:wrap; flex-direction: row; align-items: flex-end; justify-content:space-between;
+}
+.fotoImg {
+    width:100%; height:auto; outline: 1px #333 solid; outline-offset:-1px;
+    border:1.2vw #ececf4 solid; margin-bottom:2vw; cursor: pointer;
+}
+.fotoDatum { 
+    display:block; position:absolute; left:1.5vw; right:1.5vw; bottom:3vw; 
+    text-align:center; color:#ffffff; 
+}
+
+/* GSM LAYOUTS (Basis / Mobiel) */
+.Grp01 div:nth-child(1), .Grp01 div:nth-child(3) { width: calc((100% - 2vw) * 0.5); order: 2; }
+.Grp01 div:nth-child(2) { width: 100% ; order: 1 ; }
+.Grp07 div:nth-child(1), .Grp07 div:nth-child(3) { width: calc((100% - 2vw) * 0.50 ); order: 2; }
+.Grp07 div:nth-child(2) { width: 100% ; order: 1 ; }
+.Grp02 div, .Grp06 div { width: calc((100% - 2vw) * 0.5); }
+.Grp03 div:nth-child(1) { width: calc((100% - 2vw) * 0.33); }
+.Grp03 div:nth-child(2) { width: calc((100% - 2vw) * 0.66); }
+.Grp04 div { width: 100%; }
+.Grp05 div, .Grp12 div { width: calc((100% - 4vw) * 0.33); }
+
+/* DESKTOP/LAPTOP LAYOUTS (Vanaf 1024px) */
+@media only screen and (min-width: 1024px) { 
+  .fotoImg { border:0.6vw #ececf4 solid; margin-bottom:1.5vw; }
+  /* Herstel Grp01 mozaïek */
+  .Grp01 div:nth-child(1), .Grp01 div:nth-child(3) { width: 32%; order: 0; }
+  .Grp01 div:nth-child(2) { width: 34%; order: 0; }
+  /* Herstel Grp07 mozaïek */
+  .Grp07 div:nth-child(1), .Grp07 div:nth-child(3) { width: 30%; order: 0; }
+  .Grp07 div:nth-child(2) { width: 38%; order: 0; }
+  /* Overige groepen */
+  .Grp09 div, .Grp12 div { width: 32.5%; }
+  .Grp03 div:nth-child(1) { width: 33%; }
+  .Grp03 div:nth-child(2) { width: 65%; }
+  /* Herstel Grp10 Mozaïek voor Video's op Desktop */
+  .Grp10 { display: flex !important; justify-content: space-between; align-items: stretch; }
+  .Grp10 div:nth-child(1) { width: 61%; display: flex; flex-direction: column; } 
+  .Grp10 div:nth-child(2) { width: 38%; display: flex; flex-direction: column; justify-content: space-between; }
+  .Grp10 video { width: 100%; margin-bottom: 1.5vw; }
+}
+
+/* --- 2. DE MODERNE SLIDESHOW (GECONTROLEERD) --- */
+.custom-lightbox {
+    display: none; position: fixed; z-index: 999999;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95); flex-direction: column;
+}
+.lightbox-controls {
+    position: absolute; top: 20px; right: 20px;
+    display: flex; gap: 15px; z-index: 1000001;
+}
+.lightbox-controls button, .lightbox-controls a {
+    background: #23a9e4; color: white; border: none;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 20px; cursor: pointer; text-decoration: none;
+}
+
+/* Enkel verbergen op Desktop */
+@media only screen and (min-width: 1024px) { #zoomBtn { display: none !important; } }
+
+.lightbox-nav {
+    position: absolute; top: 50%; width: 100%;
+    display: flex; justify-content: space-between;
+    padding: 0 20px; transform: translateY(-50%); z-index: 1000000;
+}
+.nav-btn {
+    background: rgba(255,255,255,0.1); color: white; border: none;
+    width: 60px; height: 60px; border-radius: 50%; font-size: 30px; cursor: pointer;
+}
+.lightbox-content {
+    width: 100%; height: 100%; display: flex;
+    justify-content: center; align-items: center; overflow: auto;
+}
+#lightboxImg { max-width: 95%; max-height: 95%; transition: transform 0.3s ease; }
+.custom-lightbox.is-zoomed #lightboxImg { transform: scale(1.6); max-width: none; max-height: none; }
+.custom-lightbox.is-zoomed .lightbox-content { display: block; }
