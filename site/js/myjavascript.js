@@ -158,7 +158,17 @@ $(document).ready(function(e){
     });
 
     function handleSwipe() {
-        var swipeDistance = 50; // Minimum afstand voor een geldige swipe
+        // NIEUW: Controleer of we zijn ingezoomd
+        var isIngezoomd = $('#customLightbox').hasClass('is-zoomed');
+
+        // Als we zijn ingezoomd, stoppen we hier. 
+        // De vingerbeweging wordt dan gebruikt om te "rondfietsen" i.p.v. bladeren.
+        if (isIngezoomd) {
+            return; 
+        }
+
+        // Alleen als we NIET zijn ingezoomd, werkt het bladeren via swipe:
+        var swipeDistance = 50; 
         if (touchendX < touchstartX - swipeDistance) nextPhoto(); // Swipe naar links
         if (touchendX > touchstartX + swipeDistance) prevPhoto(); // Swipe naar rechts
     }
