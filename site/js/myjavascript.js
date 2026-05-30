@@ -1,128 +1,179 @@
-// --- DEZE FUNCTIES MOETEN HELEMAAL BOVENAAN, BUITEN DE READY FUNCTIE ---
-function doClose(e) {
-    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-    $('#customLightbox').hide().removeClass('is-zoomed');
-    $('body').css('overflow', 'auto');
-}
-
-function doZoom(e) {
-    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-    $('#customLightbox').toggleClass('is-zoomed');
-    var isZ = $('#customLightbox').hasClass('is-zoomed');
-    $('#zoomBtn i').attr('class', isZ ? 'fas fa-search-minus' : 'fas fa-search-plus');
-}
-
-function doDownload(e) {
-    // 1. STOP ELKE ANDERE ACTIE (Blokkade voor André)
-    if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-    }
-
-    var imgSrc = $('#lightboxImg').attr('src');
-    var fileName = imgSrc.split('/').pop();
-
-    // 2. VOER DE DOWNLOAD UIT
-    // We proberen de browser te dwingen het bestand op te halen
-    fetch(imgSrc)
-    .then(response => {
-        if (!response.ok) throw new Error('Netwerk reageert niet');
-        return response.blob();
-    })
-    .then(blob => {
-        // Maak een tijdelijke link in het geheugen
-        var url = window.URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = fileName; // De dwingende opdracht om op te slaan
-        document.body.appendChild(a);
-        a.click(); // Klik op de onzichtbare link
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-    })
-    .catch(err => {
-        // FALLBACK: Als fetch wordt geblokkeerd (zoals nu op je laptop)
-        // Dan openen we de foto in een nieuw tabblad. 
-        // Dit is GEEN fout in de code, maar een beveiliging van je browser.
-        console.log("Download geblokkeerd door browser-beveiliging (CORS).");
-        var win = window.open(imgSrc, '_blank');
-        win.focus();
-    });
-}
-
 $(document).ready(function(e){
     var pgNr = 'A'; 
-    var lightMode = true; 
+    var lightMode = true ; 
 
-    // --- 1. OUDE CODE VAN ANDRÉ STOPPEN ---
-    $('.fotoImg').off('click'); 
-    $(document).off('click', '.fotoImg');
+    // --- 1. MENU & NAVIGATIE ---
+    $('#wrapper').on('click', function (e) {
+        if ( $('#Mnu2').css('display') == 'block'  ) {   
+            $('#Mnu2').animate({height: 0}, 200 , function() { $('#Mnu2').css('display','none'); });
+        }
+    });
 
-    // --- 2. MENU & NAVIGATIE ---
+    $(window).on('resize', function (e) {
+        if ( $('#Mnu2').css('display') == 'block'  ) {   
+            $('#Mnu2').animate({height: 0}, 200 , function() { $('#Mnu2').css('display','none'); });
+        }
+    });
+
     $('div[id^="MnuItm"]').on('click', function(e) {
-        pgNr = $(this).attr('id').slice(-1);  
-        if (pgNr !== 'I') {
+        if ($(this).attr('id').slice(-1) == 'I') {
+            $.fn.setMode();
+        } else {
+            pgNr = $(this).attr('id').slice(-1);  
+            pgNr == 'A' ? $.fn.startTimer() : $.fn.stopTimer();
             $('#actieveMnu').html($("label", this).html()); 
             $.fn.setPg();
-        } else { $.fn.setMode(); }
+        }
     });
 
     $.fn.setPg = function() {  
+        $('#pgE video').trigger('pause');
         $('.pgContent').hide();
         $('#pg' + pgNr).show(); 
+        $('#Mnu1 div label, #Mnu2 div label').css('font-weight','500');
+        $('#MnuItm1' + pgNr + ' label, #MnuItm2' + pgNr + ' label').css('font-weight','bold');
     }; 
 
-    $('#btnMnu').on('click', function(e) { e.stopPropagation(); $('#Mnu2').toggle().height('auto'); });
+    $('#btnMnu').on('click', function(e) { 
+        e.preventDefault(); e.stopPropagation();   
+        if ($('#Mnu2').is(':visible')) {
+            $('#Mnu2').animate({height: 0}, 800 , function() { $(this).hide(); });
+        } else {
+            $('#Mnu2').show();
+            var dh = $('#MnuLst2').height();
+            $('#Mnu2').height(0).animate({height: dh}, 800, function() { $(this).css('height','auto'); });
+        }   
+    });
 
-    // --- 3. SLIDESHOW MOTOR ---
+    // --- 2. DARK / LIGHT MODE ---
+    $.fn.setMode = function(e) { 
+        lightMode = !lightMode ; 
+        if ( lightMode ) {
+            $('html').css('--pgBackColor','#ffffff'); $('html').css('--pgColor','#333'); 
+            $('html').css('--colorRed','#ff0000'); $('html').css('--Mnu1BackColor','#ffffff');
+            $('html').css('--Mnu1Color','#31493c'); $('html').css('--Mnu2BackColor','#e8f1f2');
+            $('html').css('--Mnu2Color','#31493c'); $('html').css('--Mnu2IcoColor','#31493c'); 
+            $('html').css('--linkColor','#0000ff'); $('#imgHasselt').attr('src','site/image/HasseltDark.png');  
+            $('.LogoSize1, .LogoSize2').attr('src','site/image/LogoDLwt.png');
+        } else {
+            $('html').css('--pgBackColor','#31493c'); $('html').css('--pgColor','#ffffff');
+            $('html').css('--colorRed','#ff7f50'); $('html').css('--Mnu1BackColor','#31493c');
+            $('html').css('--Mnu1Color','#f0f0f0'); $('html').css('--Mnu2BackColor','#e8f1f2');
+            $('html').css('--Mnu2Color','#31493c'); $('html').css('--Mnu2SelColor','#00dd00'); 
+            $('html').css('--Mnu2IcoColor','#31493c'); $('html').css('--linkColor','#8080ff'); 
+            $('#imgHasselt').attr('src','site/image/HasseltLight.png');  
+            $('.LogoSize1, .LogoSize2').attr('src','site/image/LogoDLzw.png');
+        }
+    };
+
+    // --- 3. TIMER / KLOK ---
+    var myInterval;
+    $.fn.startTimer = function() {  
+        myInterval = setInterval(function() {
+            var dt1 = new Date();
+            var dt3 = new Date(dt1.getFullYear(), dt1.getMonth(), dt1.getDate(), 0, 0, 0);
+            $('#dtJaar').html(dt1.getFullYear());
+            var aantalDitJaar = parseInt((dt1.getTime() - new Date(dt1.getFullYear(), 0, 1).getTime()) / 1020000);
+            var diff = (dt1.getTime() - dt3.getTime())/1000;
+            var aantalVandaag = parseInt(diff / 1020);
+            var cnt = 1020 - parseInt(diff % 1020);
+            var m = (' ' + parseInt(cnt / 60)).slice(-2);
+            var s = ('0' + parseInt(cnt % 60)).slice(-2);
+            $('#diabetes-clock-wrapper div:nth-child(4)').html(aantalDitJaar);
+            $('#diabetes-clock-wrapper div:nth-child(5) span').html(aantalVandaag);   
+            $('#diabetes-clock-wrapper div:nth-child(6) span').html(m + ':' + s);
+        }, 1000);
+    };
+
+    $.fn.stopTimer = function() { clearInterval(myInterval); };
+
+    // --- 4. MYTHEN & FEITEN (KAARTEN) ---
+    $('.card, .cardRotate').on('click', function() {
+        var isAlGedraaid = $(this).hasClass('cardRotate');
+        $('.cardRotate').removeClass('cardRotate').addClass('card');
+        if (!isAlGedraaid) {
+            $(this).removeClass('card').addClass('cardRotate');
+        }
+    });
+
+    // --- 5. SLIDESHOW MOTOR (LIGHTBOX) ---
     var currentGallery = [];
     var currentIndex = 0;
 
-    $(document).on('click', 'img[data-gallery]', function(e) {
-        // Stop de oude fullscreen van André
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        
+    // Foto openen
+    $(document).on('click', 'img[data-gallery]', function() {
         var group = $(this).attr('data-gallery');
         var src = $(this).attr('src');
-        var container = $(this).closest('.fotoGroupPerActiviteit');
-        var deTitel = container.find('.titelFotoGrp label').text().trim();
-        var deDatum = container.find('.fotoDatum').first().text().trim();
-
         currentGallery = [];
         $('img[data-gallery="' + group + '"]').each(function() {
-            currentGallery.push({ src: $(this).attr('src'), title: deTitel, date: deDatum });
+            var imgPath = $(this).attr('src');
+            if (currentGallery.indexOf(imgPath) === -1) currentGallery.push(imgPath);
         });
-
-        currentIndex = currentGallery.findIndex(img => img.src === src);
+        currentIndex = currentGallery.indexOf(src);
         updateLightboxDisplay();
         $('#customLightbox').css('display', 'flex').removeClass('is-zoomed');
         $('body').css('overflow', 'hidden');
     });
 
     function updateLightboxDisplay() {
-        var data = currentGallery[currentIndex];
-        $('#lightboxImg').attr('src', data.src);
-        $('#lightboxInfo').text(data.title + (data.date ? " (" + data.date + ")" : ""));
+        var newSrc = currentGallery[currentIndex];
+        $('#lightboxImg').attr('src', newSrc);
+        $('#downloadBtn').attr('href', newSrc);
         currentGallery.length <= 1 ? $('.lightbox-nav').hide() : $('.lightbox-nav').show();
     }
 
     function nextPhoto() { currentIndex = (currentIndex + 1) % currentGallery.length; updateLightboxDisplay(); }
     function prevPhoto() { currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; updateLightboxDisplay(); }
 
+    // Knoppen bediening
     $(document).on('click', '#nextBtn', function(e) { e.stopPropagation(); nextPhoto(); });
     $(document).on('click', '#prevBtn', function(e) { e.stopPropagation(); prevPhoto(); });
+    $(document).on('click', '#closeBtn', function() { $('#customLightbox').hide().removeClass('is-zoomed'); $('body').css('overflow', 'auto'); });
+    
+    $(document).on('click', '#zoomBtn', function(e) { 
+        e.stopPropagation(); $('#customLightbox').toggleClass('is-zoomed');
+        var isZ = $('#customLightbox').hasClass('is-zoomed');
+        $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
+    });
 
-    // Pijltjestoetsen
+    // Toetsenbord bediening
     $(document).on('keydown', function(e) {
         if (!$('#customLightbox').is(':visible')) return;
         if (e.key === "ArrowRight") nextPhoto();
         if (e.key === "ArrowLeft") prevPhoto();
-        if (e.key === "Escape") doClose(e);
+        if (e.key === "Escape") $('#closeBtn').click();
     });
 
+    // --- 6. SWIPE FUNCTIONALITEIT (GSM) ---
+    var touchstartX = 0;
+    var touchendX = 0;
+
+    $('#customLightbox').on('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+    });
+
+    $('#customLightbox').on('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        // NIEUW: Controleer of we zijn ingezoomd
+        var isIngezoomd = $('#customLightbox').hasClass('is-zoomed');
+
+        // Als we zijn ingezoomd, stoppen we hier. 
+        // De vingerbeweging wordt dan gebruikt om te "rondfietsen" i.p.v. bladeren.
+        if (isIngezoomd) {
+            return; 
+        }
+
+        // Alleen als we NIET zijn ingezoomd, werkt het bladeren via swipe:
+        var swipeDistance = 50; 
+        if (touchendX < touchstartX - swipeDistance) nextPhoto(); // Swipe naar links
+        if (touchendX > touchstartX + swipeDistance) prevPhoto(); // Swipe naar rechts
+    }
+
+    // --- 7. INITIALISATIE ---
+    $.fn.startTimer();
     $.fn.setPg();
 });
