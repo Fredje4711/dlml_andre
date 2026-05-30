@@ -3712,17 +3712,21 @@
   <script src="site/js/myjavascript.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
   
-  <!-- De Lightbox Container voor de Slideshow -->
+ <!-- De Lightbox Container voor de Slideshow -->
 <div id="customLightbox" class="custom-lightbox">
+  <div id="lightboxTitle" class="lightbox-title"></div>
+
   <div class="lightbox-controls">
     <button id="zoomBtn" title="Vergroten/Verkleinen"><i class="fa fa-search-plus"></i></button>
     <a id="downloadBtn" href="" download title="Downloaden"><i class="fa fa-download"></i></a>
     <button id="closeBtn" title="Sluiten"><i class="fa fa-times"></i></button>
   </div>
+
   <div class="lightbox-nav">
     <button class="nav-btn" id="prevBtn" title="Vorige"><i class="fa fa-chevron-left"></i></button>
     <button class="nav-btn" id="nextBtn" title="Volgende"><i class="fa fa-chevron-right"></i></button>
   </div>
+
   <div class="lightbox-content">
     <img id="lightboxImg" src="" alt="Vergroting">
   </div>
