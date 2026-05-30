@@ -408,7 +408,7 @@
     <!--               fotos               -->
     <div class="pgContent" id="pgD">
       
-         <!-- ACTIVITEIT 1: DIABETES EN BEWEGEN -->
+        <!-- ACTIVITEIT 1: DIABETES EN BEWEGEN -->
       <div class="fotoGroupPerActiviteit">
         <div class="titelFotoGrp">
           <label>
@@ -1918,7 +1918,7 @@
       
     </div> <!-- DEZE DIV SLUIT pgD (DE FOTO SECTIE) AF -->
 
-    <!--        video              -->
+   <!--        video              -->
     <div class="pgContent" id="pgE">
       
       <div class="titelFotoGrp">
@@ -1929,32 +1929,37 @@
       </div>
       <div class="fotoGroup Grp10">
         <div>
-          <video  controls="controls" style="width:100%; height:auto;" preload="metadata" poster="https://www.dlml.be/site/fotosActiviteiten/film01.png" >
-            <source src="https://www.dlml.be/site/video/ZoektochtOplossingDiabetes.mp4" type="video/mp4" >
-            <source src="https://www.dlml.be/site/video/ZoektochtOplossingDiabetes.webm" type="video/webm" >
-            Your browser does not support HTML video.
+          <!-- Video 1 -->
+          <video controls="controls" style="width:100%; height:auto;" preload="metadata" 
+                 poster="https://www.dlml.be/site/fotosActiviteiten/film01.png">
+            <source src="https://www.dlml.be/site/video/ZoektochtOplossingDiabetes.mp4" type="video/mp4">
+            <source src="https://www.dlml.be/site/video/ZoektochtOplossingDiabetes.webm" type="video/webm">
           </video>
-          <video  controls="controls" style="width:100%; height:auto;" poster="https://www.dlml.be/site/fotosActiviteiten/film02.png" >
-            <source src="https://www.dlml.be/site/video/OntdekkingDierlijkeInsuline.mp4" type="video/mp4" >
-            <source src="https://www.dlml.be/site/video/OntdekkingDierlijkeInsuline.webm" type="video/webm" >
-            Your browser does not support HTML video.
+          <!-- Video 2 -->
+          <video controls="controls" style="width:100%; height:auto;" 
+                 poster="https://www.dlml.be/site/fotosActiviteiten/film02.png">
+            <source src="https://www.dlml.be/site/video/OntdekkingDierlijkeInsuline.mp4" type="video/mp4">
+            <source src="https://www.dlml.be/site/video/OntdekkingDierlijkeInsuline.webm" type="video/webm">
           </video>
         </div>  
         <div>
-          <video  controls="controls" style="width:100%; height:auto;" poster="https://www.dlml.be/site/fotosActiviteiten/film03.png" >
-            <source src="https://www.dlml.be/site/video/DierlijkeNaarSynthetischeInsuline.mp4" type="video/mp4" >
-            <source src="https://www.dlml.be/site/video/DierlijkeNaarSynthetischeInsuline.webm" type="video/webm" >
-            Your browser does not support HTML video.
+          <!-- Video 3 -->
+          <video controls="controls" style="width:100%; height:auto;" 
+                 poster="https://www.dlml.be/site/fotosActiviteiten/film03.png">
+            <source src="https://www.dlml.be/site/video/DierlijkeNaarSynthetischeInsuline.mp4" type="video/mp4">
+            <source src="https://www.dlml.be/site/video/DierlijkeNaarSynthetischeInsuline.webm" type="video/webm">
           </video>
-          <video  controls="controls" style="width:100%; height:auto;" poster="https://www.dlml.be/site/fotosActiviteiten/film04.png" >
-            <source src="https://www.dlml.be/site/video/SynthetischeTotAnalogeInsuline.mp4" type="video/mp4" >
-            <source src="https://www.dlml.be/site/video/SynthetischeTotAnalogeInsuline.webm" type="video/webm" >
-            Your browser does not support HTML video.
+          <!-- Video 4 -->
+          <video controls="controls" style="width:100%; height:auto;" 
+                 poster="https://www.dlml.be/site/fotosActiviteiten/film04.png">
+            <source src="https://www.dlml.be/site/video/SynthetischeTotAnalogeInsuline.mp4" type="video/mp4">
+            <source src="https://www.dlml.be/site/video/SynthetischeTotAnalogeInsuline.webm" type="video/webm">
           </video>
-          <video  controls="controls" style="width:100%; height:auto;" poster="https://www.dlml.be/site/fotosActiviteiten/film05.png" >
-            <source src="https://www.dlml.be/site/video/InsulineAlsSleutel.mp4" type="video/mp4" >
-            <source src="https://www.dlml.be/site/video/InsulineAlsSleutel.webm" type="video/webm" >
-            Your browser does not support HTML video.
+          <!-- Video 5 -->
+          <video controls="controls" style="width:100%; height:auto;" 
+                 poster="https://www.dlml.be/site/fotosActiviteiten/film05.png">
+            <source src="https://www.dlml.be/site/video/InsulineAlsSleutel.mp4" type="video/mp4">
+            <source src="https://www.dlml.be/site/video/InsulineAlsSleutel.webm" type="video/webm">
           </video>
         </div>      
       </div>
@@ -3709,17 +3714,18 @@
   
   <!-- De Lightbox Container voor de Slideshow -->
 <div id="customLightbox" class="custom-lightbox">
-  <div id="lightboxInfo"></div>
   <div class="lightbox-controls">
-    <button class="no-andre" id="zoomBtn" onclick="doZoom(event)" title="Vergroten"><i class="fas fa-search-plus"></i></button>
-    <button class="no-andre" onclick="doDownload(event)" title="Downloaden"><i class="fas fa-download"></i></button>
-    <button class="no-andre" onclick="doClose(event)" title="Sluiten"><i class="fas fa-times"></i></button>
+    <button id="zoomBtn" title="Vergroten/Verkleinen"><i class="fa fa-search-plus"></i></button>
+    <a id="downloadBtn" href="" download title="Downloaden"><i class="fa fa-download"></i></a>
+    <button id="closeBtn" title="Sluiten"><i class="fa fa-times"></i></button>
   </div>
   <div class="lightbox-nav">
-    <button class="nav-btn" id="prevBtn">❮</button>
-    <button class="nav-btn" id="nextBtn">❯</button>
+    <button class="nav-btn" id="prevBtn" title="Vorige"><i class="fa fa-chevron-left"></i></button>
+    <button class="nav-btn" id="nextBtn" title="Volgende"><i class="fa fa-chevron-right"></i></button>
   </div>
-  <div class="lightbox-content"><img id="lightboxImg" src=""></div>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="Vergroting">
+  </div>
 </div>
 
   </body>
