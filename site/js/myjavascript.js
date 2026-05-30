@@ -136,17 +136,25 @@ $(document).ready(function(e){
         $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
     });
 
-    // Downloadknop: download de foto die op dat moment in de lightbox openstaat
+        // Downloadknop: download de foto die op dat moment in de lightbox openstaat.
+    // Belangrijk: dit werkt alleen wanneer de foto van hetzelfde domein komt als de website.
+    // Op GitHub Pages met foto's vanaf www.dlml.be blokkeert de browser dit door CORS.
     $(document).on('click', '#downloadBtn', function(e) {
         e.preventDefault();
         e.stopPropagation();
 
         var imageUrl = $('#lightboxImg').attr('src');
-        if (!imageUrl) return;
+        if (!imageUrl) return false;
 
-        var fileName = getImageFileName(imageUrl);
+        var absoluteUrl = new URL(imageUrl, window.location.href);
+        var fileName = getImageFileName(absoluteUrl.href);
 
-        fetch(imageUrl)
+        if (absoluteUrl.origin !== window.location.origin) {
+            alert('Deze foto kan vanaf deze testlocatie niet rechtstreeks worden gedownload, omdat ze op een ander domein staat. Test dit op www.dlml.be of plaats de foto\\'s ook in deze GitHub-site.');
+            return false;
+        }
+
+        fetch(absoluteUrl.href)
             .then(function(response) {
                 if (!response.ok) throw new Error('Afbeelding kon niet opgehaald worden.');
                 return response.blob();
@@ -163,14 +171,10 @@ $(document).ready(function(e){
                 window.URL.revokeObjectURL(blobUrl);
             })
             .catch(function() {
-                // Fallback: als fetch geblokkeerd wordt, probeer alsnog de gewone download-link.
-                var tempLink = document.createElement('a');
-                tempLink.href = imageUrl;
-                tempLink.download = fileName;
-                document.body.appendChild(tempLink);
-                tempLink.click();
-                document.body.removeChild(tempLink);
+                alert('De foto kon niet automatisch worden gedownload. Probeer de website online op hetzelfde domein als de foto\\'s te testen.');
             });
+
+        return false;
     });
 
     function getImageFileName(imageUrl) {
