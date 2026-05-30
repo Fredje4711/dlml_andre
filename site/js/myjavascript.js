@@ -130,11 +130,59 @@ $(document).ready(function(e){
     $(document).on('click', '#prevBtn', function(e) { e.stopPropagation(); prevPhoto(); });
     $(document).on('click', '#closeBtn', function() { $('#customLightbox').hide().removeClass('is-zoomed'); $('body').css('overflow', 'auto'); });
     
-    $(document).on('click', '#zoomBtn', function(e) { 
+        $(document).on('click', '#zoomBtn', function(e) { 
         e.stopPropagation(); $('#customLightbox').toggleClass('is-zoomed');
         var isZ = $('#customLightbox').hasClass('is-zoomed');
         $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
     });
+
+    // Downloadknop: download de foto die op dat moment in de lightbox openstaat
+    $(document).on('click', '#downloadBtn', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var imageUrl = $('#lightboxImg').attr('src');
+        if (!imageUrl) return;
+
+        var fileName = getImageFileName(imageUrl);
+
+        fetch(imageUrl)
+            .then(function(response) {
+                if (!response.ok) throw new Error('Afbeelding kon niet opgehaald worden.');
+                return response.blob();
+            })
+            .then(function(blob) {
+                var blobUrl = window.URL.createObjectURL(blob);
+                var tempLink = document.createElement('a');
+
+                tempLink.href = blobUrl;
+                tempLink.download = fileName;
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                window.URL.revokeObjectURL(blobUrl);
+            })
+            .catch(function() {
+                // Fallback: als fetch geblokkeerd wordt, probeer alsnog de gewone download-link.
+                var tempLink = document.createElement('a');
+                tempLink.href = imageUrl;
+                tempLink.download = fileName;
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            });
+    });
+
+    function getImageFileName(imageUrl) {
+        try {
+            var url = new URL(imageUrl, window.location.href);
+            var name = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+            return decodeURIComponent(name || 'foto.jpg');
+        } catch (err) {
+            var cleanUrl = imageUrl.split('?')[0].split('#')[0];
+            return cleanUrl.substring(cleanUrl.lastIndexOf('/') + 1) || 'foto.jpg';
+        }
+    }
 
     // Toetsenbord bediening
     $(document).on('keydown', function(e) {
