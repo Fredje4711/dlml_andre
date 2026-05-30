@@ -99,49 +99,66 @@ $(document).ready(function(e){
       // --- 5. SLIDESHOW MOTOR (LIGHTBOX) ---
     var currentGallery = [];
     var currentIndex = 0;
-    var currentLightboxTitle = '';
-    var currentLightboxDate = '';
 
     // Foto openen
-    $(document).on('click', 'img[data-gallery]', function() {
-        var group = $(this).attr('data-gallery');
-        var src = $(this).attr('src');
-        var activityBlock = $(this).closest('.fotoGroupPerActiviteit');
-
-        currentLightboxTitle = cleanLightboxText(
-            activityBlock.find('.titelFotoGrp label').first().clone().children().remove().end().text()
-        );
-
-        currentLightboxDate = '';
-        activityBlock.find('.fotoDatum').each(function() {
-            var gevondenDatum = cleanLightboxText($(this).text());
-            if (gevondenDatum && gevondenDatum !== '&nbsp;' && !currentLightboxDate) {
-                currentLightboxDate = gevondenDatum;
-            }
-        });
+    $(document).on('click', '#pgD img[data-gallery]', function() {
+        var clickedImage = this;
 
         currentGallery = [];
-        $('img[data-gallery="' + group + '"]').each(function() {
+
+        // Bouw één doorlopende fotolijst van alle foto's binnen "Foto's vorige activiteiten"
+        $('#pgD img[data-gallery]').each(function() {
             var imgPath = $(this).attr('src');
-            if (currentGallery.indexOf(imgPath) === -1) currentGallery.push(imgPath);
+            var activityBlock = $(this).closest('.fotoGroupPerActiviteit');
+
+            var activityTitle = cleanLightboxText(
+                activityBlock.find('.titelFotoGrp label').first().clone().children().remove().end().text()
+            );
+
+            var activityDate = '';
+            activityBlock.find('.fotoDatum').each(function() {
+                var gevondenDatum = cleanLightboxText($(this).text());
+
+                // Neem de eerste ingevulde datumtekst binnen deze activiteit.
+                // Lege waarden worden genegeerd.
+                if (gevondenDatum && gevondenDatum !== '&nbsp;' && !activityDate) {
+                    activityDate = gevondenDatum;
+                }
+            });
+
+            currentGallery.push({
+                element: this,
+                src: imgPath,
+                title: activityTitle,
+                date: activityDate
+            });
         });
 
-        currentIndex = currentGallery.indexOf(src);
+        currentIndex = currentGallery.findIndex(function(item) {
+            return item.element === clickedImage;
+        });
+
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        }
+
         updateLightboxDisplay();
         $('#customLightbox').css('display', 'flex').removeClass('is-zoomed');
         $('body').css('overflow', 'hidden');
     });
 
     function updateLightboxDisplay() {
-        var newSrc = currentGallery[currentIndex];
-        var titleText = currentLightboxTitle;
+        var currentPhoto = currentGallery[currentIndex];
+        if (!currentPhoto) return;
 
-        if (currentLightboxDate) {
-            titleText += ' (' + currentLightboxDate + ')';
+        var titleText = currentPhoto.title;
+
+        if (currentPhoto.date) {
+            titleText += ' (' + currentPhoto.date + ')';
         }
 
-        $('#lightboxImg').attr('src', newSrc);
-        $('#downloadBtn').attr('href', newSrc);
+        $('#lightboxImg').attr('src', currentPhoto.src);
+        $('#downloadBtn').attr('href', currentPhoto.src);
         $('#lightboxTitle').text(titleText);
 
         currentGallery.length <= 1 ? $('.lightbox-nav').hide() : $('.lightbox-nav').show();
