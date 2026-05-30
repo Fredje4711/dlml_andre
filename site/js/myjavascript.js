@@ -96,19 +96,36 @@ $(document).ready(function(e){
         }
     });
 
-    // --- 5. SLIDESHOW MOTOR (LIGHTBOX) ---
+      // --- 5. SLIDESHOW MOTOR (LIGHTBOX) ---
     var currentGallery = [];
     var currentIndex = 0;
+    var currentLightboxTitle = '';
+    var currentLightboxDate = '';
 
     // Foto openen
     $(document).on('click', 'img[data-gallery]', function() {
         var group = $(this).attr('data-gallery');
         var src = $(this).attr('src');
+        var activityBlock = $(this).closest('.fotoGroupPerActiviteit');
+
+        currentLightboxTitle = cleanLightboxText(
+            activityBlock.find('.titelFotoGrp label').first().clone().children().remove().end().text()
+        );
+
+        currentLightboxDate = '';
+        activityBlock.find('.fotoDatum').each(function() {
+            var gevondenDatum = cleanLightboxText($(this).text());
+            if (gevondenDatum && gevondenDatum !== '&nbsp;' && !currentLightboxDate) {
+                currentLightboxDate = gevondenDatum;
+            }
+        });
+
         currentGallery = [];
         $('img[data-gallery="' + group + '"]').each(function() {
             var imgPath = $(this).attr('src');
             if (currentGallery.indexOf(imgPath) === -1) currentGallery.push(imgPath);
         });
+
         currentIndex = currentGallery.indexOf(src);
         updateLightboxDisplay();
         $('#customLightbox').css('display', 'flex').removeClass('is-zoomed');
@@ -117,9 +134,21 @@ $(document).ready(function(e){
 
     function updateLightboxDisplay() {
         var newSrc = currentGallery[currentIndex];
+        var titleText = currentLightboxTitle;
+
+        if (currentLightboxDate) {
+            titleText += ' (' + currentLightboxDate + ')';
+        }
+
         $('#lightboxImg').attr('src', newSrc);
         $('#downloadBtn').attr('href', newSrc);
+        $('#lightboxTitle').text(titleText);
+
         currentGallery.length <= 1 ? $('.lightbox-nav').hide() : $('.lightbox-nav').show();
+    }
+
+    function cleanLightboxText(txt) {
+        return (txt || '').replace(/\s+/g, ' ').trim();
     }
 
     function nextPhoto() { 
