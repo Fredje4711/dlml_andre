@@ -122,21 +122,40 @@ $(document).ready(function(e){
         currentGallery.length <= 1 ? $('.lightbox-nav').hide() : $('.lightbox-nav').show();
     }
 
-    function nextPhoto() { currentIndex = (currentIndex + 1) % currentGallery.length; updateLightboxDisplay(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; updateLightboxDisplay(); }
+    function nextPhoto() { 
+        currentIndex = (currentIndex + 1) % currentGallery.length; 
+        updateLightboxDisplay(); 
+    }
+
+    function prevPhoto() { 
+        currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; 
+        updateLightboxDisplay(); 
+    }
 
     // Knoppen bediening
-    $(document).on('click', '#nextBtn', function(e) { e.stopPropagation(); nextPhoto(); });
-    $(document).on('click', '#prevBtn', function(e) { e.stopPropagation(); prevPhoto(); });
-    $(document).on('click', '#closeBtn', function() { $('#customLightbox').hide().removeClass('is-zoomed'); $('body').css('overflow', 'auto'); });
+    $(document).on('click', '#nextBtn', function(e) { 
+        e.stopPropagation(); 
+        nextPhoto(); 
+    });
+
+    $(document).on('click', '#prevBtn', function(e) { 
+        e.stopPropagation(); 
+        prevPhoto(); 
+    });
+
+    $(document).on('click', '#closeBtn', function() { 
+        $('#customLightbox').hide().removeClass('is-zoomed'); 
+        $('body').css('overflow', 'auto'); 
+    });
     
-        $(document).on('click', '#zoomBtn', function(e) { 
-        e.stopPropagation(); $('#customLightbox').toggleClass('is-zoomed');
+    $(document).on('click', '#zoomBtn', function(e) { 
+        e.stopPropagation(); 
+        $('#customLightbox').toggleClass('is-zoomed');
         var isZ = $('#customLightbox').hasClass('is-zoomed');
         $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
     });
 
-        // Downloadknop: download de foto die op dat moment in de lightbox openstaat.
+    // Downloadknop: download de foto die op dat moment in de lightbox openstaat.
     // Belangrijk: dit werkt alleen wanneer de foto van hetzelfde domein komt als de website.
     // Op GitHub Pages met foto's vanaf www.dlml.be blokkeert de browser dit door CORS.
     $(document).on('click', '#downloadBtn', function(e) {
@@ -150,7 +169,7 @@ $(document).ready(function(e){
         var fileName = getImageFileName(absoluteUrl.href);
 
         if (absoluteUrl.origin !== window.location.origin) {
-            alert('Deze foto kan vanaf deze testlocatie niet rechtstreeks worden gedownload, omdat ze op een ander domein staat. Test dit op www.dlml.be of plaats de foto\\'s ook in deze GitHub-site.');
+            alert("Deze foto kan vanaf deze testlocatie niet rechtstreeks worden gedownload, omdat ze op een ander domein staat. Test dit op www.dlml.be of plaats de foto's ook in deze GitHub-site.");
             return false;
         }
 
@@ -171,7 +190,7 @@ $(document).ready(function(e){
                 window.URL.revokeObjectURL(blobUrl);
             })
             .catch(function() {
-                alert('De foto kon niet automatisch worden gedownload. Probeer de website online op hetzelfde domein als de foto\\'s te testen.');
+                alert("De foto kon niet automatisch worden gedownload. Probeer de website online op hetzelfde domein als de foto's te testen.");
             });
 
         return false;
@@ -210,19 +229,19 @@ $(document).ready(function(e){
     });
 
     function handleSwipe() {
-        // NIEUW: Controleer of we zijn ingezoomd
+        // Controleer of we zijn ingezoomd.
         var isIngezoomd = $('#customLightbox').hasClass('is-zoomed');
 
-        // Als we zijn ingezoomd, stoppen we hier. 
+        // Als we zijn ingezoomd, stoppen we hier.
         // De vingerbeweging wordt dan gebruikt om te "rondfietsen" i.p.v. bladeren.
         if (isIngezoomd) {
             return; 
         }
 
-        // Alleen als we NIET zijn ingezoomd, werkt het bladeren via swipe:
+        // Alleen als we NIET zijn ingezoomd, werkt het bladeren via swipe.
         var swipeDistance = 50; 
-        if (touchendX < touchstartX - swipeDistance) nextPhoto(); // Swipe naar links
-        if (touchendX > touchstartX + swipeDistance) prevPhoto(); // Swipe naar rechts
+        if (touchendX < touchstartX - swipeDistance) nextPhoto();
+        if (touchendX > touchstartX + swipeDistance) prevPhoto();
     }
 
     // --- 7. INITIALISATIE ---
