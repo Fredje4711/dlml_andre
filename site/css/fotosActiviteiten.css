@@ -90,3 +90,81 @@
 #lightboxImg { max-width: 95%; max-height: 95%; transition: transform 0.3s ease; }
 .custom-lightbox.is-zoomed #lightboxImg { transform: scale(1.6); max-width: none; max-height: none; }
 .custom-lightbox.is-zoomed .lightbox-content { display: block; }
+
+/* --- Lightbox titel boven geopende foto --- */
+
+.lightbox-title {
+    position: absolute;
+    top: 16px;
+    left: 16%;
+    right: 16%;
+    z-index: 1000001;
+    color: #ffffff;
+    font-size: 1.45em;
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.85);
+    max-height: 3.8em;
+    overflow: hidden;
+}
+
+/* Desktop/laptop */
+@media only screen and (min-width: 1024px) {
+    .lightbox-title {
+        top: 14px;
+        left: 14%;
+        right: 14%;
+        font-size: 1.55em;
+        line-height: 1.2;
+        text-align: center;
+    }
+}
+
+/* GSM / tablet: titel centraal bovenaan, knoppen eronder rechts, afbeelding opnieuw beter gecentreerd */
+@media only screen and (max-width: 1023px) {
+    .lightbox-title {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        min-height: 4.4em;
+        max-height: 4.4em;
+        font-size: 1.18em;
+        line-height: 1.25;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .lightbox-controls {
+        top: 94px;
+        right: 14px;
+        gap: 10px;
+    }
+
+    .lightbox-controls button,
+    .lightbox-controls a {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .lightbox-content {
+        width: 100%;
+        height: 100%;
+        padding: 150px 10px 35px 10px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+    }
+
+    #lightboxImg {
+        max-width: 100%;
+        max-height: calc(100vh - 190px);
+    }
+
+    .lightbox-nav {
+        top: 56%;
+    }
+}
