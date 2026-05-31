@@ -266,3 +266,9 @@
     border-left-width: 19px;
   }
 }
+/* Extra onderruimte voor Video's op kleine gsm-schermen */
+@media only screen and (max-width: 768px) {
+  #pgE {
+    padding-bottom: 35px;
+  }
+}
