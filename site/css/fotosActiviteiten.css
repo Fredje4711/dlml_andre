@@ -167,4 +167,102 @@
     .lightbox-nav {
         top: 56%;
     }
+	}
+/* --- Video-overzicht menu-item Video's --- */
+/* Eerste video centraal bovenaan, overige vier in twee kolommen */
+
+#pgE .fotoGroup.Grp10 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* Algemene video-tegels */
+#pgE .video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Thumbnail en YouTube-iframe vullen altijd het videovak */
+#pgE .video-wrapper img,
+#pgE .video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Video 1 centraal bovenaan op desktop */
+#pgE .video-wrapper:nth-child(1) {
+  grid-column: 1 / 3;
+  width: 60%;
+  justify-self: center;
+}
+
+/* Playknop iets transparanter zodat tekst op thumbnail beter leesbaar blijft */
+#pgE .video-wrapper .play-button {
+  opacity: 0.60;
+}
+
+/* GSM: alle video's onder elkaar in opgegeven HTML-volgorde */
+@media only screen and (max-width: 768px) {
+  #pgE .fotoGroup.Grp10 {
+    display: flex !important;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #pgE .video-wrapper,
+  #pgE .video-wrapper:nth-child(1) {
+    width: 100%;
+  }
+}
+/* Ronde playknop op video-thumbnails */
+#pgE .video-wrapper .play-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 68px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 1.10);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.45);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Driehoekje in de playknop */
+#pgE .video-wrapper .play-button::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 23px solid rgba(35, 169, 228, 1);
+}
+
+/* Iets kleiner op gsm */
+@media only screen and (max-width: 768px) {
+  #pgE .video-wrapper .play-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  #pgE .video-wrapper .play-button::before {
+    left: 23px;
+    top: 16px;
+    border-top-width: 12px;
+    border-bottom-width: 12px;
+    border-left-width: 19px;
+  }
 }
