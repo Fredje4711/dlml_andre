@@ -294,3 +294,18 @@ $(document).ready(function(e){
     $.fn.startTimer();
     $.fn.setPg();
 });
+// Video's
+$('.pgContent#pgE').on('click', '.video-wrapper', function () {
+  const videoId = $(this).data('video-id');
+  if (!videoId) return;
+  const iframe = $('<iframe>', {
+      src: 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0',
+      title: $(this).find('img').attr('alt') || 'Video',
+      allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+      allowfullscreen: true,
+      frameborder: 0,
+      css: { width: '100%', height: '100%', display: 'block', border: 'none' }
+  });
+  $(this).find('img, .play-button').remove();
+  $(this).append(iframe);
+});
