@@ -36,6 +36,60 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
 
   <meta name="description" content="">
+  
+  <style>
+    /* --- Volledige Stappenplan Fix --- */
+    .stap-container {
+      display: flex; 
+      margin-bottom: 12px; 
+      align-items: flex-start;
+      width: 100%; /* Dwingt container tot volle breedte */
+    }
+
+    .stap-nummer {
+      background: #23a9e4; 
+      color: white; 
+      min-width: 24px; 
+      max-width: 24px;
+      height: 24px; 
+      border-radius: 50%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      font-size: 0.85em; 
+      font-weight: bold; 
+      margin-right: 12px;
+      flex-shrink: 0; /* Voorkomt dat het nummer platgedrukt wordt */
+    }
+
+    .stap-tekst {
+      flex: 1; /* CRUCIAAL: Dwingt de tekst om binnen de randen te blijven */
+      line-height: 1.4;
+      white-space: normal !important; /* Forceert afbreken van regels */
+      word-wrap: break-word; 
+      padding-right: 15px; /* Extra veiligheidsmarge aan de rechterkant */
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    /* --- Uitlijning per scherm (Nudges) --- */
+
+    @media only screen and (min-width: 769px) {
+      .stap-nummer { margin-top: 8px; }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .stap-nummer { margin-top: -3px; }
+      
+      /* Ruimte aan de linkerkant voor iconen op GSM */
+      .informatie {
+        grid-column-gap: 4vw !important;
+        padding-left: 12px !important;
+        padding-right: 5px !important;
+      }
+    }
+  </style>
+  
 </head>
 
 <body>
@@ -2297,36 +2351,116 @@
         <div></div><div><a href="https://www.diabetes.be/nl/steun-ons/word-lid" target="_blank">https://www.diabetes.be/nl/steun-ons/word-lid</a><br></div>
       </div>  
         
+     <!-- VERNIEUWDE WEBSHOP (Uitgebreid, Ruim opgezet & met Iconen) -->
       <div class="informatie tblSize2">
         <label>
           <img class="LogoSize1" alt=".." src="site/image/LogoDLwt.png" >
-          WEBSHOP
+          VERNIEUWDE WEBSHOP
         </label>
-        <label>&nbsp;</label>
-        <div class="informatieImg">
-          <img  alt=".." src="site/image/shop.png">
-        </div>
-        <div>•</div> <div>Toegankelijk voor iedereen (leden en niet-leden)</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>Ledenkorting: VIPS</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>Snelle levering aan huis of op een andere locatie</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>Webshop gespecialiseerd in diabetes</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>Aanbod voor iedereen met diabetes</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>Zelfzorgmateriaal</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div>	Publicaties/informatiemateriaal</div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> <div><a href="site/downloadPDF/webshop.pdf" target="_blank">hoe een account aanmaken, hoe een bestelling plaatsen.</a></div>
-        <div></div> <div class="smallLine">&nbsp;</div>
-        <div>•</div> 
-        <div>webshop:&nbsp;<a href="http://shop.diabetes.be" target="_blank" >http://shop.diabetes.be</a></div>
-      </div>  
+        <label>
+          <br>
+          Diabetes Liga & Multipharma: Samen voor uw comfort<br>
+          Een ruimer aanbod en een snellere service<br>
+          &nbsp;<br>
+          &nbsp;<br> <!-- Extra witruimte na de ondertitels -->
+        </label>
         
-    </div> 
+        <div class="informatieImg">
+          <img alt="Webshop" src="site/image/shop.png">
+        </div>
+
+        <!-- INTRODUCTIE -->
+        <div style="color:#23a9e4;"><i class="fas fa-info-circle"></i></div> 
+        <div style="white-space: normal; padding-bottom: 10px;">
+          De online webshop van de Diabetes Liga is volledig vernieuwd. Om onze leden een nog ruimer assortiment en een snellere levering te kunnen garanderen, is er een structurele samenwerking opgezet met de Belgische apotheekgroep <b>Multipharma</b>.
+        </div>
+        <div></div> <div class="smallLine" style="margin: 10px 0;">&nbsp;</div>
+
+        <!-- HET AANBOD -->
+        <div style="color:#23a9e4;"><i class="fas fa-box-open"></i></div> 
+        <div style="white-space: normal; padding-bottom: 10px;">
+          U vindt op de nieuwe pagina een breed en relevant aanbod aan diabetesmateriaal, gaande van bloedglucosemeters, teststrips en lancetten tot pennaalden en gespecialiseerde verzorgingsproducten. Alle producten zijn van hoogwaardige kwaliteit en direct leverbaar.
+        </div>
+        <div></div> <div class="smallLine" style="margin: 10px 0;">&nbsp;</div>
+
+        <!-- HET LEDENVOORDEEL -->
+        <div style="color:#23a9e4;"><i class="fas fa-percentage"></i></div> 
+        <div style="white-space: normal; padding-bottom: 10px;">
+          <b>Uw ledenvoordeel blijft volledig behouden.</b> Via een specifieke kortingscode geniet u nog steeds van de afgesproken kortingen op het volledige diabetes-assortiment. Deze korting wordt direct verrekend in uw winkelmandje bij het invoeren van de actieve code.
+        </div>
+        <div></div> <div class="smallLine" style="margin: 10px 0;">&nbsp;</div>
+
+        <!-- GRATIS VERZENDING TIP -->
+        <div style="color:#7ab800;"><i class="fas fa-truck"></i></div> 
+        <div style="white-space: normal; padding-bottom: 15px; background-color: #fff9e6; padding: 10px; border-radius: 8px;">
+          <b>Tip voor gratis levering:</b> Bestellingen vanaf <b>€ 39,-</b> worden volledig gratis bij u thuis bezorgd. U kunt in dezelfde bestelling ook andere gezondheidsproducten (zoals vitamines of pleisters) uit het ruime Multipharma-assortiment toevoegen om makkelijker aan dit bedrag te komen.
+        </div>
+        <div></div> <div class="smallLine" style="margin: 15px 0;">&nbsp;</div>
+
+       <!-- STAPPENPLAN (Dynamische uitlijning via CSS) -->
+        <div style="color:#23a9e4;"><i class="fas fa-list-ol"></i></div> 
+        <div style="white-space: normal; font-weight: bold; color: #23a9e4; padding-bottom: 10px;">
+          Hoe gaat u te werk om te bestellen met korting?
+        </div>
+        
+        <div></div>
+        <div style="white-space: normal; padding-bottom: 10px;">
+          
+          <!-- Stap 1 -->
+          <div class="stap-container">
+            <div class="stap-nummer">1</div>
+            <div class="stap-tekst">Klik op de groene knop onderaan om de webshop te openen.</div>
+          </div>
+
+          <!-- Stap 2 -->
+          <div class="stap-container">
+            <div class="stap-nummer">2</div>
+            <div class="stap-tekst">Kies uw benodigdheden en voeg ze toe aan het winkelmandje.</div>
+          </div>
+
+          <!-- Stap 3 -->
+          <div class="stap-container">
+            <div class="stap-nummer">3</div>
+            <div class="stap-tekst">Ga naar de betaalpagina (Afrekenen).</div>
+          </div>
+
+          <!-- Stap 4 -->
+          <div class="stap-container">
+            <div class="stap-nummer">4</div>
+            <div class="stap-tekst"><b>In de laatste stap</b> voert u de onderstaande kortingscode in.</div>
+          </div>
+
+        </div>
+        <div></div> <div class="smallLine" style="margin: 15px 0;">&nbsp;</div>
+
+        <!-- KORTINGSCODE BOX -->
+        <div></div> 
+        <div style="white-space: normal; border: 2px dashed #23a9e4; padding: 20px; background: #f4f9fc; text-align: center; border-radius: 12px; margin-right: 5%; margin-bottom: 20px;">
+           <small style="color: #333; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Actuele kortingscode voor leden:</small><br>
+           <b style="font-size: 1.8em; color: #23a9e4; font-family: 'Courier New', monospace; display: block; margin: 10px 0;">DL-4F9G2K</b>
+           <span style="display: block; background: #eef7ff; color: #0056b3; padding: 5px; border-radius: 5px; font-size: 0.85em; font-weight: bold; margin-bottom: 10px;">
+            <i class="fas fa-exclamation-triangle"></i> Pas invoeren bij het afrekenen!
+           </span>
+           <small style="color: #d9534f; font-weight: bold;">Maximaal 2 keer te gebruiken — Geldig t.e.m. 30/06/2026</small>
+        </div>
+        <div></div> <div>&nbsp;</div>
+
+        <!-- DE ACTIEKNOP -->
+        <div></div>
+        <div style="padding-bottom: 30px;">
+          <a href="https://www.multipharma.be/nl/diabetes-liga/" target="_blank" class="inschrijf-btn" style="background-color: #7ab800; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1.1em; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <i class="fas fa-external-link-alt"></i> GA NAAR DE MULTIPHARMA WEBSHOP
+          </a>
+        </div>
+        
+        <div></div> <div class="smallLine" style="margin: 10px 0;">&nbsp;</div>
+
+        <!-- NIEUWE CODES INFO -->
+        <div style="color:#666;"><i class="fas fa-sync-alt"></i></div> 
+        <div style="white-space: normal; font-size: 0.85em; color: #666; font-style: italic; line-height: 1.4;">
+          De kortingscode wordt periodiek vernieuwd om het exclusieve voordeel voor onze leden te waarborgen. Houd de officiële communicatiekanalen van de Diabetes Liga nauwgezet in de gaten voor de bekendmaking van nieuwe codes.
+        </div>
+      </div>
       
     <!--            download               -->
     <div class="pgContent" id="pgG">   
