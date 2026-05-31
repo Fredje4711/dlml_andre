@@ -158,3 +158,19 @@
     margin-bottom: 1.5vw;
   }
 }
+/* Fix voor GSM: zorg dat iconen niet wegvallen aan de linkerkant */
+@media only screen and (max-width: 600px) {
+  .informatie {
+    grid-column-gap: 3vw !important; /* Vergroot de afstand tussen de kolommen */
+    padding-left: 5px;               /* Schuift het geheel een klein beetje naar rechts */
+  }
+  
+  .informatie div i {
+    margin-left: 2px;               /* Geeft de iconen zelf een klein zetje */
+  }
+
+  /* Specifieke fix voor de cijfer-cirkels in het stappenplan op mobiel */
+  .informatie div[style*="display: flex"] {
+    margin-left: -5px;              /* Corrigeert de uitlijning van de cijfers */
+  }
+}
