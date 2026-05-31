@@ -109,3 +109,16 @@
 	.containerDownloadTxt div:nth-child(3) {  }  
  	
    }
+  /* --- Compactere witruimte bij Downloads --- */
+
+#pgG .containerDownload {
+  margin-top: 2.5vw;
+  margin-bottom: 3vw;
+}
+
+@media only screen and (min-width: 1280px) {
+  #pgG .containerDownload {
+    margin-top: 2vw;
+    margin-bottom: 2.5vw;
+  }
+}

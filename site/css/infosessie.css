@@ -167,4 +167,29 @@
   	 
   .txtBlock {	 } 
      
-  }   	  	 
+  }   
+/* --- Compactere witruimte bij Infosessies en Cultuur/ontspanning --- */
+
+#pgB .infosessie,
+#pgC .infosessie {
+  margin-top: 1.5vw;
+  margin-bottom: 0.5vw;
+}
+
+#pgB .emptyspace,
+#pgC .emptyspace {
+  height: 1.5vw;
+}
+
+@media only screen and (min-width: 1280px) {
+  #pgB .infosessie,
+  #pgC .infosessie {
+    margin-top: 1.5vw;
+    margin-bottom: 0.5vw;
+  }
+
+  #pgB .emptyspace,
+  #pgC .emptyspace {
+    height: 1.5vw;
+  }
+}  

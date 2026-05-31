@@ -269,6 +269,15 @@
 /* Extra onderruimte voor Video's op kleine gsm-schermen */
 @media only screen and (max-width: 768px) {
   #pgE {
-    padding-bottom: 50px;
+    padding-bottom: 35px;
   }
+}
+#pgE .titelFotoGrp {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+/* Minder witruimte bij Foto's vorige activiteiten */
+#pgD .titelFotoGrp {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }

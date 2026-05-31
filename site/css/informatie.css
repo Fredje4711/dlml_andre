@@ -145,3 +145,16 @@
    .smallLine { font-size:0.4em;  line-height:1.2; }
   
      }
+	 /* --- Compactere witruimte bij Info Diabetes Liga --- */
+
+#pgF .informatie {
+  margin-top: 2vw;
+  margin-bottom: 1.5vw;
+}
+
+@media only screen and (min-width: 1280px) {
+  #pgF .informatie {
+    margin-top: 2vw;
+    margin-bottom: 1.5vw;
+  }
+}
