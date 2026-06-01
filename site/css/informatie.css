@@ -193,12 +193,12 @@
   }
 
   #pgF .informatieImg img {
-    margin-bottom: 2vw;
+    margin-bottom: 2.7vw;
   }
 
   /* 3. Gewone tekst in de tekstblokken iets groter en leesbaarder */
   #pgF .informatie div {
-  font-size: 1.06rem;
+  font-size: 1.10rem;
   line-height: 1.22;
 }
 
