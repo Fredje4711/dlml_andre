@@ -198,9 +198,9 @@
 
   /* 3. Gewone tekst in de tekstblokken iets groter en leesbaarder */
   #pgF .informatie div {
-    font-size: 1.06em;
-    line-height: 1.28;
-  }
+  font-size: 1.06rem;
+  line-height: 1.22;
+}
 
   /* 4. De lege tussenregels/tekstblok-spacers compacter maken */
   #pgF .smallLine {
@@ -220,5 +220,73 @@
     align-items: center !important;
     align-self: start !important;
     margin-top: 0.1em !important;
+  }
+}
+/* --- Extra fijnregeling Info Diabetes Liga: tekstblokken, afbeelding en stappenplan --- */
+
+@media only screen and (max-width: 900px) {
+
+  /* Titelblok: minder ruimte tussen ondertitel en afbeelding */
+  #pgF .informatie label:nth-child(2) {
+    line-height: 1.05;
+    margin-bottom: -2vw;
+  }
+
+  /* Afbeelding dichter bij de ondertitel, maar iets meer ruimte eronder */
+  #pgF .informatieImg {
+    margin-top: -1.8vw;
+    margin-bottom: 2.5vw;
+  }
+
+  #pgF .informatieImg img {
+    margin-bottom: 2.5vw;
+  }
+
+  /* Gewone tekst in Info Diabetes Liga iets groter op gsm/tablet */
+  #pgF .informatie div {
+    font-size: 1.06rem;
+    line-height: 1.25;
+  }
+
+  /* Inline witruimte onder tekstblokken verminderen */
+  #pgF .informatie div[style*="padding-bottom"] {
+    padding-bottom: 4px !important;
+  }
+
+  /* Inline smallLine-marges verminderen, ook wanneer er margin in index.html staat */
+  #pgF .smallLine,
+  #pgF .smallLine[style] {
+    font-size: 0.08em !important;
+    line-height: 0.35 !important;
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+  }
+
+  /* Stappenplan: nummer en tekst stabiel naast elkaar */
+  #pgF .stap-container {
+    display: grid !important;
+    grid-template-columns: 32px 1fr;
+    column-gap: 10px;
+    align-items: start;
+    margin-bottom: 8px;
+  }
+
+  #pgF .stap-nummer {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #23a9e4;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 0.05em;
+  }
+
+  #pgF .stap-tekst {
+    white-space: normal;
+    line-height: 1.25;
   }
 }
