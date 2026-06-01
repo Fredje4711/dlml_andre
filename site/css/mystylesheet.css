@@ -316,7 +316,7 @@
 
 @media only screen and (max-width: 1279px) {
   .pgContent {
-    padding-bottom: 55px;
+    padding-bottom:80px;
     box-sizing: border-box;
   }
 }
