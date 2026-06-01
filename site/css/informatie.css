@@ -174,3 +174,51 @@
     margin-left: -5px;              /* Corrigeert de uitlijning van de cijfers */
   }
 }
+/* --- Fijnregeling Info Diabetes Liga: gsm/tablet weergave --- */
+/* Doel: minder witruimte rond titel/afbeelding, iets grotere tekst,
+   compactere tekstblokken en stabielere cijfer-uitlijning. */
+
+@media only screen and (max-width: 900px) {
+
+  /* 1. Minder ruimte tussen ondertitel en afbeelding */
+  #pgF .informatie label:nth-child(2) {
+    line-height: 1.1;
+    margin-bottom: -1.2vw;
+  }
+
+  /* 2. Afbeelding iets dichter bij titel, maar iets meer ruimte eronder */
+  #pgF .informatieImg {
+    margin-top: -1.2vw;
+    margin-bottom: 1.8vw;
+  }
+
+  #pgF .informatieImg img {
+    margin-bottom: 2vw;
+  }
+
+  /* 3. Gewone tekst in de tekstblokken iets groter en leesbaarder */
+  #pgF .informatie div {
+    font-size: 1.06em;
+    line-height: 1.28;
+  }
+
+  /* 4. De lege tussenregels/tekstblok-spacers compacter maken */
+  #pgF .smallLine {
+    font-size: 0.18em;
+    line-height: 0.7;
+  }
+
+  /* 5. De eerdere brede correctie op flex-blokken neutraliseren binnen pgF */
+  #pgF .informatie div[style*="display: flex"] {
+    margin-left: 0 !important;
+  }
+
+  /* 6. Cijfercirkels stabieler centreren tegenover hun tekst */
+  #pgF .informatie div[style*="border-radius: 50%"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-self: start !important;
+    margin-top: 0.1em !important;
+  }
+}
