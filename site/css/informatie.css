@@ -204,9 +204,9 @@
 
   /* 4. De lege tussenregels/tekstblok-spacers compacter maken */
   #pgF .smallLine {
-    font-size: 0.18em;
-    line-height: 0.7;
-  }
+  font-size: 0.08em;
+  line-height: 0.35;
+}
 
   /* 5. De eerdere brede correctie op flex-blokken neutraliseren binnen pgF */
   #pgF .informatie div[style*="display: flex"] {
