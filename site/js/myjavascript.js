@@ -29,7 +29,16 @@ $(document).ready(function(e){
     $.fn.setPg = function() {  
         $('#pgE video').trigger('pause');
         $('.pgContent').hide();
-        $('#pg' + pgNr).show(); 
+        $('#pg' + pgNr).show();
+
+        // Zorg dat elke nieuw geopende pagina bovenaan start.
+        // Dit voorkomt dat korte pagina's zoals Downloads of Contact leeg lijken
+        // wanneer men eerst lager op een lange pagina stond.
+        $(window).scrollTop(0);
+        $('html, body').scrollTop(0);
+        $('#allPages').scrollTop(0);
+        $('#pg' + pgNr).scrollTop(0);
+
         $('#Mnu1 div label, #Mnu2 div label').css('font-weight','500');
         $('#MnuItm1' + pgNr + ' label, #MnuItm2' + pgNr + ' label').css('font-weight','bold');
     }; 
