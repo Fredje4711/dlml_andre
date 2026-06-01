@@ -312,11 +312,13 @@
  
    }  
    
-   /* --- Mobiele onderruimte: voorkomt dat onderaan inhoud wegvalt op echte gsm/tablet --- */
+  /* --- Mobiele onderruimte: voorkomt dat onderaan inhoud wegvalt op echte gsm/tablet --- */
 
 @media only screen and (max-width: 1279px) {
-  .pgContent {
-    padding-bottom:80px;
-    box-sizing: border-box;
+  .pgContent::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 80px;
   }
 }
