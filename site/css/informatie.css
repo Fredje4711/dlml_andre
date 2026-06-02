@@ -290,3 +290,7 @@
     line-height: 1.25;
   }
 }
+/* Extra witruimte boven het onderdeel Vernieuwde webshop */
+#pgF .vernieuwdeWebshopBlock {
+  margin-top: 5vw;
+}
