@@ -164,59 +164,74 @@
     </div>
     <!-- ****** content website  * ****************   -->
     <div  id="allPages" class="colorLight">
-   
-    <!--           Home Page                --> 
+   <!--           Home Page                --> 
     <div class="pgContent" id="pgA" >
-      
-      <div id="diabetes-clock-wrapper"> 
-        <div></div>
-        <div>Iedere 17 minuten krijgt iemand de diagnose diabetes.</div>   
-        <div>Nieuwe diagnose sinds 1 januari <span id="dtJaar">2025</span> </div>   
-        <div>21781</div>
-        <div>Nieuwe diagnose vandaag&nbsp;<span>45</span> </div>   
-        <div>Volgende diagnose over&nbsp;<span>15:40</span> </div>   
-        <div></div>
-      </div> 
-      
-      <div style="width: 100%; height:auto; background-color:var(--pgBackColor);"> 
-        <img id="imgLogo" alt=".." src="site/image/DiabetesLigaICM.png" style="width:80%; height:auto; margin: 1vw 10% 0 10%;"><br>
-     </div>
+
+      <!-- Nieuwe diabetesklok -->
+      <div id="diabetes-clock-wrapper">
+        <div class="clock-container">
+          <div class="clock-info-group">
+            <p class="slogan-main">Iedere 17 minuten krijgt iemand de diagnose diabetes.</p>
+            <p class="slogan-sub">Mensen met diabetes erbij sinds 1 januari 2026.</p>
+          </div>
+
+          <div id="diabetes-counter">Laden...</div>
+
+          <div id="today-and-countdown-wrapper">
+            <div id="diagnoses-today-counter"></div>
+            <div id="countdown-timer">--:--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro-video onder de klok -->
+      <div class="homeIntroVideoWrapper">
+        <div class="homeIntroVideoPlayer" id="customHomeVideoPlayer">
+          <img src="https://fredje4711.github.io/nieuwsbrief/Intro.png" alt="Introvideo Diabetes Liga Midden-Limburg">
+          <div class="homeIntroPlayButton"></div>
+        </div>
+      </div>
+
+      <!-- Sociale media links onder de intro-video -->
       <div id="socIcons" style="display:block;">
         <div id="socItm1" class="socItm">
           <a href="https://www.diabetes.be/nl/midden.limburg" target="_blank">
-          <img alt="Diabetes" src="https://dlml.be/site/image/site.png" class="icon">
+            <img alt="Diabetes Liga website" src="https://dlml.be/site/image/site.png" class="icon">
           </a>
-         <div class="tooltipTxt">www.diabetes.be/nl/midden.limburg</div>
+          <div class="tooltipTxt">www.diabetes.be/nl/midden.limburg</div>
         </div>
+
         <div id="socItm2" class="socItm">
           <a href="https://www.facebook.com/p/Diabetes-Liga-Midden-Limburg-100091325418693/?locale=nl_NL" target="_blank">
-          <img alt="Facebook" src="https://dlml.be/site/image/facebook.png" class="icon">
+            <img alt="Facebook" src="https://dlml.be/site/image/facebook.png" class="icon">
           </a>
           <div class="tooltipTxt">Facebook</div>
         </div>
+
         <div id="socItm3" class="socItm">
           <a href="mailto:midden.limburg@diabetes.be" target="_blank">
-          <img alt="Mail" src="https://dlml.be/site/image/mail.png" class="icon">
+            <img alt="Mail" src="https://dlml.be/site/image/mail.png" class="icon">
           </a>
           <div class="tooltipTxt">midden.limburg@diabetes.be</div>
         </div>
+
         <div id="socItm4" class="socItm">
           <a href="https://www.youtube.com/@Diabetesligamiddenlimburg/xregexp" target="_blank">
-          <img alt="YouTube" src="https://dlml.be/site/image/youtube.png" class="icon">
+            <img alt="YouTube" src="https://dlml.be/site/image/youtube.png" class="icon">
           </a>
           <div class="tooltipTxt">YouTube</div>
         </div>
+
         <div id="socItm5" class="socItm">
           <a href="https://www.instagram.com/diabetes_liga_midden_limburg/" target="_blank">
-          <img alt="YouTube" src="https://dlml.be/site/image/instagram.png" class="icon">
+            <img alt="Instagram" src="https://dlml.be/site/image/instagram.png" class="icon">
           </a>
           <div class="tooltipTxt">Instagram</div>
         </div>
       </div>  
-      
+
       <div class="emptyspace">&nbsp;</div>
-     
- 
+
     </div>
      
     <!--          Infosessie               -->
@@ -2223,7 +2238,17 @@
         </label>
         <div class="informatieImg">
           <img  alt=".." src="site/image/DiabetesLigaICM.png">  
-        </div>   
+        </div>
+
+          <div class="diabetesLigaLinks" style="grid-column: 1 / span 2; white-space: normal; text-align: center; width: 100%; line-height: 1.35; margin-top: 0.4vw;">
+          <b>Meer informatie</b><br>
+          <a href="https://www.diabetes.be" target="_blank">Diabetes Liga Vlaanderen</a><br>
+          <a href="https://www.facebook.com/p/Diabetes-Liga-Midden-Limburg-100091325418693/?locale=nl_NL" target="_blank">Facebook Midden-Limburg</a>
+          &nbsp;|&nbsp;
+          <a href="https://www.youtube.com/@Diabetesligamiddenlimburg/xregexp" target="_blank">YouTube</a>
+          &nbsp;|&nbsp;
+          <a href="https://www.instagram.com/diabetes_liga_midden_limburg/" target="_blank">Instagram</a>
+        </div>
       </div>
         
       <div class="informatie tblSize2">
