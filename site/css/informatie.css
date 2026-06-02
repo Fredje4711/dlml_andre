@@ -294,3 +294,27 @@
 #pgF .vernieuwdeWebshopBlock {
   margin-top: 5vw;
 }
+/* --- Afstand linkblok onder Diabetes Liga Vlaanderen --- */
+
+#pgF .diabetesLigaLinks {
+  margin-bottom: 2.5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  #pgF .diabetesLigaLinks {
+    margin-top: -1.2vw !important;
+    margin-bottom: 5vw !important;
+  }
+}
+/* --- Extra ruimte tussen titel/ondertitel en afbeelding bij Info Diabetes Liga op gsm/tablet --- */
+/* Geldt niet voor het eerste blok Diabetes Liga Vlaanderen */
+
+@media only screen and (max-width: 900px) {
+  #pgF > .informatie:not(:first-of-type) label:nth-child(2) {
+    margin-bottom: 2vw !important;
+  }
+
+  #pgF > .informatie:not(:first-of-type) .informatieImg {
+    margin-top: 1vw !important;
+  }
+}

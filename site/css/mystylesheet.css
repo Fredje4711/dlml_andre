@@ -351,3 +351,563 @@
     height: calc(100dvh - 10.6vw - 3vw);
   }
 }
+/* --- Home: nieuwe diabetesklok + intro-video + sociale iconen --- */
+
+#pgA #diabetes-clock-wrapper {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1vw 0 0.4vw 0;
+  padding: 1px 10% 5px 10%;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+#pgA .clock-container {
+  display: flex;
+  width: 100%;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: linear-gradient(270deg, #1b8cc5 0%, #23a9e4 100%);
+  background-size: 400% 400%;
+  animation: homeClockGradient 15s ease infinite;
+  box-shadow: 0 0 12px rgba(35, 169, 228, 0.5);
+  border: 2px solid #23a9e4;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes homeClockGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#pgA .clock-info-group {
+  text-align: center;
+  order: 1;
+}
+
+#pgA .slogan-main {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+}
+
+#pgA .slogan-sub {
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #ffffff;
+  margin: 4px 0 0 0;
+}
+
+#pgA #diabetes-counter {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #d9534f;
+  margin: 8px 0 4px 0;
+  transition: transform 0.2s ease-out;
+  order: 2;
+  text-shadow:
+    -0.5px -0.5px 0 rgba(255,255,255,0.9),
+     0.5px -0.5px 0 rgba(255,255,255,0.9),
+    -0.5px  0.5px 0 rgba(255,255,255,0.9),
+     0.5px  0.5px 0 rgba(255,255,255,0.9);
+}
+
+#pgA #diabetes-counter.updated {
+  transform: scale(1.15);
+}
+
+#pgA #today-and-countdown-wrapper {
+  order: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+#pgA #diagnoses-today-counter {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+#pgA .today-count-number {
+  font-size: 1.15em;
+  color: #ffffff;
+}
+
+#pgA #countdown-timer {
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  color: #23a9e4;
+  background-color: #c5e9f8;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  margin-bottom: -5px;
+}
+
+/* Intro-video */
+#pgA .homeIntroVideoWrapper {
+  width: 100%;
+  padding: 0 10% 10px 10%;
+  box-sizing: border-box;
+}
+
+#pgA .homeIntroVideoPlayer {
+  width: 100%;
+  max-width: none;
+  border-radius: 12px;
+  border: 2px solid #23a9e4;
+  box-shadow: 0 0 12px rgba(35, 169, 228, 0.4);
+  background-color: #000000;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  display: block;
+}
+
+#pgA .homeIntroVideoPlayer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+#pgA .homeIntroPlayButton {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+#pgA .homeIntroPlayButton::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 17px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid #23a9e4;
+}
+
+/* Sociale iconen onder de intro-video */
+#pgA #socIcons {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: 1vw 10% 3vw 10%;
+  text-align: right;
+  background-color: var(--pgBackColor);
+}
+
+#pgA .socItm {
+  display: inline-block;
+  width: 3vw;
+  height: 3vw;
+  margin: 0 1vw 0 1vw;
+  position: relative;
+  overflow: visible;
+}
+
+#pgA .icon {
+  width: 3vw;
+  height: 3vw;
+}
+
+/* Desktop/tablet breed */
+@media only screen and (min-width: 769px) {
+  #pgA .clock-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  #pgA .clock-info-group {
+    text-align: left;
+    order: 1;
+  }
+
+  #pgA .slogan-main {
+    font-size: 0.9rem;
+  }
+
+  #pgA .slogan-sub {
+    font-size: 0.8rem;
+    font-weight: normal;
+  }
+
+  #pgA #diabetes-counter {
+    font-size: 2.5rem;
+    margin: 0 15px;
+    order: 2;
+  }
+
+  #pgA #today-and-countdown-wrapper {
+    order: 3;
+    align-items: flex-end;
+  }
+
+  #pgA #diagnoses-today-counter {
+    font-size: 0.95rem;
+  }
+
+  #pgA #countdown-timer {
+    font-size: 1rem;
+  }
+}
+
+/* GSM */
+@media only screen and (max-width: 768px) {
+  #pgA #diabetes-clock-wrapper {
+    padding: 1px 5% 5px 5%;
+    margin-top: 2vw;
+  }
+
+  #pgA .homeIntroVideoWrapper {
+    padding: 0 5% 8px 5%;
+  }
+
+  #pgA #socIcons {
+    width: 90%;
+    margin: 1.5vw 5% 4vw 5%;
+    text-align: right;
+  }
+
+  #pgA .socItm {
+    width: 8vw;
+    height: 8vw;
+    margin: 0 2vw;
+  }
+
+  #pgA .icon {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  #pgA .homeIntroPlayButton {
+    width: 48px;
+    height: 48px;
+  }
+
+  #pgA .homeIntroPlayButton::before {
+    left: 19px;
+    top: 14px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 16px;
+  }
+}
+/* --- Correctie: oude klok-CSS uitschakelen voor nieuwe Home-klok --- */
+
+#pgA #diabetes-clock-wrapper > .clock-container {
+  height: auto !important;
+  min-height: 0 !important;
+  width: 100% !important;
+}
+
+#pgA #diabetes-clock-wrapper .clock-container > div {
+  width: auto !important;
+  height: auto !important;
+}
+
+#pgA #diabetes-clock-wrapper .clock-info-group {
+  width: auto !important;
+  height: auto !important;
+  flex: 1 1 auto;
+}
+
+#pgA #diabetes-counter {
+  width: auto !important;
+  height: auto !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+#pgA #today-and-countdown-wrapper {
+  width: auto !important;
+  height: auto !important;
+  flex: 1 1 auto;
+}
+
+#pgA #diagnoses-today-counter,
+#pgA #countdown-timer {
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Op gsm mag de klok onder elkaar blijven staan */
+@media only screen and (max-width: 768px) {
+  #pgA #diabetes-clock-wrapper .clock-container > div {
+    width: 100% !important;
+  }
+
+  #pgA #today-and-countdown-wrapper {
+    align-items: center;
+  }
+}
+/* --- Home-klok: desktopindeling identieker aan persoonlijke versie --- */
+
+@media only screen and (min-width: 1280px) {
+
+  #pgA #diabetes-clock-wrapper {
+    width: 100% !important;
+    margin: 0.8vw 0 0.45vw 0 !important;
+    padding: 0 10% 5px 10% !important;
+    background: transparent !important;
+  }
+
+  #pgA .clock-container {
+    display: grid !important;
+    grid-template-columns: 39% 18% 43%;
+    align-items: center !important;
+    column-gap: 0 !important;
+    padding: 7px 20px !important;
+    min-height: 0 !important;
+  }
+
+  #pgA .clock-info-group {
+    width: 100% !important;
+    height: auto !important;
+    text-align: left !important;
+    flex: none !important;
+  }
+
+  #pgA .slogan-main {
+    font-size: 0.9rem !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  #pgA .slogan-sub {
+    font-size: 0.8rem !important;
+    line-height: 1.18 !important;
+    margin: 4px 0 0 0 !important;
+    max-width: none !important;
+  }
+
+  #pgA #diabetes-counter {
+    width: 100% !important;
+    height: auto !important;
+    text-align: center !important;
+    font-size: 2.45rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  #pgA #today-and-countdown-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 4px !important;
+  }
+
+  #pgA #diagnoses-today-counter {
+    width: auto !important;
+    height: auto !important;
+    font-size: 0.95rem !important;
+    line-height: 1.05 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+  }
+
+  #pgA #countdown-timer {
+    width: auto !important;
+    height: auto !important;
+    font-size: 1rem !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    padding: 4px 10px !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+  }
+}
+/* --- FINALE correctie Home-klok desktop: dichter bij persoonlijke versie --- */
+
+@media only screen and (min-width: 1280px) {
+
+  #pgA #diabetes-clock-wrapper {
+    width: 100% !important;
+    margin: 0.7vw 0 0.45vw 0 !important;
+    padding: 0 10% 4px 10% !important;
+    background: transparent !important;
+  }
+
+  #pgA .clock-container {
+    display: grid !important;
+    grid-template-columns: 36% 20% 44% !important;
+    align-items: center !important;
+    column-gap: 0 !important;
+    padding: 8px 20px !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  #pgA .clock-info-group {
+    width: 100% !important;
+    height: auto !important;
+    text-align: left !important;
+    flex: none !important;
+  }
+
+  #pgA .slogan-main {
+    font-size: 18px !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+  }
+
+  #pgA .slogan-sub {
+    font-size: 16px !important;
+    line-height: 1.18 !important;
+    margin: 4px 0 0 0 !important;
+    font-weight: 400 !important;
+  }
+
+  #pgA #diabetes-counter {
+    width: 100% !important;
+    height: auto !important;
+    text-align: center !important;
+    font-size: 48px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  #pgA #today-and-countdown-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 5px !important;
+  }
+
+  #pgA #diagnoses-today-counter {
+    width: auto !important;
+    height: auto !important;
+    font-size: 18px !important;
+    line-height: 1.05 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+    font-weight: 700 !important;
+  }
+
+  #pgA #countdown-timer {
+    width: auto !important;
+    height: auto !important;
+    font-size: 17px !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    padding: 4px 10px !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+  }
+}
+/* --- FINALE HOME-KLOK: indeling gelijker aan voorbeeld screenshot.png --- */
+
+@media only screen and (min-width: 1280px) {
+
+  #pgA #diabetes-clock-wrapper {
+    width: 100% !important;
+    margin: 0.7vw 0 0.45vw 0 !important;
+    padding: 0 10% 4px 10% !important;
+    background: transparent !important;
+  }
+
+  #pgA .clock-container {
+    display: grid !important;
+    grid-template-columns: 43% 17% 40% !important;
+    align-items: center !important;
+    column-gap: 0 !important;
+    padding: 9px 20px !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  #pgA .clock-info-group {
+    width: 100% !important;
+    height: auto !important;
+    text-align: left !important;
+    flex: none !important;
+  }
+
+  #pgA .slogan-main {
+    font-size: 18px !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+    max-width: none !important;
+  }
+
+  #pgA .slogan-sub {
+    font-size: 16px !important;
+    line-height: 1.18 !important;
+    margin: 4px 0 0 0 !important;
+    font-weight: 400 !important;
+    max-width: none !important;
+  }
+
+  #pgA #diabetes-counter {
+    width: 100% !important;
+    height: auto !important;
+    text-align: center !important;
+    font-size: 50px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  #pgA #today-and-countdown-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 5px !important;
+  }
+
+  #pgA #diagnoses-today-counter {
+    width: auto !important;
+    height: auto !important;
+    font-size: 18px !important;
+    line-height: 1.05 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+    font-weight: 700 !important;
+  }
+
+  #pgA #countdown-timer {
+    width: auto !important;
+    height: auto !important;
+    font-size: 17px !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    padding: 4px 10px !important;
+    white-space: nowrap !important;
+    text-align: right !important;
+  }
+}
