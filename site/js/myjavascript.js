@@ -26,8 +26,8 @@ $(document).ready(function(e){
         }
     });
 
-    $.fn.setPg = function() {  
-        $('#pgE video').trigger('pause');
+        $.fn.setPg = function() {  
+        $('#pgE video, #pgA video').trigger('pause');
         $('.pgContent').hide();
         $('#pg' + pgNr).show();
 
@@ -75,26 +75,90 @@ $(document).ready(function(e){
         }
     };
 
-    // --- 3. TIMER / KLOK ---
+        // --- 3. TIMER / KLOK ---
     var myInterval;
-    $.fn.startTimer = function() {  
-        myInterval = setInterval(function() {
-            var dt1 = new Date();
-            var dt3 = new Date(dt1.getFullYear(), dt1.getMonth(), dt1.getDate(), 0, 0, 0);
-            $('#dtJaar').html(dt1.getFullYear());
-            var aantalDitJaar = parseInt((dt1.getTime() - new Date(dt1.getFullYear(), 0, 1).getTime()) / 1020000);
-            var diff = (dt1.getTime() - dt3.getTime())/1000;
-            var aantalVandaag = parseInt(diff / 1020);
-            var cnt = 1020 - parseInt(diff % 1020);
-            var m = (' ' + parseInt(cnt / 60)).slice(-2);
-            var s = ('0' + parseInt(cnt % 60)).slice(-2);
-            $('#diabetes-clock-wrapper div:nth-child(4)').html(aantalDitJaar);
-            $('#diabetes-clock-wrapper div:nth-child(5) span').html(aantalVandaag);   
-            $('#diabetes-clock-wrapper div:nth-child(6) span').html(m + ':' + s);
-        }, 1000);
+    var lastKnownTotalCount = 0;
+
+    function updateHomeDiabetesClock() {
+        var counterElement = document.getElementById('diabetes-counter');
+        var countdownElement = document.getElementById('countdown-timer');
+        var todayCounterElement = document.getElementById('diagnoses-today-counter');
+
+        if (!counterElement || !countdownElement || !todayCounterElement) {
+            return;
+        }
+
+        var INITIAL_COUNT = 0;
+        var COUNT_FIXED_TIMESTAMP = new Date(2026, 0, 1, 0, 0, 0);
+        var intervalMillis = 17 * 60 * 1000;
+
+        var now = new Date();
+        var diffSinceFix = now - COUNT_FIXED_TIMESTAMP;
+
+        if (diffSinceFix < 0) {
+            counterElement.textContent = INITIAL_COUNT.toLocaleString('nl-BE');
+            todayCounterElement.innerHTML = 'Nieuwe diagnoses vandaag: <span class="today-count-number">0</span>';
+            countdownElement.textContent = 'Volgende diagnose over: --:--';
+            return;
+        }
+
+        var additionalIntervals = Math.floor(diffSinceFix / intervalMillis);
+        var totalCount = INITIAL_COUNT + additionalIntervals;
+
+        if (totalCount !== lastKnownTotalCount && lastKnownTotalCount !== 0) {
+            counterElement.textContent = totalCount.toLocaleString('nl-BE');
+            counterElement.classList.add('updated');
+
+            setTimeout(function() {
+                counterElement.classList.remove('updated');
+                counterElement.style.transform = 'scale(1)';
+            }, 200);
+        } else if (lastKnownTotalCount === 0) {
+            counterElement.textContent = totalCount.toLocaleString('nl-BE');
+        }
+
+        lastKnownTotalCount = totalCount;
+
+        var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var diffSinceMidnight = now - todayStart;
+        var diagnosesToday = Math.floor(diffSinceMidnight / intervalMillis);
+
+        todayCounterElement.innerHTML = 'Nieuwe diagnoses vandaag: <span class="today-count-number">' + diagnosesToday + '</span>';
+
+        var millisIntoCurrentInterval = diffSinceFix % intervalMillis;
+        var remainingMillis = intervalMillis - millisIntoCurrentInterval;
+        var remainingSecondsTotal = Math.floor(remainingMillis / 1000);
+        var minutes = Math.floor(remainingSecondsTotal / 60);
+        var seconds = remainingSecondsTotal % 60;
+        var formattedSeconds = String(seconds).padStart(2, '0');
+
+        countdownElement.textContent = 'Volgende diagnose over: ' + minutes + ':' + formattedSeconds;
+    }
+
+    $.fn.startTimer = function() {
+        clearInterval(myInterval);
+        updateHomeDiabetesClock();
+        myInterval = setInterval(updateHomeDiabetesClock, 1000);
     };
 
-    $.fn.stopTimer = function() { clearInterval(myInterval); };
+    $.fn.stopTimer = function() {
+        clearInterval(myInterval);
+    };
+
+    // Intro-video op de Home-pagina starten na klik
+    $(document).on('click', '#customHomeVideoPlayer', function() {
+        if ($(this).data('video-loaded')) {
+            return;
+        }
+
+        $(this).data('video-loaded', true);
+        $(this).html(
+            '<video controls autoplay playsinline style="width:100%; height:auto; display:block; border-radius:10px;">' +
+            '<source src="https://fredje4711.github.io/nieuwsbrief/Presentatie_DLML_stem_achtergrondmuziek.mp4" type="video/mp4">' +
+            'Je browser ondersteunt deze video niet.' +
+            '</video>'
+        );
+    });
 
     // --- 4. MYTHEN & FEITEN (KAARTEN) ---
     $('.card, .cardRotate').on('click', function() {
@@ -203,12 +267,41 @@ $(document).ready(function(e){
         $('body').css('overflow', 'auto'); 
     });
     
-    $(document).on('click', '#zoomBtn', function(e) { 
-        e.stopPropagation(); 
-        $('#customLightbox').toggleClass('is-zoomed');
-        var isZ = $('#customLightbox').hasClass('is-zoomed');
-        $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
-    });
+    function toggleLightboxZoom() {
+    $('#customLightbox').toggleClass('is-zoomed');
+    var isZ = $('#customLightbox').hasClass('is-zoomed');
+    $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
+}
+
+$(document).on('click', '#zoomBtn', function(e) { 
+    e.preventDefault();
+    e.stopPropagation(); 
+    toggleLightboxZoom();
+});
+
+/* Desktop/laptop: dubbelklikken op de afbeelding vergroot/verkleint */
+$(document).on('dblclick', '#lightboxImg', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleLightboxZoom();
+});
+
+/* GSM/tablet: dubbel tikken op de afbeelding vergroot/verkleint */
+var lastImageTap = 0;
+
+$('#lightboxImg').on('touchend', function(e) {
+    var now = new Date().getTime();
+    var timeSinceLastTap = now - lastImageTap;
+
+    if (timeSinceLastTap > 0 && timeSinceLastTap < 350) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleLightboxZoom();
+        lastImageTap = 0;
+    } else {
+        lastImageTap = now;
+    }
+});
 
     // Downloadknop: download de foto die op dat moment in de lightbox openstaat.
     // Belangrijk: dit werkt alleen wanneer de foto van hetzelfde domein komt als de website.
