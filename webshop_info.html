@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nieuw: webshop Diabetes Liga</title>
+  <title>Nieuw: webshop Diabetes Liga & Multipharma</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -11,10 +11,10 @@
     :root {
       --dl-blauw: #23a9e4;
       --dl-blauw-donker: #168fc4;
+      --dl-blauw-licht: #eaf7fc;
       --mp-groen: #7ab800;
-      --bg-lichtblauw: #f4f9fc;
-      --bg-geel: #fff9e6;
       --tekst: #222;
+      --zacht-grijs: #f5f7f8;
     }
 
     * {
@@ -24,217 +24,324 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      line-height: 1.5;
       color: var(--tekst);
       background: #ffffff;
-      font-size: 19px;
+      font-size: 18px;
+      line-height: 1.55;
     }
 
-    .wrapper {
-      max-width: 820px;
+    .magazine-page {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 28px 24px 40px 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .header {
-      background: linear-gradient(135deg, var(--dl-blauw), var(--dl-blauw-donker));
-      color: white;
-      padding: 26px 22px;
-      border-radius: 14px;
-      text-align: center;
-      margin-bottom: 22px;
-      box-shadow: 0 3px 12px rgba(35,169,228,0.25);
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 1.75rem;
-      line-height: 1.2;
-    }
-
-    .header p {
-      margin: 8px 0 0 0;
-      font-size: 1.05rem;
-    }
-
-    .intro-box {
-      background: var(--bg-lichtblauw);
-      border-left: 6px solid var(--dl-blauw);
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 22px;
-    }
-
-    .intro-box p {
-      margin: 0 0 12px 0;
-    }
-
-    .intro-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .section-title {
-      color: var(--dl-blauw);
-      font-size: 1.25rem;
-      margin: 24px 0 12px 0;
-      line-height: 1.25;
-    }
-
-    .step-container {
-      margin: 15px 0 25px 0;
-    }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 12px;
-      background: var(--bg-lichtblauw);
-      padding: 13px;
-      border-radius: 9px;
-    }
-
-    .step-nr {
-      background: var(--dl-blauw);
-      color: white;
-      width: 36px;
-      height: 36px;
+    .magazine-page::before {
+      content: "";
+      position: absolute;
+      top: -160px;
+      right: -160px;
+      width: 430px;
+      height: 430px;
       border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      flex-shrink: 0;
-      line-height: 1;
+      background: linear-gradient(135deg, var(--dl-blauw), #74ccee);
+      opacity: 0.95;
+      z-index: 0;
     }
 
-    .step-text {
-      flex: 1;
+    .magazine-page::after {
+      content: "";
+      position: absolute;
+      bottom: -130px;
+      right: 80px;
+      width: 190px;
+      height: 190px;
+      border: 38px solid var(--dl-blauw);
+      border-radius: 50%;
+      opacity: 0.9;
+      z-index: 0;
     }
 
-    .promo-card {
-      border: 3px solid var(--dl-blauw);
-      padding: 22px;
-      border-radius: 15px;
-      text-align: center;
-      margin: 25px 0;
-      background: #ffffff;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    .content {
+      position: relative;
+      z-index: 1;
     }
 
-    .promo-card strong {
+    .rubriek {
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
       color: #333;
+      margin-bottom: 18px;
+    }
+
+    .rubriek span {
+      display: inline-block;
+      border-bottom: 6px solid var(--dl-blauw);
+      padding-bottom: 4px;
+    }
+
+    .magazine-source {
+      display: inline-block;
+      margin: 0 0 24px 0;
+      padding: 7px 13px;
+      background: var(--dl-blauw-licht);
+      border-left: 5px solid var(--dl-blauw);
+      color: #333;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .hero-title {
+      margin: 0 0 18px 0;
+      font-size: 2.35rem;
+      line-height: 1.12;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #3b3b3b;
+    }
+
+    .hero-title .blue {
+      color: var(--dl-blauw);
+      display: block;
+    }
+
+    .intro {
+      max-width: 760px;
+      font-size: 1.1rem;
+      margin-bottom: 26px;
+      color: #333;
+    }
+
+    .author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 34px;
+      color: #333;
+    }
+
+    .visual-band {
+      background: linear-gradient(135deg, #f1f8fb, #ffffff);
+      border-radius: 22px;
+      padding: 24px;
+      margin: 20px 0 32px 0;
+      text-align: center;
+      border: 1px solid #d7eef8;
+    }
+
+    .logo-line {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    .logo-line .plus {
+      color: var(--mp-groen);
+      font-weight: 900;
+      margin: 0 10px;
+    }
+
+    .visual-band p {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .visual-band a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #333;
+      font-weight: 800;
+      text-decoration: none;
+      border-bottom: 3px solid var(--dl-blauw);
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 24px;
+    }
+
+    .article-grid p {
+      margin: 0 0 18px 0;
+    }
+
+    .highlight-code-info {
+      background: #eef8fd;
+      border-left: 6px solid var(--dl-blauw);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      color: #17445b;
+    }
+
+    .info-card {
+      border: 2px solid var(--dl-blauw);
+      padding: 22px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.92);
+      margin-top: 24px;
+      font-weight: 600;
+    }
+
+    .info-card p {
+      margin: 0 0 18px 0;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
     }
 
     .code {
       display: inline-block;
       font-family: "Courier New", monospace;
-      font-size: 2.25rem;
-      font-weight: bold;
       color: var(--dl-blauw);
-      background: #eef7ff;
-      padding: 8px 20px;
-      border-radius: 8px;
-      margin: 12px 0;
+      background: #eef8fd;
       border: 2px dashed var(--dl-blauw);
-      letter-spacing: 1px;
+      border-radius: 8px;
+      padding: 6px 14px;
+      margin-top: 4px;
+      font-size: 1.25rem;
+      font-weight: 800;
     }
 
-    .alert-box {
-      background: #eef7ff;
-      color: #0056b3;
-      padding: 11px;
-      border-radius: 7px;
-      font-weight: bold;
+    .checkout-note {
+      background: #fff9e6;
+      border-left: 6px solid #ffcc00;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .quote {
+      margin: 44px 0 8px 0;
+      font-size: 1.75rem;
+      line-height: 1.25;
+      font-weight: 800;
+      color: #333;
+    }
+
+    .quote-author {
       font-size: 1rem;
-      margin-top: 8px;
-    }
-
-    .valid-note {
-      font-size: 0.92rem;
-      color: #d9534f;
-      font-weight: bold;
-      margin: 12px 0 4px 0;
-    }
-
-    .date-note {
-      font-size: 0.88rem;
-      color: #666;
-      margin: 0;
+      font-weight: 700;
+      margin-bottom: 28px;
     }
 
     .shipping-box {
-      background-color: var(--bg-geel);
-      border-left: 6px solid #ffcc00;
+      background: #fff9e6;
+      border-left: 7px solid #ffcc00;
       padding: 18px;
-      border-radius: 9px;
-      margin: 25px 0;
+      border-radius: 10px;
+      margin: 30px 0;
     }
 
-    .btn-order {
+    .button {
       display: block;
-      background-color: var(--mp-groen);
+      background: var(--mp-groen);
       color: white !important;
       text-align: center;
-      padding: 18px;
-      text-decoration: none !important;
-      border-radius: 50px;
-      font-size: 1.25rem;
-      font-weight: bold;
-      margin: 30px 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      padding: 18px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      margin: 28px 0 18px 0;
     }
 
-    .btn-order:hover {
-      background-color: #679d00;
-    }
-
-    .footer-note {
-      font-size: 0.95rem;
+    .small-note {
       color: #555;
-      border-top: 1px solid #e5e5e5;
+      font-size: 0.95rem;
+      border-top: 1px solid #ddd;
       padding-top: 18px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
-    .footer-note p {
-      margin: 0 0 12px 0;
+    a {
+      color: #005e91;
+      text-decoration: underline;
+      font-weight: 700;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 760px) {
       body {
         font-size: 18px;
       }
 
-      .wrapper {
-        padding: 14px;
+      .magazine-page {
+        padding: 20px 16px 34px 16px;
       }
 
-      .header {
-        padding: 22px 16px;
+      .magazine-page::before {
+        width: 260px;
+        height: 260px;
+        top: -120px;
+        right: -130px;
       }
 
-      .header h1 {
-        font-size: 1.45rem;
+      .magazine-page::after {
+        width: 120px;
+        height: 120px;
+        border-width: 24px;
+        bottom: -80px;
+        right: 20px;
       }
 
-      .code {
-        font-size: 1.65rem;
-        padding: 8px 14px;
+      .rubriek {
+        margin-bottom: 14px;
       }
 
-      .btn-order {
-        font-size: 1.08rem;
-        padding: 16px 12px;
+      .magazine-source {
+        font-size: 0.86rem;
+        margin-bottom: 20px;
       }
 
-      .step {
-        gap: 12px;
+      .hero-title {
+        font-size: 1.55rem;
+        letter-spacing: 0.05em;
       }
 
-      .step-nr {
-        width: 34px;
-        height: 34px;
+      .intro {
+        font-size: 1.02rem;
+      }
+
+      .visual-band {
+        padding: 20px 16px;
+        border-radius: 18px;
+      }
+
+      .logo-line {
+        font-size: 1.25rem;
+      }
+
+      .visual-band p {
+        font-size: 1.05rem;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .quote {
+        font-size: 1.35rem;
+      }
+
+      .info-card {
+        padding: 18px;
+      }
+
+      .button {
+        font-size: 1.05rem;
+        padding: 16px;
       }
     }
   </style>
@@ -242,86 +349,127 @@
 
 <body>
 
-  <div class="wrapper">
+  <main class="magazine-page">
+    <div class="content">
 
-    <div class="header">
-      <h1><i class="fas fa-shopping-basket"></i> Nieuw: webshop</h1>
-      <p>Diabetes Liga &amp; Multipharma</p>
-    </div>
-
-    <div class="intro-box">
-      <p>
-        De online webshop van de Diabetes Liga is vernieuwd. Bestellingen verlopen voortaan via <strong>Multipharma</strong>.
-      </p>
-      <p>
-        Voor leden blijft het voordeel behouden: met de onderstaande kortingscode krijgt u de afgesproken korting op diabetesproducten.
-      </p>
-      <p>
-        Belangrijk: de kortingscode voert u pas in bij het <strong>afrekenen</strong>, dus helemaal op het einde van uw bestelling.
-      </p>
-    </div>
-
-    <h2 class="section-title">Hoe gaat u te werk?</h2>
-
-    <div class="step-container">
-      <div class="step">
-        <div class="step-nr">1</div>
-        <div class="step-text">Klik op de groene knop onderaan om de webshop van Multipharma te openen.</div>
+      <div class="rubriek">
+        <span>Vereniging</span>
       </div>
 
-      <div class="step">
-        <div class="step-nr">2</div>
-        <div class="step-text">Kies uw diabetesmateriaal en voeg de gewenste artikelen toe aan uw winkelmandje.</div>
+      <div class="magazine-source">
+        Uit Diabetes INFO — nr. 2 — mei - augustus 2026
       </div>
 
-      <div class="step">
-        <div class="step-nr">3</div>
-        <div class="step-text">Ga naar de betaalpagina. In de laatste stap voert u de kortingscode in.</div>
-      </div>
-    </div>
+      <h1 class="hero-title">
+        Meer keuze en service voor je diabetesmateriaal
+        <span class="blue">Wat verandert er door de samenwerking met Multipharma?</span>
+      </h1>
 
-    <div class="promo-card">
-      <strong>Actuele kortingscode voor leden:</strong><br>
+      <p class="intro">
+        Onze webshop vernieuwt. Dankzij de samenwerking met Multipharma krijgen leden toegang tot een ruimer aanbod diabetesproducten en een vlottere service. Tegelijk blijft het vertrouwde ledenvoordeel behouden. Zo wordt bestellen eenvoudiger én betrouwbaarder.
+      </p>
 
-      <div class="code">DL-4F9G2K</div>
-
-      <div class="alert-box">
-        <i class="fas fa-exclamation-triangle"></i>
-        Pas invoeren bij het afrekenen.
+      <div class="author">
+        Lynn Detrixhe – Diabetes Liga, Communicatie, Marketing &amp; Fondsenwerving
       </div>
 
-      <p class="valid-note">
-        Maximaal 2 keer te gebruiken per actieve code
-      </p>
+      <section class="visual-band">
+        <div class="logo-line">
+          diabetesliga <span class="plus">+</span> Multipharma
+        </div>
+        <p>Een ruimer aanbod diabetesproducten, vlot beschikbaar en met blijvend ledenvoordeel.</p>
+        <a href="https://www.multipharma.be/nl/diabetes-liga/diabetes-liga.html" target="_blank">
+          www.multipharma.be/diabetes-liga
+        </a>
+      </section>
 
-      <p class="date-note">
-        Geldig t.e.m. 30 juni 2026
-      </p>
+      <section class="article-grid">
+        <div>
+          <p>
+            Als patiëntenorganisatie wil Diabetes Liga zich maximaal blijven inzetten voor haar kerntaak: mensen met diabetes ondersteunen in hun dagelijks leven en hun stem versterken in zorg en beleid. Daarom kiezen we voor een samenwerking met Multipharma voor onze webshopwerking.
+          </p>
+
+          <p>
+            Niet alleen delen zij onze waarden, als belangrijkste coöperatie in de Belgische apotheekwereld kunnen zij onze community ook een professionele, gebruiksvriendelijke en kwaliteitsvolle webshopervaring bieden.
+          </p>
+
+          <p>
+            Concreet kan je voortaan via een nieuwe Diabetes Liga-pagina binnen de Multipharma-webshop bestellen. Daar vind je een breed en relevant aanbod diabetesmateriaal, zoals pennaalden, teststrips, sensoren en pompgerelateerde producten.
+          </p>
+
+          <p>
+            Dankzij professioneel voorraadbeheer zijn producten bovendien sneller beschikbaar.
+          </p>
+        </div>
+
+        <div>
+          <p>
+            Je kan in dezelfde bestelling ook andere gezondheidsproducten toevoegen uit het ruime Multipharma-assortiment. Zo vul je je winkelmandje makkelijker en vermijd je hoge verzendkosten.
+          </p>
+
+          <p>
+            Je ledenvoordeel blijft behouden. Leden kunnen uiteraard in elke Belgische apotheek terecht voor farmaceutische zorg, persoonlijk advies en een ruim aanbod aan producten. Maar de korting die je genoot via de webshop van Diabetes Liga blijft behouden.
+          </p>
+
+          <p>
+            Multipharma garandeert dit bestaande voordeel via de Diabetes Liga-pagina binnen de Multipharma-webshop.
+          </p>
+
+          <p class="highlight-code-info">
+            Leden ontvangen daarvoor elk kwartaal een kortingscode die tot twee keer per kwartaal gebruikt kan worden.
+          </p>
+
+          <p>
+            Met deze samenwerking wil Diabetes Liga haar leden een betrouwbare en toekomstgerichte service aanbieden.
+          </p>
+        </div>
+      </section>
+
+      <aside class="info-card">
+        <p>
+          Je webshop voor diabetesmateriaal via Diabetes Liga ziet er sinds 28 april 2026 wat anders uit. Maar wees gerust: de producten blijven even kwalitatief, beter beschikbaar en met blijvend ledenvoordeel als lid van onze patiëntenorganisatie.
+        </p>
+
+        <p>
+          Jouw kortingscode is:<br>
+          <span class="code">DL-4F9G2K</span><br>
+          geldig tot en met 30/06/2026.
+        </p>
+
+        <p class="checkout-note">
+          Belangrijk: gebruik deze kortingscode pas op het einde van de bestelling, bij het afrekenen.
+        </p>
+
+        <p>
+          Bij vragen over de vernieuwde webshop en de specifieke Diabetes Liga-pagina op de Multipharma-webshop, kan je steeds terecht bij de klantendienst van Multipharma via
+          <a href="https://www.multipharma.be" target="_blank">multipharma.be</a>.
+        </p>
+      </aside>
+
+      <div class="shipping-box">
+        <strong><i class="fas fa-truck"></i> Levering:</strong><br>
+        Gratis levering kan in een Multipharma-apotheek. Voor thuislevering is de levering gratis vanaf <strong>€ 55,-</strong>. U kunt eventueel ook andere Multipharma-artikelen toevoegen om dit bedrag sneller te bereiken. Op deze extra artikelen geldt de ledenkorting niet.
+      </div>
+
+      <a class="button" href="https://www.multipharma.be/nl/diabetes-liga/" target="_blank">
+        <i class="fas fa-external-link-alt"></i> Ga naar de Diabetes Liga-webshop bij Multipharma
+      </a>
+
+      <blockquote class="quote">
+        “Door de samenwerking met Multipharma kunnen wij ons sterker focussen op onze maatschappelijke opdracht, terwijl onze leden rekenen op een professionele en toekomstgerichte webshopervaring.”
+      </blockquote>
+
+      <div class="quote-author">
+        Aurélie Lampaert, Inhoudelijk Coördinator Diabetes Liga.
+      </div>
+
+      <div class="small-note">
+        <strong>Nieuwe kortingscodes:</strong><br>
+        De kortingscode wordt regelmatig vernieuwd. Leden ontvangen nieuwe codes via de gebruikelijke communicatiekanalen van de Diabetes Liga.
+      </div>
+
     </div>
-
-    <div class="shipping-box">
-      <strong><i class="fas fa-truck"></i> Tip voor gratis verzending:</strong><br>
-      Vanaf <strong>€ 55,-</strong> is de levering gratis. U kunt eventueel ook andere Multipharma-artikelen, zoals vitamines of pleisters, toevoegen om dit bedrag sneller te bereiken. Op deze extra artikelen geldt de ledenkorting niet.
-    </div>
-
-    <a href="https://www.multipharma.be/nl/diabetes-liga/" target="_blank" class="btn-order">
-      <i class="fas fa-external-link-alt"></i>
-      Ga naar de webshop
-    </a>
-
-    <div class="footer-note">
-      <p>
-        <strong>Nieuwe codes:</strong><br>
-        De kortingscode wordt regelmatig vernieuwd. Informatie hierover ontvangt u via de gebruikelijke communicatiekanalen van de Diabetes Liga.
-      </p>
-
-      <p>
-        <strong>Hulp nodig?</strong><br>
-        Bij vragen kunt u terecht in een Multipharma-apotheek of bij de online klantendienst van Multipharma.
-      </p>
-    </div>
-
-  </div>
+  </main>
 
 </body>
 </html>
