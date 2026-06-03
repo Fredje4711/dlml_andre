@@ -139,6 +139,35 @@
       border: 2px dashed var(--dl-blauw);
       letter-spacing: 1px;
     }
+	
+	    .copy-code-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 2px 0 12px 0;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--dl-blauw);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+    }
+
+    .copy-code-btn:hover {
+      background: var(--dl-blauw-donker);
+    }
+
+    .copy-feedback {
+      min-height: 1.2em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #168fc4;
+      margin-bottom: 8px;
+    }
 
     .alert-box {
       background: #eef7ff;
@@ -317,7 +346,14 @@
     <div class="promo-card">
       <strong>Actuele kortingscode voor leden:</strong><br>
 
-      <div class="code">DL-4F9G2K</div>
+<div class="code" id="kortingscode">DL-4F9G2K</div>
+
+      <button type="button" class="copy-code-btn" onclick="copyDiscountCode()">
+        <i class="fas fa-copy"></i>
+        Kopieer kortingscode
+      </button>
+
+      <div id="copyFeedback" class="copy-feedback" aria-live="polite"></div>
 
       <div class="alert-box">
         <i class="fas fa-exclamation-triangle"></i>
@@ -385,6 +421,53 @@
     </div>
 
   </div>
+
+<script>
+  function copyDiscountCode() {
+    const codeElement = document.getElementById('kortingscode');
+    const feedback = document.getElementById('copyFeedback');
+    const code = codeElement.textContent.trim();
+
+    function showSuccess() {
+      feedback.textContent = 'Code gekopieerd: ' + code;
+    }
+
+    function fallbackCopy() {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = code;
+      tempInput.setAttribute('readonly', '');
+      tempInput.style.position = 'fixed';
+      tempInput.style.left = '-9999px';
+      tempInput.style.top = '0';
+
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+
+      try {
+        const successful = document.execCommand('copy');
+
+        if (successful) {
+          showSuccess();
+        } else {
+          feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+        }
+      } catch (err) {
+        feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+      }
+
+      document.body.removeChild(tempInput);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code)
+        .then(showSuccess)
+        .catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+</script>
 
 </body>
 </html>
