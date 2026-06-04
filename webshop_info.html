@@ -235,6 +235,73 @@
       border-radius: 8px;
       font-weight: 800;
     }
+	
+	    .copy-code-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 8px 0 12px 0;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--dl-blauw);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+    }
+
+    .copy-code-btn:hover {
+      background: var(--dl-blauw-donker);
+    }
+
+    .copy-feedback {
+      min-height: 1.2em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #168fc4;
+      margin-bottom: 8px;
+    }
+
+    .pharmacy-search-box {
+      background: var(--dl-blauw-licht);
+      border-left: 7px solid var(--dl-blauw);
+      padding: 18px;
+      border-radius: 10px;
+      margin: 30px 0;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .pharmacy-search-box strong {
+      color: #001a23;
+    }
+
+    .pharmacy-search-box i {
+      color: var(--dl-blauw);
+      margin-right: 5px;
+    }
+
+    .pharmacy-search-box a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--dl-blauw);
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+    }
+
+    .pharmacy-search-box a:hover {
+      background: var(--dl-blauw-donker);
+    }
 
     .quote {
       margin: 44px 0 8px 0;
@@ -446,9 +513,16 @@
           Je webshop voor diabetesmateriaal via Diabetes Liga ziet er sinds 28 april 2026 wat anders uit. Maar wees gerust: de producten blijven even kwalitatief, beter beschikbaar en met blijvend ledenvoordeel als lid van onze patiëntenorganisatie.
         </p>
 
-        <p>
+                <p>
           Jouw kortingscode is:<br>
-          <span class="code">DL-4F9G2K</span><br>
+          <span class="code" id="kortingscode">DL-4F9G2K</span><br>
+
+          <button type="button" class="copy-code-btn" onclick="copyDiscountCode()">
+            <i class="fas fa-copy"></i>
+            Kopieer kortingscode
+          </button>
+
+          <span id="copyFeedback" class="copy-feedback" aria-live="polite"></span><br>
           geldig tot en met 30/06/2026.
         </p>
 
@@ -465,6 +539,16 @@
       <div class="shipping-box">
         <strong><i class="fas fa-truck"></i> Levering:</strong><br>
         Gratis levering kan in een Multipharma-apotheek. Voor thuislevering is de levering gratis vanaf <strong>€ 55,-</strong>. U kunt eventueel ook andere Multipharma-artikelen toevoegen om dit bedrag sneller te bereiken. Op deze extra artikelen geldt de ledenkorting niet.
+      </div>
+	  
+	        <div class="pharmacy-search-box">
+        <strong><i class="fas fa-map-marker-alt"></i> Multipharma-apotheek zoeken</strong><br>
+        Wilt u uw bestelling laten leveren in een Multipharma-apotheek of zoekt u een Multipharma-apotheek in de buurt? Gebruik dan de officiële apotheekzoeker van Multipharma. U kunt zoeken op postcode, gemeente of huidige locatie.
+        <br>
+        <a href="https://www.multipharma.be/nl/onze-apotheken" target="_blank">
+          <i class="fas fa-search-location"></i>
+          Zoek een Multipharma-apotheek
+        </a>
       </div>
 
       <a class="button" href="https://www.multipharma.be/nl/diabetes-liga/" target="_blank">
@@ -502,6 +586,53 @@
 
     </div>
   </main>
+
+<script>
+  function copyDiscountCode() {
+    const codeElement = document.getElementById('kortingscode');
+    const feedback = document.getElementById('copyFeedback');
+    const code = codeElement.textContent.trim();
+
+    function showSuccess() {
+      feedback.textContent = 'Code gekopieerd: ' + code;
+    }
+
+    function fallbackCopy() {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = code;
+      tempInput.setAttribute('readonly', '');
+      tempInput.style.position = 'fixed';
+      tempInput.style.left = '-9999px';
+      tempInput.style.top = '0';
+
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+
+      try {
+        const successful = document.execCommand('copy');
+
+        if (successful) {
+          showSuccess();
+        } else {
+          feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+        }
+      } catch (err) {
+        feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+      }
+
+      document.body.removeChild(tempInput);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code)
+        .then(showSuccess)
+        .catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+</script>
 
 </body>
 </html>
