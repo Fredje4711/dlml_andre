@@ -103,29 +103,39 @@
       margin-bottom: 6px;
     }
 
-     .apotheek-zoeklink-info {
+ .apotheek-zoeklink-info {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   margin-top: 10px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
-  background: #f8f6ea;
+  background: #ffffff;
   border: 1px solid #d8d2bb;
   color: #00384f !important;
   text-decoration: none !important;
   font-weight: 700;
+  font-size: 0.95em;
+  line-height: 1.2;
   box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+  max-width: 100%;
+  white-space: nowrap;
 }
 
-    .apotheek-zoeklink-info:hover {
-      background: #168fc4;
-    }
+.apotheek-zoeklink-info i,
+.apotheek-zoeklink-info svg {
+  color: #00384f !important;
+  fill: currentColor !important;
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
 
-    .apotheek-zoeklink-info i {
-      color: #ffffff;
-    }
+.apotheek-zoeklink-info span {
+  white-space: nowrap;
+}
 	
 	/* --- Uitlijning per scherm (Nudges) --- */
 
@@ -142,6 +152,14 @@
         padding-left: 12px !important;
         padding-right: 5px !important;
       }
+	   .apotheek-zoeklink-info {
+  width: auto;
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: 0.95em;
+  padding-left: 16px;
+  padding-right: 16px;
+}
     }
   </style>
   
@@ -2497,8 +2515,7 @@
           Wilt u een Multipharma-apotheek zoeken om een bestelling te laten leveren of af te halen? Gebruik dan de officiële apotheekzoeker van Multipharma. U kunt zoeken op postcode, gemeente of huidige locatie.
           <br>
           <a href="https://www.multipharma.be/nl/onze-apotheken" target="_blank" class="apotheek-zoeklink-info">
-            <i class="fas fa-search-location"></i>
-            Zoek een Multipharma-apotheek
+          <span>Zoek apotheek</span>
           </a>
           <br><br>
           <b>Meer uitleg over de samenwerking:</b><br>
