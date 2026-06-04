@@ -71,8 +71,63 @@
       padding-top: 0;
       margin-top: 0;
     }
+	
+	    /* --- Info Diabetes Liga: kopieerknop kortingscode + apotheekzoeker --- */
 
-    /* --- Uitlijning per scherm (Nudges) --- */
+    .copy-code-btn-info {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 2px 0 10px 0;
+      padding: 9px 15px;
+      border: 0;
+      border-radius: 999px;
+      background: #23a9e4;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9em;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+    }
+
+    .copy-code-btn-info:hover {
+      background: #168fc4;
+    }
+
+    .copy-feedback-info {
+      min-height: 1.2em;
+      font-size: 0.85em;
+      font-weight: 700;
+      color: #168fc4;
+      margin-bottom: 6px;
+    }
+
+     .apotheek-zoeklink-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f8f6ea;
+  border: 1px solid #d8d2bb;
+  color: #00384f !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+}
+
+    .apotheek-zoeklink-info:hover {
+      background: #168fc4;
+    }
+
+    .apotheek-zoeklink-info i {
+      color: #ffffff;
+    }
+	
+	/* --- Uitlijning per scherm (Nudges) --- */
 
     @media only screen and (min-width: 769px) {
       .stap-nummer { margin-top: 8px; }
@@ -2434,10 +2489,22 @@
         </div>
         <div></div> <div class="smallLine" style="margin: 10px 0;">&nbsp;</div>
 
-        <!-- GRATIS VERZENDING TIP -->
+                <!-- GRATIS VERZENDING, APOTHEEK ZOEKEN EN EXTRA UITLEG -->
         <div style="color:#7ab800;"><i class="fas fa-truck"></i></div> 
         <div style="white-space: normal; padding-bottom: 15px; background-color: #fff9e6; padding: 10px; border-radius: 8px;">
-          <b>Tip voor gratis levering:</b> Bestellingen vanaf <b>€ 55,-</b> worden volledig gratis bij u thuis bezorgd. U kunt in dezelfde bestelling ook andere gezondheidsproducten (zoals vitamines of pleisters) uit het ruime Multipharma-assortiment toevoegen om makkelijker aan dit bedrag te komen. Op deze extra artikelen geldt de ledenkorting niet.
+          <b>Tip voor gratis levering:</b> Gratis levering kan in een Multipharma-apotheek. Voor thuislevering is de levering gratis vanaf <b>€ 55,-</b>. U kunt eventueel ook andere Multipharma-artikelen toevoegen om dit bedrag sneller te bereiken. Op deze extra artikelen geldt de ledenkorting niet.
+          <br><br>
+          Wilt u een Multipharma-apotheek zoeken om een bestelling te laten leveren of af te halen? Gebruik dan de officiële apotheekzoeker van Multipharma. U kunt zoeken op postcode, gemeente of huidige locatie.
+          <br>
+          <a href="https://www.multipharma.be/nl/onze-apotheken" target="_blank" class="apotheek-zoeklink-info">
+            <i class="fas fa-search-location"></i>
+            Zoek een Multipharma-apotheek
+          </a>
+          <br><br>
+          <b>Meer uitleg over de samenwerking:</b><br>
+          <a href="https://www.multipharma.be/nl/diabetes-liga/diabetes-liga.html" target="_blank" style="color:#005e91; font-weight:bold; text-decoration:underline;">
+            Lees meer over Diabetes Liga &amp; Multipharma
+          </a>
         </div>
         <div></div> <div class="smallLine" style="margin: 15px 0;">&nbsp;</div>
 
@@ -2477,21 +2544,30 @@
         </div>
         <div></div> <div class="smallLine" style="margin: 15px 0;">&nbsp;</div>
 
-        <!-- KORTINGSCODE BOX -->
+                <!-- KORTINGSCODE BOX -->
         <div></div> 
         <div style="white-space: normal; border: 2px dashed #23a9e4; padding: 20px; background: #f4f9fc; text-align: center; border-radius: 12px; margin-right: 5%; margin-bottom: 20px;">
            <small style="color: #333; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Actuele kortingscode voor leden:</small><br>
-           <b style="font-size: 1.8em; color: #23a9e4; font-family: 'Courier New', monospace; display: block; margin: 10px 0;">DL-4F9G2K</b>
+
+           <b id="kortingscodeInfoF" style="font-size: 1.8em; color: #23a9e4; font-family: 'Courier New', monospace; display: block; margin: 10px 0;">DL-4F9G2K</b>
+
+           <button type="button" class="copy-code-btn-info" onclick="copyDiscountCodeInfoF()">
+             <i class="fas fa-copy"></i>
+             Kopieer kortingscode
+           </button>
+
+           <div id="copyFeedbackInfoF" class="copy-feedback-info" aria-live="polite"></div>
+
            <span style="display: block; background: #eef7ff; color: #0056b3; padding: 5px; border-radius: 5px; font-size: 0.85em; font-weight: bold; margin-bottom: 10px;">
             <i class="fas fa-exclamation-triangle"></i> Pas invoeren bij het afrekenen!
            </span>
            <small style="color: #d9534f; font-weight: bold;">Maximaal 2 keer te gebruiken — Geldig t.e.m. 30/06/2026</small>
         </div>
-        <div></div> <div>&nbsp;</div>
+                <div></div> <div>&nbsp;</div>
 
         <!-- DE ACTIEKNOP -->
         <div></div>
-        <div style="padding-bottom: 30px;">
+        <div style="white-space: normal; padding-bottom: 30px; margin-right: 5%;">
           <a href="https://www.multipharma.be/nl/diabetes-liga/" target="_blank" class="inschrijf-btn" style="background-color: #7ab800; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1.1em; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
             <i class="fas fa-external-link-alt"></i> GA NAAR DE MULTIPHARMA WEBSHOP
           </a>
@@ -3906,6 +3982,53 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="site/js/myjavascript.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+  
+    <script>
+    function copyDiscountCodeInfoF() {
+      const codeElement = document.getElementById('kortingscodeInfoF');
+      const feedback = document.getElementById('copyFeedbackInfoF');
+      const code = codeElement.textContent.trim();
+
+      function showSuccess() {
+        feedback.textContent = 'Code gekopieerd: ' + code;
+      }
+
+      function fallbackCopy() {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = code;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.left = '-9999px';
+        tempInput.style.top = '0';
+
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+
+        try {
+          const successful = document.execCommand('copy');
+
+          if (successful) {
+            showSuccess();
+          } else {
+            feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+          }
+        } catch (err) {
+          feedback.textContent = 'Kopiëren lukte niet automatisch. Selecteer de code en kopieer handmatig.';
+        }
+
+        document.body.removeChild(tempInput);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code)
+          .then(showSuccess)
+          .catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    }
+  </script>
   
  <!-- De Lightbox Container voor de Slideshow -->
 <div id="customLightbox" class="custom-lightbox">
