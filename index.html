@@ -161,6 +161,24 @@
   padding-right: 16px;
 }
     }
+
+    /* --- GSM: vergrote foto bruikbaarder en gecentreerd weergeven --- */
+@media only screen and (max-width: 768px) {
+  .custom-lightbox.is-zoomed .lightbox-content {
+    display: block !important;
+    overflow: auto !important;
+    text-align: center !important;
+    padding: 150px 10px 35px 10px !important;
+  }
+
+  .custom-lightbox.is-zoomed #lightboxImg {
+    display: inline-block !important;
+    max-width: none !important;
+    max-height: none !important;
+    transform: scale(1.0) !important;
+    transform-origin: top center !important;
+  }
+}
   </style>
   
 </head>
