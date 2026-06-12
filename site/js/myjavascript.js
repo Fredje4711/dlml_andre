@@ -267,11 +267,32 @@ $(document).ready(function(e){
         $('body').css('overflow', 'auto'); 
     });
     
-    function toggleLightboxZoom() {
-    $('#customLightbox').toggleClass('is-zoomed');
-    var isZ = $('#customLightbox').hasClass('is-zoomed');
-    $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
-}
+        function toggleLightboxZoom() {
+        var $lightbox = $('#customLightbox');
+        var $content = $lightbox.find('.lightbox-content');
+
+        $lightbox.toggleClass('is-zoomed');
+
+        var isZ = $lightbox.hasClass('is-zoomed');
+        $('#zoomBtn i').attr('class', isZ ? 'fa fa-search-minus' : 'fa fa-search-plus');
+
+        if (isZ) {
+            setTimeout(function() {
+                var content = $content[0];
+
+                if (!content) return;
+
+                var scrollLeft = (content.scrollWidth - content.clientWidth) / 2;
+                var scrollTop = (content.scrollHeight - content.clientHeight) / 2;
+
+                $content.scrollLeft(scrollLeft);
+                $content.scrollTop(scrollTop);
+            }, 100);
+        } else {
+            $content.scrollLeft(0);
+            $content.scrollTop(0);
+        }
+    }
 
 $(document).on('click', '#zoomBtn', function(e) { 
     e.preventDefault();
