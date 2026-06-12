@@ -300,8 +300,12 @@ $(document).on('click', '#zoomBtn', function(e) {
     toggleLightboxZoom();
 });
 
-/* Desktop/laptop: dubbelklikken op de afbeelding vergroot/verkleint */
+/* Alleen desktop/laptop: dubbelklikken op de afbeelding vergroot/verkleint */
 $(document).on('dblclick', '#lightboxImg', function(e) {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
     toggleLightboxZoom();
