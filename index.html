@@ -162,23 +162,25 @@
 }
     }
 
-    /* --- GSM: vergrote foto bruikbaarder en gecentreerd weergeven --- */
-@media only screen and (max-width: 768px) {
-  .custom-lightbox.is-zoomed .lightbox-content {
-    display: block !important;
-    overflow: auto !important;
-    text-align: center !important;
-    padding: 150px 10px 35px 10px !important;
-  }
+     /* --- GSM: vergrote foto centraal starten en bruikbaar rondfietsen --- */
+    @media only screen and (max-width: 768px) {
+      .custom-lightbox.is-zoomed .lightbox-content {
+        display: block !important;
+        overflow: auto !important;
+        text-align: center !important;
+        padding: 150px 10px 35px 10px !important;
+        -webkit-overflow-scrolling: touch;
+      }
 
-  .custom-lightbox.is-zoomed #lightboxImg {
-    display: inline-block !important;
-    max-width: none !important;
-    max-height: none !important;
-    transform: scale(1.0) !important;
-    transform-origin: top center !important;
-  }
-}
+      .custom-lightbox.is-zoomed #lightboxImg {
+        display: inline-block !important;
+        max-width: none !important;
+        max-height: none !important;
+        width: 260vw !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
   </style>
   
 </head>
