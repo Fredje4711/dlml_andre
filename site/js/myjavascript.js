@@ -307,22 +307,6 @@ $(document).on('dblclick', '#lightboxImg', function(e) {
     toggleLightboxZoom();
 });
 
-/* GSM/tablet: dubbel tikken op de afbeelding vergroot/verkleint */
-var lastImageTap = 0;
-
-$('#lightboxImg').on('touchend', function(e) {
-    var now = new Date().getTime();
-    var timeSinceLastTap = now - lastImageTap;
-
-    if (timeSinceLastTap > 0 && timeSinceLastTap < 350) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleLightboxZoom();
-        lastImageTap = 0;
-    } else {
-        lastImageTap = now;
-    }
-});
 
     // Downloadknop: download de foto die op dat moment in de lightbox openstaat.
     // Belangrijk: dit werkt alleen wanneer de foto van hetzelfde domein komt als de website.
