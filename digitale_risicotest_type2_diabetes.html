@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test jouw risico op type 2 diabetes</title>
+  <style>
+    :root {
+      --blue: #00aeea;
+      --blue-dark: #004b78;
+      --blue-deep: #003f66;
+      --black: #151515;
+      --text: #1f2a33;
+      --muted: #5c6b73;
+      --light: #f2f7fa;
+      --panel: #ffffff;
+      --border: #d9e8ef;
+      --green: #9cc915;
+      --yellow: #ffc20e;
+      --orange: #f28c00;
+      --red: #ed1c24;
+      --shadow: 0 14px 30px rgba(0, 75, 120, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(0, 174, 234, 0.12), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #eef7fb 100%);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+
+    .app-shell {
+      width: min(1100px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 18px 0 34px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-small {
+      color: var(--blue-dark);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      color: var(--black);
+      font-size: clamp(1.45rem, 3.2vw, 2.65rem);
+      line-height: 0.95;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-title span { color: var(--blue); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(0, 174, 234, 0.2);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      min-height: 480px;
+    }
+
+    .hero-copy {
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .headline-accent {
+      display: inline-block;
+      position: relative;
+      margin: 2px 0 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(1.9rem, 4.6vw, 4rem);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: var(--black);
+    }
+
+    .headline-accent::before {
+      content: "";
+      position: absolute;
+      left: -0.06em;
+      right: -0.08em;
+      top: 44%;
+      height: 0.28em;
+      background: rgba(0, 174, 234, 0.14);
+      z-index: -1;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      color: #27323a;
+      max-width: 620px;
+      margin: 0 0 14px;
+    }
+
+    .simple-highlight {
+      margin: 18px 0 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f3fbff;
+      border: 1px solid #c9e8f2;
+      color: var(--blue-dark);
+      font-weight: 800;
+      max-width: 560px;
+    }
+
+    .start-note {
+      margin: 0 0 16px;
+      color: #31414a;
+      font-size: 1rem;
+    }
+
+    .notice {
+      background: #fff;
+      border: 1px dashed #9ecfe2;
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: #33424a;
+      font-size: 0.97rem;
+      max-width: 620px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    button { font: inherit; }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      min-height: 48px;
+      padding: 12px 22px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    .option-card:focus-visible {
+      outline: 4px solid rgba(0, 174, 234, 0.35);
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      background: var(--blue-dark);
+      color: white;
+      box-shadow: 0 12px 24px rgba(0, 75, 120, 0.22);
+    }
+
+    .btn-primary:hover { background: var(--blue-deep); transform: translateY(-1px); }
+    .btn-secondary { background: #e7f4f9; color: var(--blue-dark); border: 1px solid #c2e3ef; }
+    .btn-secondary:hover { background: #d9eef6; }
+
+    .hero-side {
+      background:
+        radial-gradient(circle at 108% 75%, var(--blue) 0 28%, transparent 28.5%),
+        linear-gradient(160deg, #f4f8fa 0%, #ffffff 72%);
+      border-left: 1px solid var(--border);
+      padding: clamp(20px, 3.5vw, 34px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .side-title {
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0 0 2px;
+    }
+
+    .fact-box {
+      background: white;
+      border-left: 7px solid var(--blue);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 20px rgba(0, 75, 120, 0.08);
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .fact-box strong {
+      display: block;
+      color: var(--blue);
+      margin-top: 6px;
+    }
+
+    .test-card { display: none; }
+    .test-card.active { display: block; }
+
+    .test-header {
+      padding: 20px clamp(18px, 4vw, 34px) 16px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, #ffffff 0%, #f2fbff 100%);
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .progress-track {
+      height: 13px;
+      border-radius: 999px;
+      background: #d9edf5;
+      overflow: hidden;
+      border: 1px solid #c6e3ee;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+      transition: width 0.25s ease;
+    }
+
+    .question-body { padding: clamp(20px, 4vw, 34px); }
+    .question-kicker {
+      color: var(--blue);
+      font-size: 1.03rem;
+      line-height: 1.2;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .question-title {
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+
+    .helper {
+      color: var(--muted);
+      margin: -2px 0 18px;
+      max-width: 760px;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option-card {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+      min-height: 58px;
+    }
+
+    .option-card:hover { border-color: #99d7eb; background: #f7fdff; }
+    .option-card input {
+      width: 21px; height: 21px; accent-color: var(--blue-dark); margin: 0;
+    }
+    .option-card.selected {
+      border-color: var(--blue);
+      background: #eefdff;
+      transform: translateY(-1px);
+    }
+
+    .points { color: var(--blue); font-weight: 900; white-space: nowrap; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 760px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field label { font-weight: 900; color: var(--blue-dark); }
+    .field input, .field select {
+      width: 100%; min-height: 50px; border: 2px solid var(--border); border-radius: 14px;
+      padding: 10px 14px; font-size: 1.05rem; background: white; color: var(--text);
+    }
+
+    .auto-panel {
+      margin-top: 16px;
+      max-width: 760px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: #f2fbff;
+      border: 1px solid #c4e5f1;
+      color: var(--blue-dark);
+      font-weight: 800;
+    }
+
+    .auto-panel.error { color: #7a1b1f; background: #fff0f1; border-color: #f4c0c5; }
+
+    .waist-visual {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 18px;
+      align-items: center;
+      max-width: 800px;
+    }
+
+    .simple-person {
+      width: 105px; height: 145px; margin: 0 auto; position: relative;
+    }
+
+    .simple-person::before {
+      content: ""; position: absolute; left: 36px; top: 4px; width: 32px; height: 32px;
+      background: #cceaf5; border: 3px solid #6aaed0; border-radius: 50%;
+    }
+
+    .simple-person::after {
+      content: ""; position: absolute; left: 29px; top: 42px; width: 46px; height: 80px;
+      border: 4px solid #6aaed0; border-radius: 28px 28px 22px 22px; background: rgba(0,174,234,0.10);
+    }
+
+    .waist-line {
+      position: absolute; left: 16px; right: 16px; top: 81px; height: 6px; background: var(--blue);
+      border-radius: 999px; z-index: 2; box-shadow: 0 0 0 4px rgba(0,174,234,0.13);
+    }
+
+    .nav-row {
+      display: flex; justify-content: space-between; gap: 12px; padding: 18px clamp(18px, 4vw, 34px);
+      border-top: 1px solid var(--border); background: #fbfdfe;
+    }
+
+    .validation {
+      display: none; margin-top: 14px; padding: 12px 14px; background: #fff0f1; border: 1px solid #f3c4c9;
+      color: #7a1b1f; border-radius: 14px; font-weight: 800; max-width: 760px;
+    }
+
+    .validation.show { display: block; }
+
+    .result-layout {
+      display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 22px; padding: clamp(20px, 4vw, 34px);
+    }
+
+    .score-card {
+      background: #f7fbfd; border: 1px solid var(--border); border-radius: 20px; padding: 20px;
+    }
+
+    .score-card .brand-small {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 0.98rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 18px rgba(0, 174, 234, 0.18);
+    }
+
+    .score-number {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin: 8px 0 8px;
+      padding: 10px 18px 12px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 2px solid #c9e8f2;
+      box-shadow: 0 10px 22px rgba(0, 75, 120, 0.10);
+      font-size: clamp(5.2rem, 12vw, 8.4rem);
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 0.82;
+      letter-spacing: -0.08em;
+    }
+    .score-number span:last-child {
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      color: var(--blue-dark);
+      letter-spacing: 0;
+      margin-left: 0;
+      padding-bottom: 8px;
+    }
+    .result-date {
+      display: inline-flex;
+      align-items: center;
+      margin: 2px 0 12px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #e7f4f9;
+      border: 1px solid #c2e3ef;
+      color: var(--blue-dark);
+      font-weight: 900;
+      font-size: 0.98rem;
+    }
+
+    .risk-title {
+      margin: 14px 0 10px; color: var(--black); font-size: clamp(1.35rem, 2.8vw, 2rem);
+      font-weight: 900; line-height: 1.05; text-transform: uppercase;
+    }
+    .risk-subtitle { color: var(--blue-dark); font-weight: 900; margin-bottom: 12px; }
+    .risk-text { font-size: 1.02rem; margin: 0; }
+
+    .scorebar-wrap { margin-top: 22px; }
+    .scorebar-labels {
+      display: flex; justify-content: space-between; color: var(--blue-dark); font-weight: 900; font-size: 0.92rem; margin-bottom: 8px;
+    }
+    .scorebar {
+      position: relative; height: 38px; border-radius: 999px; overflow: hidden; display: grid;
+      grid-template-columns: 7fr 5fr 15fr; border: 2px solid white;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08), 0 8px 20px rgba(0, 75, 120, 0.12);
+    }
+    .scorebar > div:nth-child(1) { background: linear-gradient(90deg, var(--green), #cbd900); }
+    .scorebar > div:nth-child(2) { background: linear-gradient(90deg, var(--yellow), var(--orange)); }
+    .scorebar > div:nth-child(3) { background: linear-gradient(90deg, #f36b19, var(--red)); }
+    .marker {
+      position: absolute; top: -8px; width: 4px; height: 54px; background: var(--blue-dark); border-radius: 999px;
+      left: 0%; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(255,255,255,0.75);
+    }
+
+    .breakdown {
+      background: white; border: 1px solid var(--border); border-radius: 20px; padding: 20px;
+    }
+    .breakdown h3 { color: var(--blue-dark); margin: 0 0 12px; font-size: 1.2rem; }
+    .breakdown-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .breakdown-list li {
+      display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #e6f0f4; padding: 7px 0;
+    }
+    .breakdown-list strong { color: var(--blue-dark); white-space: nowrap; }
+
+    .advice-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px;
+    }
+    .advice {
+      background: #f2fbff; border: 1px solid #c6e5f1; border-radius: 16px; padding: 14px 15px;
+    }
+    .advice h4 {
+      color: var(--blue); margin: 0 0 5px; font-size: 0.98rem; text-transform: uppercase; line-height: 1.1;
+    }
+
+    .footer-note {
+      margin-top: 18px; padding: 14px 16px; border-radius: 16px; background: #fff;
+      border: 1px dashed #b8d9e7; color: #3e4b52; font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .app-shell { width: min(100% - 18px, 720px); padding-top: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .pill { white-space: normal; text-align: center; }
+      .hero { grid-template-columns: 1fr; min-height: unset; }
+      .hero-side { border-left: 0; border-top: 1px solid var(--border); }
+      .form-grid, .result-layout, .advice-grid, .waist-visual { grid-template-columns: 1fr; }
+      .option-card { grid-template-columns: 28px minmax(0, 1fr) auto; }
+      .points { grid-column: auto; justify-self: end; align-self: center; }
+      .nav-row { position: sticky; bottom: 0; z-index: 5; }
+      .nav-row .btn { flex: 1; padding-inline: 12px; }
+      .scorebar { height: 34px; }
+    }
+
+    @media (max-width: 520px) {
+      .app-shell { width: min(100% - 12px, 460px); }
+      .hero-copy, .hero-side, .question-body, .test-header, .nav-row, .result-layout {
+        padding-left: 15px; padding-right: 15px;
+      }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .progress-row { flex-direction: column; align-items: flex-start; }
+      .option-card {
+        grid-template-columns: 28px minmax(0, 1fr) auto;
+        gap: 10px;
+      }
+      .points {
+        grid-column: auto;
+        justify-self: end;
+        white-space: nowrap;
+      }
+      .simple-highlight, .notice, .lead, .start-note { max-width: 100%; }
+      .score-number { font-size: 5rem; padding: 10px 14px 12px; }
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+
+      html,
+      body {
+        background: #ffffff !important;
+      }
+
+      .topbar,
+      .nav-row,
+      .actions,
+      .btn,
+      .test-header,
+      #startScreen,
+      #testScreen {
+        display: none !important;
+      }
+
+      #resultScreen {
+        display: block !important;
+      }
+
+      .app-shell {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .card {
+        box-shadow: none !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 18px !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+      }
+
+      .result-layout {
+        display: grid !important;
+        grid-template-columns: 0.92fr 1.08fr !important;
+        gap: 14px !important;
+        padding: 14px !important;
+      }
+
+      .score-card,
+      .breakdown,
+      .advice {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .score-card {
+        background: #f7fbfd !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 18px !important;
+        padding: 16px !important;
+      }
+
+      .score-card .brand-small {
+        background: var(--blue) !important;
+        color: #ffffff !important;
+        box-shadow: none !important;
+      }
+
+      .score-number {
+        background: #ffffff !important;
+        border: 2px solid #c9e8f2 !important;
+        box-shadow: none !important;
+        color: var(--blue) !important;
+      }
+
+      .score-number span:last-child {
+        color: var(--blue-dark) !important;
+      }
+
+      .result-date {
+        background: #e7f4f9 !important;
+        border: 1px solid #c2e3ef !important;
+        color: var(--blue-dark) !important;
+      }
+
+      .scorebar {
+        height: 34px !important;
+        box-shadow: none !important;
+      }
+
+      .footer-note {
+        background: #ffffff !important;
+        border: 1px dashed #b8d9e7 !important;
+      }
+
+      .breakdown {
+        background: #ffffff !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 18px !important;
+        padding: 16px !important;
+      }
+
+      .advice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        margin-top: 12px !important;
+      }
+
+      .advice {
+        background: #f2fbff !important;
+        border: 1px solid #c6e5f1 !important;
+        border-radius: 14px !important;
+        padding: 10px 12px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar" aria-label="Titel digitale diabetesrisicotest">
+      <div class="brand-block">
+        <div class="brand-small">Digitale risicotest</div>
+        <div class="brand-title">Test jouw risico op <span>type 2 diabetes</span></div>
+      </div>
+      <div class="pill" aria-label="Gebaseerd op de officiële risicotest">8 vragen · automatische score</div>
+    </header>
+
+    <section id="startScreen" class="card hero" aria-labelledby="startTitle">
+      <div class="hero-copy">
+        <h1 id="startTitle" class="headline-accent">Wat is diabetes?</h1>
+        <p class="lead">
+          Diabetes is een chronische aandoening waarbij je bloedsuikergehalte te hoog is.
+          Type 2 diabetes is de meest voorkomende vorm en ontwikkelt zich vaak geleidelijk.
+        </p>
+        <p class="lead">
+          Met deze test bereken je je eigen risico op type 2 diabetes.
+          Op het einde krijg je automatisch je score en een duidelijke uitleg.
+        </p>
+        <div class="simple-highlight">
+          Deze test is kort en eenvoudig: je beantwoordt 8 vragen en hoeft niets zelf te berekenen.
+          De score wordt automatisch bepaald.
+        </div>
+        <div class="notice">
+          <strong>Belangrijk:</strong> deze test bewaart geen persoonsgegevens en verstuurt geen persoonlijke gegevens. De test geeft een inschatting van je risico en stelt geen diagnose.
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" onclick="startTest()">Start de test</button>
+        </div>
+      </div>
+
+      <aside class="hero-side" aria-label="Korte informatie over type 2 diabetes">
+        <h2 class="side-title">Wist je dat...</h2>
+        <div class="fact-box">
+          1 op de 10 Belgen heeft diabetes.
+          <strong>1 op de 3 weet niet dat hij/zij diabetes heeft.</strong>
+        </div>
+        <div class="fact-box">
+          Type 2 diabetes is de meest voorkomende vorm.
+          <strong>Ongeveer 90% van alle mensen met diabetes heeft type 2 diabetes.</strong>
+        </div>
+        <div class="fact-box">
+          Overgewicht, te weinig beweging en erfelijkheid verhogen het risico.
+          <strong>Een gezonde leefstijl kan je risico duidelijk verlagen.</strong>
+        </div>
+        <div class="fact-box">
+          Type 2 diabetes kan lange tijd onopgemerkt blijven.
+          <strong>Een eenvoudige risicotest kan helpen om je risico sneller in te schatten.</strong>
+        </div>
+        <div class="fact-box">
+          Het risico stijgt met de leeftijd, maar type 2 diabetes kan ook bij jongere mensen voorkomen.
+          <strong>Daarom blijft aandacht voor leefstijl en risicofactoren belangrijk.</strong>
+        </div>
+      </aside>
+    </section>
+
+    <section id="testScreen" class="card test-card" aria-live="polite">
+      <div class="test-header">
+        <div class="progress-row">
+          <span id="stepLabel">Stap 1 van 8</span>
+          <span id="currentPointsLabel">Huidige score: 0 p.</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <form id="riskForm" novalidate>
+        <div id="questionContainer"></div>
+        <div class="nav-row">
+          <button id="prevBtn" class="btn btn-secondary" type="button" onclick="previousQuestion()">Vorige</button>
+          <button id="nextBtn" class="btn btn-primary" type="button" onclick="nextQuestion()">Volgende</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="resultScreen" class="card test-card" aria-labelledby="resultTitle">
+      <div class="result-layout">
+        <div class="score-card">
+          <div class="brand-small">Jouw score</div>
+          <div class="score-number"><span id="totalScore">0</span><span>p.</span></div>
+          <div id="resultDate" class="result-date">Datum test: </div>
+          <h2 id="resultTitle" class="risk-title">Resultaat</h2>
+          <div id="riskSubtitle" class="risk-subtitle"></div>
+          <p id="riskText" class="risk-text"></p>
+
+          <div class="scorebar-wrap" aria-label="Visuele scorebalk">
+            <div class="scorebar-labels">
+              <span>0</span>
+              <span>7</span>
+              <span>12</span>
+              <span>26</span>
+            </div>
+            <div class="scorebar">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div id="scoreMarker" class="marker" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="footer-note">
+            Deze test geeft een inschatting van je risico op type 2 diabetes. De test stelt geen diagnose.
+            Bij een verhoogde score of twijfel bespreek je het resultaat best met je huisarts of huisapotheker.
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="button" onclick="window.print()">Print mijn resultaat</button>
+            <button class="btn btn-secondary" type="button" onclick="restartTest()">Test opnieuw doen</button>
+            <button class="btn btn-secondary" type="button" onclick="goToStart()">Terug naar startpagina</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="breakdown">
+            <h3>Overzicht van je punten</h3>
+            <ul id="breakdownList" class="breakdown-list"></ul>
+          </div>
+
+          <div class="advice-grid" aria-label="Tips om je risico te verminderen">
+            <div class="advice">
+              <h4>Eet gezond en gevarieerd</h4>
+              <p>Neem plantaardige producten als basis voor elke maaltijd. Beperk je inname van dierlijke producten. Drink vooral water.</p>
+            </div>
+            <div class="advice">
+              <h4>Streef naar een gezond lichaamsgewicht</h4>
+              <p>Overgewicht? Bij een daling van je lichaamsgewicht met 5%, daalt het diabetesrisico met 30%.</p>
+            </div>
+            <div class="advice">
+              <h4>Beweeg voldoende en vermijd lang stilzitten</h4>
+              <p>Met 30 min. lichaamsbeweging per dag vermindert het diabetesrisico met 30%. Elke stap telt.</p>
+            </div>
+            <div class="advice">
+              <h4>Stop met roken</h4>
+              <p>Ondanks eventuele gewichtstoename helpt stoppen met roken type 2 diabetes te voorkomen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        id: "age",
+        label: "1. Leeftijd",
+        title: "Hoe oud ben je?",
+        type: "choice",
+        options: [
+          { text: "Jonger dan 45 jaar", points: 0 },
+          { text: "Tussen 45 en 54 jaar", points: 2 },
+          { text: "Tussen 55 en 64 jaar", points: 3 },
+          { text: "65 jaar of ouder", points: 4 }
+        ]
+      },
+      {
+        id: "bmi",
+        label: "2. Gewicht",
+        title: "Hoe hoog is je BMI (body mass index)?",
+        type: "bmi",
+        helper: "Vul je lengte en gewicht in. De test berekent automatisch je BMI en kent automatisch de juiste punten toe."
+      },
+      {
+        id: "waist",
+        label: "3. Buikomtrek",
+        title: "Wat is je buikomtrek?",
+        type: "waist",
+        helper: "Meet de buikomtrek op het punt waar je ribben het bekken raken. Meet zonder je buik in te houden en zonder druk uit te oefenen."
+      },
+      {
+        id: "activity",
+        label: "4. Beweging",
+        title: "Beweeg je dagelijks minstens een half uur (fietsen, wandelen, sporten, ...)?",
+        type: "choice",
+        options: [
+          { text: "Ja", points: 0 },
+          { text: "Neen", points: 2 }
+        ]
+      },
+      {
+        id: "food",
+        label: "5. Gezonde voeding",
+        title: "Eet je dagelijks groenten en fruit?",
+        type: "choice",
+        options: [
+          { text: "Ja", points: 0 },
+          { text: "Neen", points: 1 }
+        ]
+      },
+      {
+        id: "bloodpressure",
+        label: "6. Bloeddruk",
+        title: "Neem je of heb je ooit geneesmiddelen tegen hoge bloeddruk genomen?",
+        type: "choice",
+        options: [
+          { text: "Ja", points: 2 },
+          { text: "Neen", points: 0 }
+        ]
+      },
+      {
+        id: "glucose",
+        label: "7. Bloedsuikerwaarde",
+        title: "Werd er ooit een verhoogde bloedsuikerwaarde bij je vastgesteld?",
+        type: "choice",
+        helper: "Bv. bij ziekenhuisopname, bij een routinecontrole of zwangerschapsdiabetes.",
+        options: [
+          { text: "Ja", points: 5 },
+          { text: "Neen", points: 0 }
+        ]
+      },
+      {
+        id: "heredity",
+        label: "8. Erfelijkheid",
+        title: "Heb je familieleden met diabetes (type 1 of type 2)?",
+        type: "choice",
+        options: [
+          { text: "Neen", points: 0 },
+          { text: "Ja, grootouder(s), oom(s)/tante(s), neven/nichten in de eerste graad, maar geen ouder(s), broer(s), zus(sen) of kind(eren)", points: 3 },
+          { text: "Ja, ouder(s), broer(s), zus(sen) of kind(eren)", points: 5 }
+        ]
+      }
+    ];
+
+    let currentQuestion = 0;
+    const answers = {};
+
+    function startTest() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("testScreen").classList.add("active");
+      currentQuestion = 0;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function restartTest() {
+      Object.keys(answers).forEach(key => delete answers[key]);
+      currentQuestion = 0;
+      document.getElementById("resultScreen").classList.remove("active");
+      document.getElementById("testScreen").classList.add("active");
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goToStart() {
+      Object.keys(answers).forEach(key => delete answers[key]);
+      currentQuestion = 0;
+      document.getElementById("resultScreen").classList.remove("active");
+      document.getElementById("testScreen").classList.remove("active");
+      document.getElementById("startScreen").style.display = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderQuestion() {
+      const question = questions[currentQuestion];
+      const container = document.getElementById("questionContainer");
+      const step = currentQuestion + 1;
+
+      document.getElementById("stepLabel").textContent = `Stap ${step} van ${questions.length}`;
+      document.getElementById("progressFill").style.width = `${(step / questions.length) * 100}%`;
+      document.getElementById("currentPointsLabel").textContent = `Huidige score: ${calculateTotal()} p.`;
+      document.getElementById("prevBtn").style.visibility = currentQuestion === 0 ? "hidden" : "visible";
+      document.getElementById("nextBtn").textContent = currentQuestion === questions.length - 1 ? "Toon mijn resultaat" : "Volgende";
+
+      let html = `
+        <div class="question-body">
+          <div class="question-kicker">${question.label}</div>
+          <h2 class="question-title">${question.title}</h2>
+          ${question.helper ? `<p class="helper">${question.helper}</p>` : ""}
+      `;
+
+      if (question.type === "choice") {
+        html += `<div class="options" role="radiogroup" aria-label="${question.title}">`;
+        question.options.forEach((option, index) => {
+          const checked = answers[question.id]?.index === index ? "checked" : "";
+          const selected = checked ? "selected" : "";
+          html += `
+            <label class="option-card ${selected}">
+              <input type="radio" name="${question.id}" value="${index}" ${checked} onchange="selectChoice('${question.id}', ${index})">
+              <span>${option.text}</span>
+              <span class="points">${option.points} p.</span>
+            </label>
+          `;
+        });
+        html += `</div>`;
+      }
+
+      if (question.type === "bmi") {
+        const height = answers.bmi?.height ?? "";
+        const weight = answers.bmi?.weight ?? "";
+        html += `
+          <div class="form-grid">
+            <div class="field">
+              <label for="heightInput">Lengte in cm</label>
+              <input id="heightInput" type="number" inputmode="decimal" min="100" max="230" value="${height}" placeholder="Bijv. 170" oninput="updateBMI()">
+            </div>
+            <div class="field">
+              <label for="weightInput">Gewicht in kg</label>
+              <input id="weightInput" type="number" inputmode="decimal" min="30" max="250" value="${weight}" placeholder="Bijv. 75" oninput="updateBMI()">
+            </div>
+          </div>
+          <div id="bmiPanel" class="auto-panel">Vul je lengte en gewicht in. Je BMI wordt automatisch berekend.</div>
+        `;
+      }
+
+      if (question.type === "waist") {
+        const sex = answers.waist?.sex ?? "";
+        const waist = answers.waist?.waist ?? "";
+        html += `
+          <div class="waist-visual">
+            <div class="form-grid">
+              <div class="field">
+                <label for="sexInput">Kies vrouw of man</label>
+                <select id="sexInput" onchange="updateWaist()">
+                  <option value="">Maak een keuze</option>
+                  <option value="female" ${sex === "female" ? "selected" : ""}>Vrouw</option>
+                  <option value="male" ${sex === "male" ? "selected" : ""}>Man</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="waistInput">Buikomtrek in cm</label>
+                <input id="waistInput" type="number" inputmode="decimal" min="40" max="180" value="${waist}" placeholder="Bijv. 92" oninput="updateWaist()">
+              </div>
+            </div>
+            <div class="simple-person" aria-hidden="true"><span class="waist-line"></span></div>
+          </div>
+          <div id="waistPanel" class="auto-panel">Vul je geslacht en buikomtrek in. De score wordt automatisch berekend.</div>
+        `;
+      }
+
+      html += `<div id="validationMsg" class="validation"></div></div>`;
+      container.innerHTML = html;
+
+      if (question.type === "bmi") updateBMI();
+      if (question.type === "waist") updateWaist();
+      refreshSelectedCards();
+    }
+
+    function selectChoice(questionId, optionIndex) {
+      const question = questions.find(q => q.id === questionId);
+      const option = question.options[optionIndex];
+      answers[questionId] = {
+        text: option.text,
+        points: option.points,
+        index: optionIndex
+      };
+      document.getElementById("currentPointsLabel").textContent = `Huidige score: ${calculateTotal()} p.`;
+      refreshSelectedCards();
+    }
+
+    function refreshSelectedCards() {
+      document.querySelectorAll(".option-card").forEach(card => {
+        const input = card.querySelector("input");
+        card.classList.toggle("selected", input && input.checked);
+      });
+    }
+
+    function updateBMI() {
+      const heightInput = document.getElementById("heightInput");
+      const weightInput = document.getElementById("weightInput");
+      const panel = document.getElementById("bmiPanel");
+      if (!heightInput || !weightInput || !panel) return;
+
+      const height = parseFloat(heightInput.value.replace(",", "."));
+      const weight = parseFloat(weightInput.value.replace(",", "."));
+
+      if (!height || !weight) {
+        delete answers.bmi;
+        panel.className = "auto-panel";
+        panel.textContent = "Vul je lengte en gewicht in. Je BMI wordt automatisch berekend.";
+        updateCurrentPoints();
+        return;
+      }
+
+      if (height < 100 || height > 230 || weight < 30 || weight > 250) {
+        delete answers.bmi;
+        panel.className = "auto-panel error";
+        panel.textContent = "Controleer je lengte en gewicht. Gebruik cm voor lengte en kg voor gewicht.";
+        updateCurrentPoints();
+        return;
+      }
+
+      const bmi = weight / Math.pow(height / 100, 2);
+      const rounded = Math.round(bmi * 10) / 10;
+      let category;
+      let points;
+
+      if (bmi < 25) {
+        category = "Lager dan 25";
+        points = 0;
+      } else if (bmi <= 30) {
+        category = "Tussen 25 en 30";
+        points = 1;
+      } else {
+        category = "Meer dan 30";
+        points = 3;
+      }
+
+      answers.bmi = {
+        height,
+        weight,
+        bmi: rounded,
+        text: `${category} — BMI ${rounded.toString().replace(".", ",")}`,
+        points
+      };
+
+      panel.className = "auto-panel";
+      panel.textContent = `Je BMI is ${rounded.toString().replace(".", ",")}. Categorie: ${category}. Voor deze vraag krijg je ${points} ${points === 1 ? "punt" : "punten"}.`;
+      updateCurrentPoints();
+    }
+
+    function updateWaist() {
+      const sexInput = document.getElementById("sexInput");
+      const waistInput = document.getElementById("waistInput");
+      const panel = document.getElementById("waistPanel");
+      if (!sexInput || !waistInput || !panel) return;
+
+      const sex = sexInput.value;
+      const waist = parseFloat(waistInput.value.replace(",", "."));
+
+      if (!sex || !waist) {
+        delete answers.waist;
+        panel.className = "auto-panel";
+        panel.textContent = "Vul je geslacht en buikomtrek in. De score wordt automatisch berekend.";
+        updateCurrentPoints();
+        return;
+      }
+
+      if (waist < 40 || waist > 180) {
+        delete answers.waist;
+        panel.className = "auto-panel error";
+        panel.textContent = "Controleer je buikomtrek. Vul de waarde in cm in.";
+        updateCurrentPoints();
+        return;
+      }
+
+      let category;
+      let points;
+
+      if (sex === "female") {
+        if (waist < 80) {
+          category = "< 80 cm";
+          points = 0;
+        } else if (waist <= 88) {
+          category = "80-88 cm";
+          points = 3;
+        } else {
+          category = "> 88 cm";
+          points = 4;
+        }
+      }
+
+      if (sex === "male") {
+        if (waist < 94) {
+          category = "< 94 cm";
+          points = 0;
+        } else if (waist <= 102) {
+          category = "94-102 cm";
+          points = 3;
+        } else {
+          category = "> 102 cm";
+          points = 4;
+        }
+      }
+
+      const sexText = sex === "female" ? "vrouw" : "man";
+      answers.waist = {
+        sex,
+        waist,
+        text: `${sexText}, ${waist} cm — categorie ${category}`,
+        points
+      };
+
+      panel.className = "auto-panel";
+      panel.textContent = `Je buikomtrek valt in categorie ${category}. Voor deze vraag krijg je ${points} ${points === 1 ? "punt" : "punten"}.`;
+      updateCurrentPoints();
+    }
+
+    function updateCurrentPoints() {
+      document.getElementById("currentPointsLabel").textContent = `Huidige score: ${calculateTotal()} p.`;
+    }
+
+    function validateCurrentQuestion() {
+      const question = questions[currentQuestion];
+      const validation = document.getElementById("validationMsg");
+      let valid = Boolean(answers[question.id]);
+
+      if (!valid) {
+        validation.textContent = getValidationText(question);
+        validation.classList.add("show");
+        return false;
+      }
+
+      validation.classList.remove("show");
+      return true;
+    }
+
+    function getValidationText(question) {
+      if (question.type === "bmi") {
+        return "Vul eerst je lengte en gewicht in. Daarna berekenen we automatisch je BMI.";
+      }
+      if (question.type === "waist") {
+        return "Kies eerst vrouw of man en vul je buikomtrek in cm in.";
+      }
+      return "Kies eerst één van de antwoorden.";
+    }
+
+    function nextQuestion() {
+      if (!validateCurrentQuestion()) return;
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        showResult();
+      }
+    }
+
+    function previousQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function calculateTotal() {
+      return Object.values(answers).reduce((sum, answer) => sum + (answer.points || 0), 0);
+    }
+
+    function showResult() {
+      const total = calculateTotal();
+      const result = getResult(total);
+
+      document.getElementById("testScreen").classList.remove("active");
+      document.getElementById("resultScreen").classList.add("active");
+      document.getElementById("totalScore").textContent = total;
+      document.getElementById("resultTitle").textContent = result.title;
+      document.getElementById("riskSubtitle").textContent = result.subtitle;
+      document.getElementById("riskText").textContent = result.text;
+
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString("nl-BE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+      document.getElementById("resultDate").textContent = `Datum test: ${formattedDate}`;
+
+      const markerPosition = Math.max(0, Math.min(100, (total / 26) * 100));
+      document.getElementById("scoreMarker").style.left = `${markerPosition}%`;
+
+      const list = document.getElementById("breakdownList");
+      list.innerHTML = questions.map(q => {
+        const answer = answers[q.id];
+        return `<li><span>${q.label.replace(/^\d+\.\s*/, "")}: ${answer.text}</span><strong>${answer.points} p.</strong></li>`;
+      }).join("");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function getResult(score) {
+      if (score <= 6) {
+        return {
+          title: "Weinig risico",
+          subtitle: "0 - 6 punten",
+          text: "Je hebt weinig risico op type 2 diabetes. Eet gezond, beweeg voldoende en houd een gezond gewicht aan. Doe deze test om de 3 jaar opnieuw."
+        };
+      }
+      if (score <= 11) {
+        return {
+          title: "Licht verhoogd risico",
+          subtitle: "7 - 11 punten",
+          text: "Je hebt een licht verhoogd risico op type 2 diabetes. Eet gezond, beweeg voldoende, vermijd lang stilzitten en vermager 5% indien je BMI ≥ 25 is. Doe deze test om de 3 jaar opnieuw."
+        };
+      }
+      return {
+        title: "Sterk verhoogd risico",
+        subtitle: "≥ 12 punten",
+        text: "Je hebt een sterk verhoogd risico op type 2 diabetes. Ga naar je huisarts voor een nuchtere bloedafname en bespreek ook andere risicofactoren zoals roken, overgewicht en bloeddruk."
+      };
+    }
+  </script>
+</body>
+</html>
