@@ -1571,13 +1571,30 @@
       }
 
       const originalTitle = document.title;
-      document.title = getSuggestedFileName().replace(/\.pdf$/i, "");
+const printTitle = getSuggestedFileName().replace(/\.pdf$/i, "");
 
-      window.print();
+document.title = printTitle;
 
-      setTimeout(function() {
-        document.title = originalTitle;
-      }, 1000);
+try {
+  window.parent.postMessage({
+    type: "DLML_RISICOTEST_PRINT_TITLE",
+    title: printTitle
+  }, "*");
+} catch (e) {}
+
+setTimeout(function() {
+  window.print();
+
+  setTimeout(function() {
+    document.title = originalTitle;
+
+    try {
+      window.parent.postMessage({
+        type: "DLML_RISICOTEST_RESTORE_TITLE"
+      }, "*");
+    } catch (e) {}
+  }, 1000);
+}, 200);
     }
 
     function getResult(score) {

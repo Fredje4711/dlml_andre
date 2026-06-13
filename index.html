@@ -4121,6 +4121,30 @@
   </div>
 </div>
 
+<script>
+  (function () {
+    var origineleTitel = document.title;
+
+    window.addEventListener("message", function (event) {
+      if (!event.data || !event.data.type) {
+        return;
+      }
+
+      if (event.data.type === "DLML_RISICOTEST_PRINT_TITLE") {
+        origineleTitel = document.title;
+
+        if (event.data.title) {
+          document.title = event.data.title;
+        }
+      }
+
+      if (event.data.type === "DLML_RISICOTEST_RESTORE_TITLE") {
+        document.title = origineleTitel || "Diabetes Liga afdeling Midden-Limburg";
+      }
+    });
+  })();
+</script>
+
   </body>
 
 </html>
