@@ -474,6 +474,34 @@
       left: 0%; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(255,255,255,0.75);
     }
 
+    .scorebar-zones {
+      display: grid;
+      grid-template-columns: 7fr 5fr 15fr;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--blue-dark);
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .scorebar-zones div {
+      padding: 8px 9px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #d9e8ef;
+    }
+
+    .scorebar-zones strong {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+
+    .scorebar-zones span {
+      display: block;
+      font-weight: 800;
+    }
+
     .breakdown {
       background: white; border: 1px solid var(--border); border-radius: 20px; padding: 20px;
     }
@@ -494,6 +522,101 @@
       color: var(--blue); margin: 0 0 5px; font-size: 0.98rem; text-transform: uppercase; line-height: 1.1;
     }
 
+    .email-service {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f2fbff;
+      border: 1px solid #c6e5f1;
+      color: #31414a;
+    }
+
+    .email-toggle,
+    .consent-line {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      font-weight: 800;
+      color: var(--blue-dark);
+      cursor: pointer;
+    }
+
+    .email-toggle input,
+    .consent-line input {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--blue-dark);
+    }
+
+    .email-service-fields {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #c6e5f1;
+    }
+
+    .email-service-fields p {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: #3e4b52;
+    }
+
+    .email-small-note {
+      font-size: 0.9rem !important;
+      color: #5c6b73 !important;
+    }
+
+    .email-form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .filename-box {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #c6e5f1;
+      color: var(--blue-dark);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .filename-box span {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .filename-box strong {
+      display: block;
+      word-break: break-word;
+      color: var(--blue-dark);
+      font-weight: 900;
+    }
+
+    .email-validation {
+      min-height: 1.2em;
+      margin-top: 10px;
+      color: #7a1b1f;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .email-print-info {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px dashed #9ecfe2;
+      color: var(--blue-dark);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
     .footer-note {
       margin-top: 18px; padding: 14px 16px; border-radius: 16px; background: #fff;
       border: 1px dashed #b8d9e7; color: #3e4b52; font-size: 0.95rem;
@@ -511,6 +634,10 @@
       .nav-row { position: sticky; bottom: 0; z-index: 5; }
       .nav-row .btn { flex: 1; padding-inline: 12px; }
       .scorebar { height: 34px; }
+      .scorebar-zones {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
     }
 
     @media (max-width: 520px) {
@@ -628,9 +755,38 @@
         box-shadow: none !important;
       }
 
+      .scorebar-zones {
+        display: none !important;
+      }
+
       .footer-note {
         background: #ffffff !important;
         border: 1px dashed #b8d9e7 !important;
+      }
+
+      .email-service {
+        background: #f2fbff !important;
+        border: 1px solid #c6e5f1 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .email-toggle,
+      .email-service-fields,
+      .email-validation,
+      .filename-box {
+        display: none !important;
+      }
+
+      .email-print-info:not([hidden]) {
+        display: block !important;
+        background: #ffffff !important;
+        border: 1px dashed #9ecfe2 !important;
+        color: var(--blue-dark) !important;
+      }
+
+      .email-service.email-service-empty {
+        display: none !important;
       }
 
       .breakdown {
@@ -756,6 +912,11 @@
               <div></div>
               <div id="scoreMarker" class="marker" aria-hidden="true"></div>
             </div>
+            <div class="scorebar-zones" aria-label="Betekenis van de scorezones">
+              <div><strong>0 - 6</strong><span>Weinig risico</span></div>
+              <div><strong>7 - 11</strong><span>Licht verhoogd risico</span></div>
+              <div><strong>≥ 12</strong><span>Sterk verhoogd risico</span></div>
+            </div>
           </div>
 
           <div class="footer-note">
@@ -763,8 +924,55 @@
             Bij een verhoogde score of twijfel bespreek je het resultaat best met je huisarts of huisapotheker.
           </div>
 
+          <div class="email-service" id="emailServiceBlock">
+            <label class="email-toggle">
+              <input type="checkbox" id="wantEmailResult" onchange="toggleEmailService()">
+              <span>Ik wil mijn resultaat later per e-mail ontvangen.</span>
+            </label>
+
+            <div id="emailServiceFields" class="email-service-fields" hidden>
+              <p>
+                Vul je naam en e-mailadres in. Klik daarna op <strong>Print of bewaar als PDF</strong>
+                en kies in het afdrukvenster <strong>Opslaan als PDF</strong>.
+              </p>
+              <p class="email-small-note">
+                Gebruik bij voorkeur de voorgestelde bestandsnaam hieronder. Zo kunnen wij de PDF later correct terugvinden en naar jou mailen.
+              </p>
+
+              <div class="email-form-grid">
+                <div class="field">
+                  <label for="visitorName">Naam</label>
+                  <input id="visitorName" type="text" autocomplete="name" placeholder="Voornaam en naam" oninput="updateEmailPrintInfo()">
+                </div>
+                <div class="field">
+                  <label for="visitorEmail">E-mailadres</label>
+                  <input id="visitorEmail" type="email" autocomplete="email" placeholder="naam@example.be" oninput="updateEmailPrintInfo()">
+                </div>
+              </div>
+
+              <label class="consent-line">
+                <input type="checkbox" id="visitorConsent" onchange="updateEmailPrintInfo()">
+                <span>Ik geef toestemming om dit resultaat tijdelijk te bewaren en later per e-mail te bezorgen.</span>
+              </label>
+
+              <div class="filename-box">
+                <span>Voorgestelde bestandsnaam:</span>
+                <strong id="suggestedFileName">Risicotest_diabetes.pdf</strong>
+              </div>
+
+              <div id="emailValidationMsg" class="email-validation" aria-live="polite"></div>
+            </div>
+
+            <div id="emailPrintInfo" class="email-print-info" hidden>
+              <strong>Aanvraag latere e-mailbezorging</strong><br>
+              <span id="emailPrintName"></span><br>
+              <span id="emailPrintAddress"></span><br>
+              <span id="emailPrintConsent"></span>
+            </div>
+          </div>
+
           <div class="actions">
-            <button class="btn btn-primary" type="button" onclick="window.print()">Print mijn resultaat</button>
+            <button class="btn btn-primary" type="button" onclick="printResult()">Print of bewaar als PDF</button>
             <button class="btn btn-secondary" type="button" onclick="restartTest()">Test opnieuw doen</button>
             <button class="btn btn-secondary" type="button" onclick="goToStart()">Terug naar startpagina</button>
           </div>
@@ -897,6 +1105,7 @@
       currentQuestion = 0;
       document.getElementById("resultScreen").classList.remove("active");
       document.getElementById("testScreen").classList.add("active");
+      resetEmailServiceFields();
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -906,8 +1115,30 @@
       currentQuestion = 0;
       document.getElementById("resultScreen").classList.remove("active");
       document.getElementById("testScreen").classList.remove("active");
+      resetEmailServiceFields();
       document.getElementById("startScreen").style.display = "";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetEmailServiceFields() {
+      const wantEmail = document.getElementById("wantEmailResult");
+      const fields = document.getElementById("emailServiceFields");
+      const name = document.getElementById("visitorName");
+      const email = document.getElementById("visitorEmail");
+      const consent = document.getElementById("visitorConsent");
+      const printInfo = document.getElementById("emailPrintInfo");
+      const validation = document.getElementById("emailValidationMsg");
+      const serviceBlock = document.getElementById("emailServiceBlock");
+
+      if (wantEmail) wantEmail.checked = false;
+      if (fields) fields.hidden = true;
+      if (name) name.value = "";
+      if (email) email.value = "";
+      if (consent) consent.checked = false;
+      if (printInfo) printInfo.hidden = true;
+      if (validation) validation.textContent = "";
+      if (serviceBlock) serviceBlock.classList.add("email-service-empty");
+      updateSuggestedFileName();
     }
 
     function renderQuestion() {
@@ -1206,6 +1437,8 @@
       });
       document.getElementById("resultDate").textContent = `Datum test: ${formattedDate}`;
 
+      resetEmailServiceFields();
+
       const markerPosition = Math.max(0, Math.min(100, (total / 26) * 100));
       document.getElementById("scoreMarker").style.left = `${markerPosition}%`;
 
@@ -1216,6 +1449,135 @@
       }).join("");
 
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function sanitizeFilePart(value) {
+      return (value || "")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9_-]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .substring(0, 40);
+    }
+
+    function getDateTimeFilePart() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, "0");
+      const d = String(now.getDate()).padStart(2, "0");
+      const h = String(now.getHours()).padStart(2, "0");
+      const min = String(now.getMinutes()).padStart(2, "0");
+      return `${y}-${m}-${d}_${h}${min}`;
+    }
+
+    function getSuggestedFileName() {
+      const name = sanitizeFilePart(document.getElementById("visitorName")?.value.trim() || "");
+      const base = name ? `Risicotest_diabetes_${getDateTimeFilePart()}_${name}` : `Risicotest_diabetes_${getDateTimeFilePart()}`;
+      return `${base}.pdf`;
+    }
+
+    function updateSuggestedFileName() {
+      const target = document.getElementById("suggestedFileName");
+      if (target) target.textContent = getSuggestedFileName();
+    }
+
+    function toggleEmailService() {
+      const checkbox = document.getElementById("wantEmailResult");
+      const fields = document.getElementById("emailServiceFields");
+      const validation = document.getElementById("emailValidationMsg");
+
+      if (!checkbox || !fields) return;
+
+      fields.hidden = !checkbox.checked;
+
+      if (!checkbox.checked) {
+        document.getElementById("visitorName").value = "";
+        document.getElementById("visitorEmail").value = "";
+        document.getElementById("visitorConsent").checked = false;
+        document.getElementById("emailPrintInfo").hidden = true;
+        document.getElementById("emailServiceBlock").classList.add("email-service-empty");
+        if (validation) validation.textContent = "";
+      } else {
+        document.getElementById("emailServiceBlock").classList.add("email-service-empty");
+      }
+
+      updateSuggestedFileName();
+      updateEmailPrintInfo();
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function updateEmailPrintInfo() {
+      const wantEmail = document.getElementById("wantEmailResult")?.checked;
+      const name = document.getElementById("visitorName")?.value.trim() || "";
+      const email = document.getElementById("visitorEmail")?.value.trim() || "";
+      const consent = document.getElementById("visitorConsent")?.checked;
+      const printInfo = document.getElementById("emailPrintInfo");
+      const serviceBlock = document.getElementById("emailServiceBlock");
+      const validation = document.getElementById("emailValidationMsg");
+
+      updateSuggestedFileName();
+
+      if (!printInfo || !serviceBlock) return;
+
+      if (!wantEmail) {
+        printInfo.hidden = true;
+        serviceBlock.classList.add("email-service-empty");
+        if (validation) validation.textContent = "";
+        return;
+      }
+
+      const complete = name && isValidEmail(email) && consent;
+
+      if (complete) {
+        document.getElementById("emailPrintName").textContent = `Naam: ${name}`;
+        document.getElementById("emailPrintAddress").textContent = `E-mailadres voor toezending: ${email}`;
+        document.getElementById("emailPrintConsent").textContent = "Toestemming: resultaat mag tijdelijk bewaard worden om later per e-mail te bezorgen.";
+        printInfo.hidden = false;
+        serviceBlock.classList.remove("email-service-empty");
+        if (validation) validation.textContent = "";
+      } else {
+        printInfo.hidden = true;
+        serviceBlock.classList.add("email-service-empty");
+      }
+    }
+
+    function printResult() {
+      const wantEmail = document.getElementById("wantEmailResult")?.checked;
+
+      if (wantEmail) {
+        const name = document.getElementById("visitorName").value.trim();
+        const email = document.getElementById("visitorEmail").value.trim();
+        const consent = document.getElementById("visitorConsent").checked;
+        const validation = document.getElementById("emailValidationMsg");
+
+        if (!name) {
+          validation.textContent = "Vul eerst je naam in, of vink de optie voor e-mailbezorging uit.";
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          validation.textContent = "Vul eerst een geldig e-mailadres in, of vink de optie voor e-mailbezorging uit.";
+          return;
+        }
+
+        if (!consent) {
+          validation.textContent = "Vink eerst de toestemming aan, of vink de optie voor e-mailbezorging uit.";
+          return;
+        }
+
+        updateEmailPrintInfo();
+      }
+
+      const originalTitle = document.title;
+      document.title = getSuggestedFileName().replace(/\.pdf$/i, "");
+
+      window.print();
+
+      setTimeout(function() {
+        document.title = originalTitle;
+      }, 1000);
     }
 
     function getResult(score) {
