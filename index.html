@@ -181,7 +181,184 @@
         transform: none !important;
       }
     }
-  </style>
+  
+/* --- Downloads zoekfunctie --- */
+
+.downloadZoekPaneel {
+  background: #ffffff;
+  border: 2px solid #23a9e4;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 12px auto 18px auto;
+  max-width: 920px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.downloadZoekTitel {
+  font-weight: 700;
+  color: #00384f;
+  font-size: 1.05em;
+  margin-bottom: 8px;
+}
+
+.downloadZoekRegel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#downloadZoekInput {
+  flex: 1;
+  width: 100%;
+  border: 1px solid #b9dceb;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 1em;
+  outline: none;
+}
+
+#downloadZoekInput:focus {
+  border-color: #23a9e4;
+  box-shadow: 0 0 0 3px rgba(35,169,228,0.18);
+}
+
+#downloadZoekWis {
+  border: none;
+  border-radius: 999px;
+  background: #23a9e4;
+  color: #ffffff;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#downloadZoekWis:hover {
+  background: #168fc4;
+}
+
+#downloadZoekStatus {
+  margin-top: 8px;
+  font-size: 0.92em;
+  color: #00384f;
+  line-height: 1.35;
+}
+
+.downloadZoekTip {
+  margin-top: 6px;
+  font-size: 0.85em;
+  color: #555555;
+  line-height: 1.35;
+}
+
+#downloadGeenResultaten {
+  display: none;
+  background: #fff7e6;
+  border: 1px solid #f0c36d;
+  color: #5a4300;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px auto;
+  max-width: 920px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .downloadZoekPaneel {
+    margin: 10px 8px 16px 8px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .downloadZoekRegel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #downloadZoekInput {
+    font-size: 1em;
+    padding: 11px 14px;
+  }
+
+  #downloadZoekWis {
+    width: 100%;
+    padding: 11px 14px;
+  }
+}
+
+/* --- Downloads uitleg + zwevende naar-boven-knop --- */
+
+.downloadIntroTekst {
+  margin: 8px 0 8px 0;
+  padding: 10px 12px;
+  background: #f2fbff;
+  border-left: 5px solid #23a9e4;
+  border-radius: 10px;
+  color: #00384f;
+  font-size: 0.94em;
+  line-height: 1.45;
+}
+
+.downloadIntroTekst strong {
+  color: #00384f;
+}
+
+.downloadZoekTipVoorbeelden {
+  margin-top: 6px;
+  font-size: 0.86em;
+  color: #555555;
+  line-height: 1.35;
+}
+
+#downloadNaarBoven {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  border-radius: 999px;
+  background: #23a9e4;
+  color: #ffffff;
+  padding: 11px 16px;
+  font-size: 0.95em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  opacity: 0.95;
+}
+
+#downloadNaarBoven:hover {
+  background: #168fc4;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .downloadIntroTekst {
+    margin-top: 8px;
+    padding: 9px 10px;
+    font-size: 0.9em;
+    line-height: 1.38;
+  }
+
+  .downloadZoekTipVoorbeelden {
+    font-size: 0.82em;
+  }
+
+  #downloadNaarBoven {
+    right: 10px;
+    bottom: 12px;
+    padding: 9px 12px;
+    font-size: 0.84em;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  }
+}
+
+</style>
   
 </head>
 
@@ -2671,7 +2848,44 @@
     </div>
       
     <!--            download               -->
-    <div class="pgContent" id="pgG"> 
+    <div class="pgContent" id="pgG">
+
+      <!-- Downloads zoekfunctie -->
+      <div class="downloadZoekPaneel" id="downloadZoekPaneel">
+        <div class="downloadZoekTitel">Zoeken in downloads</div>
+
+        <div class="downloadIntroTekst">
+          <strong>U hoeft niet te zoeken om downloads te bekijken.</strong><br>
+          Hieronder staan alle presentaties chronologisch, met de nieuwste bovenaan.
+          Gebruik het zoekvak alleen als u gericht zoekt op een onderwerp, spreker of woord uit een PDF.
+        </div>
+
+        <div class="downloadZoekRegel">
+          <input
+            type="search"
+            id="downloadZoekInput"
+            placeholder="Zoek op onderwerp, spreker of woorden uit de PDF..."
+            autocomplete="off"
+          >
+          <button type="button" id="downloadZoekWis">Wissen</button>
+        </div>
+
+        <div id="downloadZoekStatus">Zoekfunctie wordt geladen...</div>
+
+        <div class="downloadZoekTipVoorbeelden">
+          U kunt één of meerdere woorden typen, bijvoorbeeld: hypo, voeding, insuline pomp, nieren, rijbewijs, medicatie of bewegen.
+        </div>
+      </div>
+
+      <div id="downloadGeenResultaten">
+        Geen downloads gevonden voor deze zoekterm.
+      </div>
+
+      <button type="button" id="downloadNaarBoven" aria-label="Terug naar het zoekvak bovenaan de downloads">
+        ↑ Naar boven
+      </button>
+
+ 
 	
 		<div class="containerDownload">
         <label>
@@ -2679,7 +2893,7 @@
           Seksuele en psychologische<br>aspecten van diabetes
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/Diabetesenseksualiteit18062026fvandereyt.pdf" target="_blank">
+		      <a href="site/downloadPDF/2026_06_18_diabetesenseksualiteit18062026fvandereyt.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Diabetesenseksualiteit18062026fvandereyt.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2699,7 +2913,7 @@
           Seksuele en psychologische<br>aspecten van diabetes
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/Diabetesenseksualiteit18062026Kvanrenterghem.pdf" target="_blank">
+		      <a href="site/downloadPDF/2026_06_18_diabetesenseksualiteit18062026kvanrenterghem.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Diabetesenseksualiteit18062026Kvanrenterghem.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2719,7 +2933,7 @@
           Diabetes en bewegen
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/lezingDiabetesEnBewegen20260423.pdf" target="_blank">
+		      <a href="site/downloadPDF/2026_04_23_lezingdiabetesenbewegen20260423.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/lezingDiabetesEnBewegen20260423.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2739,7 +2953,7 @@
           Nieuwe technieken
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/Diabetesliga_november_2025.pdf" target="_blank">
+		      <a href="site/downloadPDF/2025_11_27_diabetesliga_november_2025.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Diabetesliga_november_2025.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2760,7 +2974,7 @@
           Nieuwe medicatie
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/NieuweMedicatie27112025.pdf" target="_blank">
+		      <a href="site/downloadPDF/2025_11_27_nieuwemedicatie27112025.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/NieuweMedicatie27112025.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2780,7 +2994,7 @@
           Orthopedische behandelingen<br>en diabetes voet
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/OrthopedischeBehandelingEnDiabetesVoet.pdf" target="_blank">
+		      <a href="site/downloadPDF/2025_05_08_orthopedischebehandelingendiabetesvoet.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/OrthopedischeBehandelingenEnDiabetesVoet.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2801,7 +3015,7 @@
           Nieuwe cardiologische<br>benaderingen voor Diabetici
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/Hartenbloedvaten20250313.pdf" target="_blank">
+		      <a href="site/downloadPDF/2025_03_13_hartenbloedvaten20250313.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Hartenbloedvaten20250313.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2821,7 +3035,7 @@
           Proost chique zonder glycemie piek
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/diabetes_en_de_feestdagen.pdf" target="_blank">
+		      <a href="site/downloadPDF/2024_11_26_diabetes_en_de_feestdagen.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/diabetes_en_de_feestdagen.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2842,7 +3056,7 @@
           DIABETS? JE ADMINISTRAIE OPP ORDE!
 		    </label>
         <div class="containerDownloadImg">
-		      <a href="site/downloadPDF/DiabetesMaatschappelijkeAspecten.pdf" target="_blank">
+		      <a href="site/downloadPDF/2024_10_08_diabetesmaatschappelijkeaspecten.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/DiabetesMaatschappelijkeAspecten.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2862,7 +3076,7 @@
           EEN WAARDIG LEVENSEINDE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/WaardigLevenseinde.pdf" target="_blank">
+          <a href="site/downloadPDF/2024_04_18_waardiglevenseinde.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/WaardigLevenseinde.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2884,7 +3098,7 @@
           EEN WAARDIG LEVENSEINDE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Wildgroei.pdf" target="_blank">
+          <a href="site/downloadPDF/2024_04_18_wildgroei.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Wildgroei.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2904,7 +3118,7 @@
           EEN WAARDIG LEVENSEINDE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/WerkingELZ_Herkenrode.pdf" target="_blank">
+          <a href="site/downloadPDF/2024_04_18_werkingelz_herkenrode.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/WerkingELZ_Herkenrode.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2922,7 +3136,7 @@
           NIERAANDOENINGEN BIJ DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/nieraandoeningen_bij_diabetes.pdf" target="_blank">
+          <a href="site/downloadPDF/2024_02_08_nieraandoeningen_bij_diabetes.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/nieraandoeningen_bij_diabetes.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2940,7 +3154,7 @@
           PATIENT EMPOWERMENT<br>DE PATIËNT AAN HET STUUR
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/DiabetesLiga_Roadshow_Hasselt_KORT.pdf" target="_blank">
+          <a href="site/downloadPDF/2023_10_12_diabetesliga_roadshow_hasselt_kort.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/PatientEmpowerment.png" style="height:auto;">
           <div>download</div>
           </a>
@@ -2960,7 +3174,7 @@
           PATIENT EMPOWERMENT<br>DE PATIËNT AAN HET STUUR
         </label>
         <div class="containerDownloadImg">
-          <a href="https://www.dlml.be/site/downloadPDF/maak_kennis_met_de_8_pati%C3%83%C2%ABntenrechten.pdf" target="_blank">
+          <a href="site/downloadPDF/2023_10_12_maak_kennis_met_de_8_patientenrechten.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/PatientEmpowerment.png" style="height:auto;">
            <div>download</div>
           </a>
@@ -2978,7 +3192,7 @@
           FINANCIËLE TEGEMOETKOMINGEN VOOR PATIËNTEN MET CHRONISCHE ZIEKTEN EN GEHANDICAPTEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/FinancieleTegemoetkomingen.pdf" target="_blank">
+          <a href="site/downloadPDF/2023_02_28_financieletegemoetkomingen.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/FinancieleTegemoetkomingen.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -2998,7 +3212,7 @@
          TANDVERZORGING BIJ DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/tandverzorging09022023.pdf" target="_blank">
+          <a href="site/downloadPDF/2023_02_09_tandverzorging09022023.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/tandverzorging09022023.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3018,7 +3232,7 @@
           ALTERNATIEVE VERSUS KLASSIEKE DIËTEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/dieten_JessaZH_door_Liesbeth_Jelena_Joke.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_11_24_dieten_jessazh_door_liesbeth_jelena_joke.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/dieten_JessaZH_door_Liesbeth_Jelena_Joke.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3040,7 +3254,7 @@
         </label>
         <label>&nbsp;</label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Nieuwe_technieken_Diabetes_Liga20220519.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_05_19_nieuwe_technieken_diabetes_liga20220519.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Nieuwe_technieken_Diabetes_Liga20220519.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3058,7 +3272,7 @@
          DE DIABETISCHE VOET
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/De_diabetische_voet.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_03_24_de_diabetische_voet.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/De_diabetische_voet.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3080,7 +3294,7 @@
           LEVEN MET DIABETES TYPE 1 en TYPE 2
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/UHasselt_voorstellingDL_2022.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_03_06_uhasselt_voorstellingdl_2022.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/UHasselt_voorstellingDL_2022.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3098,7 +3312,7 @@
           LEVEN MET DIABETES TYPE 1 en TYPE 2
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/UHasselt_getuigenis_type1.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_03_06_uhasselt_getuigenis_type1.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/UHasselt_getuigenis_type1.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3116,7 +3330,7 @@
           LEVEN MET DIABETES TYPE 1 en TYPE 2
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/UHasselt_getuigenis_type2.pdf" target="_blank">
+          <a href="site/downloadPDF/2022_03_06_uhasselt_getuigenis_type2.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/UHasselt_getuigenis_type2.jpg" style="height:auto;">
           <div>download</div>
           </a>
@@ -3134,7 +3348,7 @@
           SLAAPAPNEU EN DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/slaapapneu.pdf" target="_blank">
+          <a href="site/downloadPDF/2021_10_21_slaapapneu.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/slaapapneu.jpg">
           <div>download</div>
           </a>
@@ -3152,7 +3366,7 @@
           NIERFUNCTIEVERVANGENDE THERAPIE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/nierfunctievervangendeTherapie.pdf" target="_blank">
+          <a href="site/downloadPDF/2019_11_21_nierfunctievervangendetherapie.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/nierfunctievervangendeTherapie.jpg">
           <div>download</div>
           </a>
@@ -3170,7 +3384,7 @@
           DIABETES@SCHOOL 2019
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/DiabetesatSchool2019.pdf" target="_blank">
+          <a href="site/downloadPDF/2019_10_03_diabetesatschool2019.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/DiabetesatSchool2019.jpg">
           <div>download</div> 
           </a>
@@ -3188,7 +3402,7 @@
            NIEUWE TECHNIEKEN VOOR DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/nieuweMedicatieInDeBehandelingVanType2.pdf" target="_blank">
+          <a href="site/downloadPDF/2019_05_09_nieuwemedicatieindebehandelingvantype2.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/nieuweMedicatieInDeBehandelingVanType2.jpg"> 
           <div>download</div>
           </a>
@@ -3206,7 +3420,7 @@
           LEEFSTIJL VOOR DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Voeding_en_diabetes.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2018_11_29_voeding_en_diabetes.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Voeding_en_diabetes.jpg"> 
           <div>download</div>
           </a> 
@@ -3224,7 +3438,7 @@
           LEEFSTIJL VOOR DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Rookstop.pdf" target="_blank">
+          <a href="site/downloadPDF/2018_11_29_rookstop.pdf" target="_blank">
           <img alt=".." src="site/downloadPDF/Rookstop.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3242,7 +3456,7 @@
           LEEFSTIJL VOOR DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/beweging_en_diabetes.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2018_11_29_beweging_en_diabetes.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/beweging_en_diabetes.jpg"> 
           <div>download</div>
           </a> 
@@ -3260,7 +3474,7 @@
            DIABETES EN NIERZIEKTE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_nierziekte.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2018_10_18_diabetes_en_nierziekte.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_nierziekte.jpg" style="width:100%"> 
           <div>download</div>
           </a>
@@ -3281,7 +3495,7 @@
           Gastric Bypass een reddingslijn voor diabetes?
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Obesitas.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_10_22_obesitas.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Obesitas.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3299,7 +3513,7 @@
           DAGELIJKSE BESLOMMERINGEN VAN EEN DIABEET
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/dagelijkse_beslommeringen.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2018_05_17_dagelijkse_beslommeringen.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/dagelijkse_beslommeringen.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3320,7 +3534,7 @@
           DIABETESMEDICATIE OPTIMALISEREN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/diabetesmedicatie_optimaliseren.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2018_03_15_diabetesmedicatie_optimaliseren.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/diabetesmedicatie_optimaliseren.jpg" > 
           <div>download</div> 
           </a> 
@@ -3341,7 +3555,7 @@
           DIABETES NEUROPATHIE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Neuropathie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2017_10_18_neuropathie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Neuropathie.jpg" > 
           <div>download</div>            </a> 
         </div> 
@@ -3358,7 +3572,7 @@
           DIABETES RETINOPATHIE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Retinopathie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2017_10_18_retinopathie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Retinopathie.jpg" style="width:100%"> 
           <div>download</div>            </a> 
         </div> 
@@ -3369,13 +3583,13 @@
         </div>
       </div>
           
-      <div class="containerDownload">
+   <!-- <div class="containerDownload">
         <label>
           <img class="LogoSize1" alt=".." src="site/image/LogoDLwt.png" >
           DIABETES EN STRESS
         </label>
         <div class="containerDownloadImg">
-          <a href="https://www.dlml.be/site/downloadPDF/diabetes_en_stress.pdf" target="_blank"> 
+          <a href="site/downloadPDF/diabetes_en_stress.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/diabetes_en_stress.jpg" style="width:100%"> 
           <div>download</div> 
           </a> 
@@ -3385,7 +3599,7 @@
           <div>Spreker: dr. Frank Vandereyt<br>psycholoog Jessa Ziekenhuis</div>
           <div>31 mei 2017</div>
         </div>
-      </div>
+      </div> -->
            
       <div class="containerDownload">
         <label>
@@ -3393,7 +3607,7 @@
           HART EN VAATZIEKTEN BIJ DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Hart_en_vaatziekte.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2017_02_21_hart_en_vaatziekte.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Hart_en_vaatziekte.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3411,7 +3625,7 @@
           VOEDING EN DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_vetten.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2017_02_21_diabetes_en_vetten.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_vetten.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3429,7 +3643,7 @@
           ERFELIJKHEID EN DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetesregister.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2016_11_09_diabetesregister.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetesregister.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3447,7 +3661,7 @@
           DIABETESQUIZ
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetesquiz.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2016_10_05_diabetesquiz.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetesquiz.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3465,7 +3679,7 @@
           GEZOND SNOEPEN EN DESSERTEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Gezond_snoepen.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2016_10_05_gezond_snoepen.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Gezond_snoepen.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3483,7 +3697,7 @@
           TANDVERZORGING
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Paradontologie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2016_05_11_paradontologie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Paradontologie.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3519,7 +3733,7 @@
           DIABETES EN OVERGEWICHT
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Metabool_syndroom.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2016_03_16_metabool_syndroom.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Metabool_syndroom.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3537,7 +3751,7 @@
           DIABETES EN SPORT
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_sport.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2015_11_26_diabetes_en_sport.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_sport.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3555,7 +3769,7 @@
           DIABETES@SCHOOL 2015
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetesatschool2015.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2015_10_22_diabetesatschool2015.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetesatschool2015.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3574,7 +3788,7 @@
           <img class="LogoSize1" alt=".." src="site/image/LogoDLwt.png" >
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Sociale_items.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2015_05_06_sociale_items.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Sociale_items.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3595,7 +3809,7 @@
           DIABETES EN MEDICATIE
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_medicatie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2015_02_25_diabetes_medicatie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_medicatie.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3613,7 +3827,7 @@
            GASTRIC BYPASS
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Obesitas.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_10_22_obesitas.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Obesitas.jpg" style="width:100%"> 
                download 
             </a> 
@@ -3631,7 +3845,7 @@
            DIABETESZORG RECHTEN EN PLICHTEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Kinderconventie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_09_25_kinderconventie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Kinderconventie.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3650,7 +3864,7 @@
            DIABETESZORG RECHTEN EN PLICHTEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Zorgtraject.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_09_25_zorgtraject.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Zorgtraject.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3668,7 +3882,7 @@
           Diabeteszorg Rechten en plichten
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetesconventie.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_09_25_diabetesconventie.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetesconventie.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3686,7 +3900,7 @@
           DE GENEZINGSKANSEN VOOR DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Genezingskansen2014.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2014_05_21_genezingskansen2014.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Genezingskansen2014.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3704,7 +3918,7 @@
           STEVIA ALS SUIKERALTERNATIEF
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Stevia.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_12_16_stevia.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Stevia.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3722,7 +3936,7 @@
           DIABETES@SCHOOL
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetesatschool2013.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_10_24_diabetesatschool2013.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetesatschool2013.jpg" style="width:100%"> 
           <div>download</div>
           </a> 
@@ -3740,7 +3954,7 @@
           DIABETES EN SEKSUALITEIT
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_intimiteit.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_09_24_diabetes_en_intimiteit.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_intimiteit.jpg" style="width:100%"> 
           <div>download</div> 
           </a> 
@@ -3758,7 +3972,7 @@
           DIABETES EN SEKSUALITEIT
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_seks.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_09_24_diabetes_en_seks.pdf" target="_blank"> 
           <img alt=" " src="site/downloadPDF/Diabetes_en_seks.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3776,7 +3990,7 @@
           PSYCHOSOCIALE IMPACT VAN TYPE1 DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Psychosociale_impact.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_04_24_psychosociale_impact.pdf" target="_blank"> 
           <img alt=" " src="site/downloadPDF/Psychosociale_impact.jpg" style="width:100%; height:auto;"> 
           <div>download</div> 
           </a> 
@@ -3794,7 +4008,7 @@
           OMGAAN MET DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/omgaan_met_diabetes.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_04_24_omgaan_met_diabetes.pdf" target="_blank"> 
           <img alt=" " src="site/downloadPDF/omgaan_met_diabetes.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3812,7 +4026,7 @@
           DIABETES EN DE OGEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_de_ogen.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_02_11_diabetes_en_de_ogen.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_de_ogen.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3830,7 +4044,7 @@
           DIABETES EN DE NIEREN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_de_nieren.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2013_02_11_diabetes_en_de_nieren.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_de_nieren.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3848,7 +4062,7 @@
           ETIKETTEN LEZEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Etiketten_lezen.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_10_17_etiketten_lezen.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Etiketten_lezen.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3867,7 +4081,7 @@
           Vetten in de voeding
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/vetten_in_de_voeding.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_10_17_vetten_in_de_voeding.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/vetten_in_de_voeding.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3885,7 +4099,7 @@
           SUIKER EN ZOETSTOFFEN
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/suiker_zoetstoffen.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_10_17_suiker_zoetstoffen.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/suiker_zoetstoffen.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3903,7 +4117,7 @@
           VOETVERZORGING BIJ DIABETICI
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_de_voeten.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_03_29_diabetes_en_de_voeten.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_de_voeten.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3921,7 +4135,7 @@
           HET BELANG VAN DE DIABETESEDUCATOR
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabeteseducatoren.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_03_29_diabeteseducatoren.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabeteseducatoren.jpg" style="width:100%; height:auto;"> 
           <div>download</div> 
           </a> 
@@ -3939,7 +4153,7 @@
           DIABETES EN BEWEGING
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Diabetes_en_beweging.pdf" style="color:#ffffff; " target="_blank"> 
+          <a href="site/downloadPDF/2012_02_29_diabetes_en_beweging.pdf" style="color:#ffffff; " target="_blank"> 
           <img alt=".." src="site/downloadPDF/Diabetes_en_beweging.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -3957,7 +4171,7 @@
            (TOP)SPORT EN DIABETES
         </label>
         <div class="containerDownloadImg">
-          <a href="site/downloadPDF/Topsport.pdf" target="_blank"> 
+          <a href="site/downloadPDF/2012_02_29_topsport.pdf" target="_blank"> 
           <img alt=".." src="site/downloadPDF/Topsport.jpg" style="width:100%; height:auto;"> 
           <div>download</div>
           </a> 
@@ -4184,6 +4398,254 @@
   })();
 </script>
 
-  </body>
+  
+<script>
+/* --- Downloads zoekfunctie met PDF-inhoud + knop naar boven --- */
+
+(function () {
+  let downloadsIndex = [];
+  let indexPerBestand = {};
+  let pdfIndexGeladen = false;
+  let aantalGekoppeld = 0;
+
+  function normaliseerTekst(tekst) {
+    return (tekst || "")
+      .toString()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function normaliseerBestandsnaam(naam) {
+    return (naam || "")
+      .toString()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  function haalBestandsnaamUitHref(href) {
+    if (!href) return "";
+
+    href = href.split("?")[0].split("#")[0];
+
+    try {
+      href = decodeURIComponent(href);
+    } catch (e) {
+      // Indien decodeURIComponent faalt, gewoon verdergaan
+    }
+
+    const delen = href.split("/");
+    return normaliseerBestandsnaam(delen[delen.length - 1]);
+  }
+
+  function maakIndexPerBestand() {
+    indexPerBestand = {};
+
+    downloadsIndex.forEach(function (item) {
+      if (!item) return;
+
+      const bestandNieuw = normaliseerBestandsnaam(item.bestand || "");
+      const bestandOud = normaliseerBestandsnaam(item.oude_naam || "");
+
+      const inhoud = {
+        bestand: item.bestand || "",
+        oude_naam: item.oude_naam || "",
+        titel: item.titel || "",
+        datum: item.datum || "",
+        datum_bestandsvorm: item.datum_bestandsvorm || "",
+        tekst: item.tekst || "",
+        status: item.status || ""
+      };
+
+      if (bestandNieuw) {
+        indexPerBestand[bestandNieuw] = inhoud;
+      }
+
+      if (bestandOud) {
+        indexPerBestand[bestandOud] = inhoud;
+      }
+    });
+  }
+
+  function verrijkDownloadBlokken() {
+    const blokken = document.querySelectorAll("#pgG .containerDownload");
+
+    aantalGekoppeld = 0;
+
+    blokken.forEach(function (blok) {
+      const link = blok.querySelector("a[href*='.pdf'], a[href*='.PDF']");
+      const href = link ? link.getAttribute("href") : "";
+      const bestandUitHtml = haalBestandsnaamUitHref(href);
+
+      blok.dataset.pdfBestand = bestandUitHtml;
+
+      const zichtbareTekst = normaliseerTekst(blok.innerText || "");
+      let pdfTekst = "";
+
+      const item = indexPerBestand[bestandUitHtml];
+
+      if (item) {
+        aantalGekoppeld += 1;
+
+        pdfTekst = normaliseerTekst(
+          item.bestand + " " +
+          item.oude_naam + " " +
+          item.titel + " " +
+          item.datum + " " +
+          item.datum_bestandsvorm + " " +
+          item.tekst
+        );
+      }
+
+      blok.dataset.zoektekst = zichtbareTekst + " " + pdfTekst;
+    });
+
+    console.log("Downloads zoekfunctie: PDF-index items:", downloadsIndex.length, "gekoppeld:", aantalGekoppeld);
+  }
+
+  function isDownloadsZichtbaar() {
+    const downloadsPagina = document.getElementById("pgG");
+
+    if (!downloadsPagina) return false;
+
+    const stijl = window.getComputedStyle(downloadsPagina);
+
+    return stijl.display !== "none" && stijl.visibility !== "hidden";
+  }
+
+  function updateDownloadNaarBovenKnop() {
+    const knop = document.getElementById("downloadNaarBoven");
+    const zoekPaneel = document.getElementById("downloadZoekPaneel");
+
+    if (!knop || !zoekPaneel) return;
+
+    const zoekPaneelPositie = zoekPaneel.getBoundingClientRect();
+    const verGenoegGezakt = zoekPaneelPositie.bottom < 0 || window.scrollY > 420;
+
+    if (isDownloadsZichtbaar() && verGenoegGezakt) {
+      knop.classList.add("is-zichtbaar");
+    } else {
+      knop.classList.remove("is-zichtbaar");
+    }
+  }
+
+  function pasZoekfilterToe() {
+    const input = document.getElementById("downloadZoekInput");
+    const status = document.getElementById("downloadZoekStatus");
+    const geenResultaten = document.getElementById("downloadGeenResultaten");
+
+    if (!input || !status) return;
+
+    const zoekterm = normaliseerTekst(input.value);
+    const woorden = zoekterm.split(" ").filter(Boolean);
+
+    const blokken = document.querySelectorAll("#pgG .containerDownload");
+
+    let zichtbaar = 0;
+
+    blokken.forEach(function (blok) {
+      const zoektekst = blok.dataset.zoektekst || normaliseerTekst(blok.innerText || "");
+
+      const gevonden = woorden.length === 0 || woorden.every(function (woord) {
+        return zoektekst.includes(woord);
+      });
+
+      blok.style.display = gevonden ? "" : "none";
+
+      if (gevonden) {
+        zichtbaar += 1;
+      }
+    });
+
+    if (woorden.length === 0) {
+      status.textContent = pdfIndexGeladen
+        ? "Zoek op titel, spreker, datum of woorden uit de PDF-inhoud."
+        : "PDF-inhoud kon niet geladen worden. Zoeken werkt voorlopig alleen op de zichtbare downloadtekst.";
+
+      if (geenResultaten) geenResultaten.style.display = "none";
+      return;
+    }
+
+    status.textContent = zichtbaar + " download(s) gevonden voor: " + input.value;
+
+    if (geenResultaten) {
+      geenResultaten.style.display = zichtbaar === 0 ? "block" : "none";
+    }
+  }
+
+  function startDownloadZoekfunctie() {
+    const input = document.getElementById("downloadZoekInput");
+    const wisKnop = document.getElementById("downloadZoekWis");
+    const status = document.getElementById("downloadZoekStatus");
+    const naarBovenKnop = document.getElementById("downloadNaarBoven");
+    const zoekPaneel = document.getElementById("downloadZoekPaneel");
+
+    if (!input || !status) return;
+
+    input.addEventListener("input", pasZoekfilterToe);
+
+    if (wisKnop) {
+      wisKnop.addEventListener("click", function () {
+        input.value = "";
+        input.focus();
+        pasZoekfilterToe();
+      });
+    }
+
+    if (naarBovenKnop && zoekPaneel) {
+      naarBovenKnop.addEventListener("click", function () {
+        zoekPaneel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+
+    window.addEventListener("scroll", updateDownloadNaarBovenKnop, { passive: true });
+    window.addEventListener("resize", updateDownloadNaarBovenKnop);
+
+    document.addEventListener("click", function () {
+      setTimeout(updateDownloadNaarBovenKnop, 120);
+    });
+
+    fetch("site/data/downloads-index.json", { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("downloads-index.json niet gevonden");
+        }
+
+        return response.json();
+      })
+      .then(function (data) {
+        downloadsIndex = Array.isArray(data) ? data : [];
+        pdfIndexGeladen = true;
+
+        maakIndexPerBestand();
+        verrijkDownloadBlokken();
+        pasZoekfilterToe();
+        updateDownloadNaarBovenKnop();
+      })
+      .catch(function (fout) {
+        pdfIndexGeladen = false;
+        downloadsIndex = [];
+
+        verrijkDownloadBlokken();
+        pasZoekfilterToe();
+        updateDownloadNaarBovenKnop();
+
+        console.warn("Download zoekindex niet geladen:", fout);
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", startDownloadZoekfunctie);
+})();
+</script>
+
+</body>
 
 </html>
