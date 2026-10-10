@@ -404,6 +404,32 @@ $(document).on('dblclick', '#lightboxImg', function(e) {
     // --- 7. INITIALISATIE ---
     $.fn.startTimer();
     $.fn.setPg();
+
+    // Deelbare link naar de nieuwe activiteit, binnen de bestaande navigatie.
+    function openWddActivity() {
+        if (window.location.hash !== '#wereld-diabetes-dag') return;
+        pgNr = 'C';
+        $.fn.stopTimer();
+        $('#actieveMnu').text('Cultuur/ontspanning');
+        $.fn.setPg();
+        document.getElementById('wdd-activity-title').focus({preventScroll:true});
+    }
+    window.addEventListener('hashchange', openWddActivity);
+    $('a[href="#wereld-diabetes-dag"]').on('click', function() {
+        if (window.location.hash === '#wereld-diabetes-dag') openWddActivity();
+    });
+    openWddActivity();
+    $('#wdd-share-button').on('click', async function() {
+        var url = new URL(window.location.href);
+        url.hash = 'wereld-diabetes-dag';
+        var data = {title:'Wereld Diabetes Dag in Hasselt', text:'Kom op zaterdag 14 november 2026 vanaf 10 uur langs op het Molenpoortplein. 8 korte vragen, ongeveer 1 minuut voor je risico op type 2 diabetes.', url:url.href};
+        try {
+            if (navigator.share) await navigator.share(data);
+            else { await navigator.clipboard.writeText(data.text + '\n' + data.url); $('#wdd-share-status').text('Uitnodiging en link gekopieerd. Je kunt ze nu doorsturen.'); }
+        } catch(error) {
+            if(error.name !== 'AbortError') $('#wdd-share-status').text('Je kunt de link uit de adresbalk kopiëren en doorsturen.');
+        }
+    });
 });
 // Video's
 $('.pgContent#pgE').on('click', '.video-wrapper', function () {

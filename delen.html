@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Deel Wereld Diabetes Dag in Hasselt</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf3f6;color:#193b4e;font:18px/1.5 Arial,sans-serif}main{max-width:600px;margin:24px auto;background:white;border-radius:10px;overflow:hidden}header{padding:20px 24px;background:#7134a5;color:white;border-bottom:5px solid #23a9e4;font-weight:bold}header span{display:inline-block;width:25px;height:25px;border:4px solid #59d1ff;border-radius:50%;vertical-align:middle;margin-right:10px}.content{padding:24px}h1{font-size:29px;line-height:1.2;margin:0 0 18px}p{margin:0 0 18px}.event{padding:16px;background:#eef9ff;border-left:4px solid #23a9e4}.button{display:block;width:100%;padding:15px 18px;margin:12px 0;border:2px solid #7134a5;border-radius:6px;font:700 18px/1.35 Arial,sans-serif;text-align:center;cursor:pointer;background:#7134a5;color:white;text-decoration:none}.secondary{background:white;color:#7134a5}a{color:#075778}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #135574;outline-offset:3px}summary{cursor:pointer;padding:12px 0;min-height:48px;text-decoration:underline}small{font-size:16px}#status{font-size:16px;margin:14px 0}textarea{width:100%;min-height:200px;font:16px/1.5 Arial,sans-serif;padding:12px}details{margin-top:12px}[hidden]{display:none!important}@media(max-width:620px){main{margin:8px}.content{padding:20px}header{padding:17px 20px}h1{font-size:27px}}
+</style></head><body><main>
+<header><span aria-hidden="true"></span>WERELD DIABETES DAG</header>
+<div class="content"><h1>Nodig familie of vrienden uit</h1>
+<p class="event"><strong>Zaterdag 14 november 2026</strong><br>Vanaf 10 uur · Molenpoortplein<br>Bij Primark, centrum Hasselt</p>
+<p id="instructions">Kies hoe je de uitnodiging wilt doorgeven.</p>
+<button type="button" class="button" id="native" hidden>Delen met familie of vrienden</button>
+<details id="alternatives" open><summary>Andere manieren om te delen</summary>
+<a class="button secondary" id="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">Delen via WhatsApp</a>
+<a class="button secondary" id="email" href="mailto:?subject=Op%2014%20november%20in%20Hasselt%3F%20Kom%20even%20langs%21&amp;body=Dag%2C%0D%0A%0D%0AEen%20dagje%20winkelen%20of%20op%20stap%20in%20Hasselt%3F%20Deze%20uitnodiging%20is%20misschien%20iets%20voor%20jou%21%0D%0A%0D%0AWERELD%20DIABETES%20DAG%0D%0AZaterdag%2014%20november%202026%20%C2%B7%20vanaf%2010%20uur%0D%0AMolenpoortplein%2C%20bij%20Primark%20in%20centrum%20Hasselt%0D%0A%0D%0ADiabetes%20Liga%20Midden-Limburg%20verwelkomt%20je%20aan%20haar%20infostand.%0D%0A%0D%0A8%20korte%20vragen.%20Ongeveer%201%20minuut.%0D%0AOntdek%20je%20risico%20op%20type%202%20diabetes%3A%20op%20papier%20of%20met%20je%20eigen%20gsm.%20Je%20kunt%20er%20ook%20terecht%20voor%20diabetesinformatie.%0D%0A%0D%0ABreng%20gerust%20familie%20of%20vrienden%20mee.%20Iedereen%20welkom%21%0D%0A%0D%0AMisschien%20tot%20dan%21">Delen via e-mail</a>
+<button type="button" class="button secondary" id="copy" hidden>Uitnodiging kopiëren</button>
+</details><p id="status" role="status" aria-live="polite"></p>
+<div id="manual" hidden><label for="message">Selecteer en kopieer de uitnodiging:</label><textarea id="message" readonly></textarea></div>
+<noscript><p>Gebruik de e-mailknop hierboven, of stuur de nieuwsbrief gewoon door.</p><style>#whatsapp{display:none}</style></noscript>
+<p><small>Jij kiest de ontvanger en verstuurt zelf.</small></p>
+<a href="nieuwsbrief.html">Bekijk de uitnodiging</a>
+</div></main>
+<script>
+const title="Op 14 november in Hasselt? Kom even langs!";
+const text="Dag,\r\n\r\nEen dagje winkelen of op stap in Hasselt? Deze uitnodiging is misschien iets voor jou!\r\n\r\nWERELD DIABETES DAG\r\nZaterdag 14 november 2026 · vanaf 10 uur\r\nMolenpoortplein, bij Primark in centrum Hasselt\r\n\r\nDiabetes Liga Midden-Limburg verwelkomt je aan haar infostand.\r\n\r\n8 korte vragen. Ongeveer 1 minuut.\r\nOntdek je risico op type 2 diabetes: op papier of met je eigen gsm. Je kunt er ook terecht voor diabetesinformatie.\r\n\r\nBreng gerust familie of vrienden mee. Iedereen welkom!";
+// Een lokale voorvertoning deelt geen onbereikbaar localhost-adres.
+const published=location.protocol==='https:'&&location.hostname==='fredje4711.github.io';
+const url=published?new URL('nieuwsbrief.html',location.href).href:'';
+const message=text+(url?'\r\n\r\nBekijk de uitnodiging met foto:\r\n'+url:'')+'\r\n\r\nMisschien tot dan!';
+const data={title,text:text+'\r\n\r\nMisschien tot dan!',...(url?{url}:{})};
+const native=document.getElementById('native');
+const alternatives=document.getElementById('alternatives');
+const status=document.getElementById('status');
+document.getElementById('whatsapp').href='https://wa.me/?text='+encodeURIComponent(message);
+document.getElementById('email').href='mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(message);
+document.getElementById('message').value=message;
+document.getElementById('copy').hidden=false;
+if(typeof navigator.share==='function'){
+ native.hidden=false;alternatives.open=false;
+ document.getElementById('instructions').textContent='Tik op de knop. Kies daarna bijvoorbeeld WhatsApp, een bericht of e-mail.';
+}
+native.addEventListener('click',async()=>{
+ status.textContent='';
+ try{await navigator.share(data)}catch(error){
+  if(error.name==='AbortError')return;
+  alternatives.open=true;status.textContent='Het deelmenu kon niet openen. Kies hieronder WhatsApp, e-mail of kopiëren.';
+ }
+});
+document.getElementById('copy').addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText(message);status.textContent='Uitnodiging gekopieerd. Open een bericht aan je familie of vrienden en kies Plakken.'}
+ catch(error){document.getElementById('manual').hidden=false;document.getElementById('message').focus();document.getElementById('message').select();status.textContent='Houd de geselecteerde tekst ingedrukt en kies Kopiëren.'}
+});
+</script></body></html>
