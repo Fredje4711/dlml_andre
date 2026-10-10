@@ -994,3 +994,6 @@
  .wdd-home {grid-template-columns:1fr;}
  .wdd-home .wdd-photo {grid-column:1;grid-row:3;margin:0;}
 }
+
+/* De activiteitstitel ontvangt focus voor schermlezers, zonder zichtbaar kader. */
+#wdd-activity-title:focus { outline: none; }
